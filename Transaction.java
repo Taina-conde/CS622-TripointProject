@@ -26,7 +26,7 @@ public abstract class Transaction {
     public void setCard(String cardType) {
         this.cardType = cardType;
     }
-    
+
     // calculate points earned in this transaction
     public abstract int calculatePoints();
 

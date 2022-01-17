@@ -1,15 +1,16 @@
 public abstract class CreditCard {
+    protected String customer;
+    protected int pointsBal;
 
-    protected String type;
 
     public CreditCard() {
 
     }
-    public CreditCard(String type) {
-        this.type = type;
+    public CreditCard(String customer) {
+        this.customer = customer;
 
     }
-
+    public abstract int calculatePoints();
 
 
 }
