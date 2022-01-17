@@ -10,7 +10,7 @@ public class TravelTransaction extends Transaction {
         return category;
     }
     public int calculatePoints(){
-
+        card.travelValue() =
     }
 
 }

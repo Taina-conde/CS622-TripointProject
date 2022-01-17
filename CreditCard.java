@@ -1,9 +1,14 @@
-public class CreditCard {
-    protected int diningValue;
-    protected int groceryValue;
-    protected int onlineShopValue;
-    protected int travelValue;
+public abstract class CreditCard {
+
     protected String type;
+
+    public CreditCard() {
+
+    }
+    public CreditCard(String type) {
+        this.type = type;
+
+    }
 
 
 

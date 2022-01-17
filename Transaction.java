@@ -1,30 +1,30 @@
 public abstract class Transaction {
     protected double amount;
-    protected CreditCard card;
+    protected String cardType;
 
 
     public Transaction() {
 
     }
-    public Transaction(CreditCard card, double amount ) {
+    public Transaction(String cardType, double amount ) {
         this.amount = amount;
-        this.card = card;
+        this.cardType = cardType;
 
     }
     //getters
     public double getAmount() {
         return amount;
     }
-    public  CreditCard getCard() {
-        return card;
+    public  String getCardType() {
+        return cardType;
     }
 
     //setters
     public void setAmount(double amount) {
         this.amount = amount;
     }
-    public void setCard(CreditCard card) {
-        this.card = card;
+    public void setCard(String cardType) {
+        this.cardType = cardType;
     }
     
     // calculate points earned in this transaction
