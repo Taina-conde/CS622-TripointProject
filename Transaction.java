@@ -1,6 +1,6 @@
 public abstract class Transaction {
     protected double amount;
-    protected String cardType;
+    protected cardType;
     protected String category;
 
     public Transaction() {
@@ -14,5 +14,5 @@ public abstract class Transaction {
     public abstract double getAmount();
     public abstract String getCardType();
     public abstract String getCategory();
-    
+
 }
