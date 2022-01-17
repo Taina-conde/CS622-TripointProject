@@ -11,5 +11,8 @@ public abstract class Transaction {
         this.cardType = cardType;
         this.category = category;
     }
-
+    public abstract double getAmount();
+    public abstract String getCardType();
+    public abstract String getCategory();
+    
 }
