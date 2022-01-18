@@ -1,6 +1,6 @@
 public abstract class CreditCard {
     protected String customer;
-    protected int pointsBal;
+    protected static int pointsBal;
 
 
     public CreditCard() {
@@ -15,7 +15,7 @@ public abstract class CreditCard {
         this.pointsBal += pointsBal;
 
     }
-    public int getPointsBal() {
+    public static int getPointsBal() {
         return pointsBal;
     }
     public void addPoints(int pointsEarned) {

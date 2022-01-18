@@ -15,6 +15,9 @@ public class TravelTransaction extends Transaction {
         if (card instanceof BasicCard) {
             pointValue = ((BasicCard)card).getTravelValue();
         }
+        if (card instanceof PreferredCard) {
+            pointValue = ((PreferredCard)card).getTravelValue();
+        }
         pointsEarned = (int)(amount * pointValue);
         card.addPoints(pointsEarned);
         return pointsEarned;
