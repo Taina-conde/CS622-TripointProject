@@ -14,6 +14,7 @@ public class CategoryTransaction extends Transaction {
     public String getCategory() {
         return category;
     }
+
     public int calculatePoints(){
         int pointValue= 0;
         int pointsEarned = 0;
@@ -21,12 +22,10 @@ public class CategoryTransaction extends Transaction {
 
             pointValue = ((BasicCard)card).getCategoryValue(category);
 
-
         }
         if (card instanceof PreferredCard) {
 
             pointValue = ((PreferredCard)card).getCategoryValue(category);
-
         }
         pointsEarned = (int)(amount * pointValue);
         card.addPoints(pointsEarned);

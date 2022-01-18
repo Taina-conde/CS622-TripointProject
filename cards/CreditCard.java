@@ -20,10 +20,10 @@ public abstract class CreditCard {
     public CreditCard() {
         this("");
     }
-
     public String getType() {
         return type;
     }
+
     public abstract int getCategoryValue(String category);
 
     public static int getPointsBal() {
