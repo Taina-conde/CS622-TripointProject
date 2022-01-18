@@ -1,3 +1,7 @@
+package cards;
+
+import cards.CreditCard;
+
 public class PreferredCard extends CreditCard {
     private final String type = "preferred";
     private final int diningValue = 10;

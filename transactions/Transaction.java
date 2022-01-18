@@ -1,3 +1,7 @@
+package transactions;
+
+import cards.CreditCard;
+
 public abstract class Transaction {
     protected double amount;
     protected String cardType;

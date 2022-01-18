@@ -1,3 +1,5 @@
+package cards;
+
 public abstract class CreditCard {
     protected String customer;
     protected static int pointsBal;

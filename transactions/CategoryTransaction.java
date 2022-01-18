@@ -1,3 +1,9 @@
+package transactions;
+
+import cards.BasicCard;
+import cards.CreditCard;
+import cards.PreferredCard;
+
 public class CategoryTransaction extends Transaction {
     public CategoryTransaction() {
         super();

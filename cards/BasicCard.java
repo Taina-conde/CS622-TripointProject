@@ -1,4 +1,6 @@
-public class BasicCard extends CreditCard{
+package cards;
+
+public class BasicCard extends CreditCard {
     private final String type = "basic";
     private final int diningValue = 5;
     private final int groceryValue = 10;

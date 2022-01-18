@@ -1,3 +1,10 @@
+package transactions_test;
+
+import cards.BasicCard;
+import cards.CreditCard;
+import cards.PreferredCard;
+import transactions.CategoryTransaction;
+import transactions.Transaction;
 
 class TransactionTest {
     public static void main(String[] args) {
