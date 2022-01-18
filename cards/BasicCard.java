@@ -1,15 +1,16 @@
 package cards;
 
 public class BasicCard extends CreditCard {
-    public BasicCard() {
-        super("basic");
+    public BasicCard(String customer, int pointsBal) {
+        super("basic", customer, pointsBal);
     }
     public BasicCard(String customer) {
-        super(customer);
+        this(customer, 0);
     }
-    public BasicCard(String customer, int pointsBal) {
-        super(customer, pointsBal);
+    public BasicCard() {
+        this("");
     }
+
     public int getCategoryValue(String category) {
         switch(category) {
             case "travel":

@@ -1,14 +1,14 @@
 package cards;
 
 public class PreferredCard extends CreditCard {
-    public PreferredCard() {
-        super("preferred");
+    public PreferredCard(String customer, int pointsBal) {
+        super("preferred", customer, pointsBal);
     }
     public PreferredCard(String customer) {
-        super(customer);
+        this(customer, 0);
     }
-    public PreferredCard(String customer, int pointsBal) {
-        super(customer, pointsBal);
+    public PreferredCard() {
+        this("");
     }
 
     public int getCategoryValue(String category) {

@@ -11,8 +11,6 @@ class TransactionTest {
         CreditCard basicCard = new BasicCard("Taina", 5000);
         Transaction newTrans = new CategoryTransaction(basicCard,"travel", 55.60);
         newTrans.displayTransaction();
-
-
     }
 
     public static void main(String[] args) {

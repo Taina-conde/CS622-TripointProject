@@ -5,17 +5,22 @@ public abstract class CreditCard {
     protected static int pointsBal;
     protected String type;
 
-    public CreditCard(String type) {
+    public CreditCard(String type, String customer, int pointsBal) {
         this.type = type;
-    }
-    public CreditCard(String type, String customer) {
-        this(type);
-        this.customer = customer;
-    }
-    public CreditCard(String customer, int pointsBal) {
         this.customer = customer;
         this.pointsBal += pointsBal;
     }
+
+    public CreditCard(String type, String customer) {
+        this(type, customer, 0);
+    }
+    public CreditCard(String type) {
+        this(type, "");
+    }
+    public CreditCard() {
+        this("");
+    }
+
     public String getType() {
         return type;
     }
