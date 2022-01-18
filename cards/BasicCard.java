@@ -1,11 +1,6 @@
 package cards;
 
 public class BasicCard extends CreditCard {
-    private final String type = "basic";
-    private final int diningValue = 5;
-    private final int groceryValue = 10;
-    private final int onlineShopValue = 10;
-    private final int travelValue = 5;
     public BasicCard() {
         super();
     }
@@ -15,18 +10,16 @@ public class BasicCard extends CreditCard {
     public BasicCard(String customer, int pointsBal) {
         super(customer, pointsBal);
     }
-    public int getDiningValue() {
-        return diningValue;
+    public int getCategoryValue(String category) {
+        switch(category) {
+            case "travel":
+                return 5;
+            case "dining":
+                return 3;
+            case "onlineShop":
+                return 10;
+            default:
+                return 8;
+        }
     }
-    public int getGroceryValue() {
-        return groceryValue;
-    }
-    public int getOnlineShopValue() {
-        return onlineShopValue;
-    }
-    public int getTravelValue() {
-        return travelValue;
-    }
-
-
 }
