@@ -2,7 +2,7 @@ package cards;
 
 public class PreferredCard extends CreditCard {
     public PreferredCard() {
-        super();
+        super("preferred");
     }
     public PreferredCard(String customer) {
         super(customer);

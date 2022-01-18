@@ -16,4 +16,7 @@ public abstract class Transaction {
     }
     // calculate points earned in this transaction
     public abstract int calculatePoints();
+
+    //display transaction to the console
+    public abstract void displayTransaction();
 }

@@ -2,7 +2,7 @@ package cards;
 
 public class BasicCard extends CreditCard {
     public BasicCard() {
-        super();
+        super("basic");
     }
     public BasicCard(String customer) {
         super(customer);
