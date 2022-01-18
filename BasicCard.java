@@ -7,6 +7,12 @@ public class BasicCard extends CreditCard{
     public BasicCard() {
         super();
     }
+    public BasicCard(String customer) {
+        super(customer);
+    }
+    public BasicCard(String customer, int pointsBal) {
+        super(customer, pointsBal);
+    }
     public int getDiningValue() {
         return diningValue;
     }
@@ -19,5 +25,6 @@ public class BasicCard extends CreditCard{
     public int getTravelValue() {
         return travelValue;
     }
+
 
 }

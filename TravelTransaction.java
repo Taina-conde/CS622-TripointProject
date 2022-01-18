@@ -3,17 +3,21 @@ public class TravelTransaction extends Transaction {
     public TravelTransaction() {
         super();
     }
-    public TravelTransaction(String cardType,  double amount) {
-        super(cardType, amount);
+    public TravelTransaction(CreditCard card,  double amount) {
+        super(card, amount);
     }
     public String getCategory() {
         return category;
     }
     public int calculatePoints(){
+        int pointValue= 0;
         int pointsEarned = 0;
-        if (card instaceof BasicCard) {
-            ((BasicCard)card).
+        if (card instanceof BasicCard) {
+            pointValue = ((BasicCard)card).getTravelValue();
         }
+        pointsEarned = (int)(amount * pointValue);
+        card.addPoints(pointsEarned);
+        return pointsEarned;
     }
 
 }

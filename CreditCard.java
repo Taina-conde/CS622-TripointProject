@@ -10,7 +10,18 @@ public abstract class CreditCard {
         this.customer = customer;
 
     }
-    public abstract int calculatePoints();
+    public CreditCard(String customer, int pointsBal) {
+        this.customer = customer;
+        this.pointsBal += pointsBal;
+
+    }
+    public int getPointsBal() {
+        return pointsBal;
+    }
+    public void addPoints(int pointsEarned) {
+        pointsBal += pointsEarned;
+    }
+
 
 
 }

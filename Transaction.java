@@ -1,14 +1,15 @@
 public abstract class Transaction {
     protected double amount;
     protected String cardType;
+    protected CreditCard card;
 
 
     public Transaction() {
 
     }
-    public Transaction(String cardType, double amount ) {
+    public Transaction(CreditCard card, double amount ) {
         this.amount = amount;
-        this.cardType = cardType;
+        this.card = card;
 
     }
     //getters
@@ -17,6 +18,9 @@ public abstract class Transaction {
     }
     public  String getCardType() {
         return cardType;
+    }
+    public CreditCard getCard() {
+        return card;
     }
 
     //setters
