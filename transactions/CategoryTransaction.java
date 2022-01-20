@@ -3,8 +3,7 @@ package transactions;
 import cards.BasicCard;
 import cards.CreditCard;
 import cards.PreferredCard;
-import java.util.Formatter;
-import java.io.FileNotFoundException;
+import java.io.*;
 
 public class CategoryTransaction extends Transaction {
     public CategoryTransaction() {
@@ -42,9 +41,19 @@ public class CategoryTransaction extends Transaction {
     }
 
     public void saveTransaction() {
-        card.addPoints(transPoints);
+        String trans = card.getType() + ", " + category + ", " + amount;
+        try {
+            FileWriter fr = new FileWriter("/Project/io/transactionsRecord.txt");
+            BufferedWriter br = new BufferedWriter(fr);
+            br.write(trans);
+            br.close();
 
+        }
+        catch (IOException ex) {
 
+            ex.printStackTrace();
+
+        }
     }
 
 }
