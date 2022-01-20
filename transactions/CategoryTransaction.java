@@ -3,6 +3,8 @@ package transactions;
 import cards.BasicCard;
 import cards.CreditCard;
 import cards.PreferredCard;
+import java.util.Formatter;
+import java.io.FileNotFoundException;
 
 public class CategoryTransaction extends Transaction {
     public CategoryTransaction() {
@@ -41,7 +43,8 @@ public class CategoryTransaction extends Transaction {
 
     public void saveTransaction() {
         card.addPoints(transPoints);
-        System.out.print();
+
+
     }
 
 }
