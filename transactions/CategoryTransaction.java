@@ -40,4 +40,8 @@ public class CategoryTransaction extends Transaction {
                 "You earned " + calculatePoints() + " points in this transaction. \n");
     }
 
+    public void saveTransaction() {
+        card.
+    }
+
 }

@@ -7,6 +7,7 @@ public abstract class Transaction {
     protected String cardType;
     protected CreditCard card;
     protected String category;
+    protected int transPoints;
     public Transaction() {
     }
     public Transaction(CreditCard card, String category, double amount ) {
@@ -14,6 +15,9 @@ public abstract class Transaction {
         this.category = category;
         this.card = card;
     }
+
+    protected int getTransPoints() { return transPoints;}
+    protected int setTransPoints(int transPoints) { this.transPoints = transPoints; }
     // calculate points earned in this transaction
     public abstract int calculatePoints();
 
