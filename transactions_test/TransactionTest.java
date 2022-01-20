@@ -20,6 +20,7 @@ class TransactionTest {
         //testing method calculatePoints using basicCard
         Transaction newTrans = new CategoryTransaction(basicCard,"travel", 55.60);
         int pointsEarned = newTrans.calculatePoints();
+        newTrans.saveTransaction();
         assert pointsEarned == 278 : "The method calculatePoints returned " + pointsEarned + " but it should have returned 278";
 
         //testing method calculatePoints using preferredCard

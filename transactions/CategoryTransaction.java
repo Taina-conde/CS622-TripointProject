@@ -40,12 +40,13 @@ public class CategoryTransaction extends Transaction {
     }
 
     public void saveTransaction() {
-        String trans = card.getType() + ", " + category + ", " + amount + ", " + calculatePoints();
+        String trans = card.getType() + ", " + category + ", " + amount + ", " + transPoints;
         System.out.println("trans string " + trans );
         try {
-            FileWriter fr = new FileWriter("io/transactionsRecord.txt");
+            FileWriter fr = new FileWriter("io/transactionsRecord.txt", true);
             BufferedWriter br = new BufferedWriter(fr);
             br.write(trans);
+            br.write(System.lineSeparator());
             br.close();
 
         }
