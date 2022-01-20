@@ -19,4 +19,6 @@ public abstract class Transaction {
 
     //display transaction to the console
     public abstract void displayTransaction();
+    //save transaction to transactionsRecord
+    public abstract void saveTransaction();
 }
