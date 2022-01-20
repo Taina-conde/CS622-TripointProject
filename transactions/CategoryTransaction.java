@@ -17,7 +17,7 @@ public class CategoryTransaction extends Transaction {
 
     public int calculatePoints(){
         int pointValue= 0;
-        int pointsEarned = 0;
+        int transPoints = 0;
         if (card instanceof BasicCard) {
 
             pointValue = ((BasicCard)card).getCategoryValue(category);
@@ -27,9 +27,8 @@ public class CategoryTransaction extends Transaction {
 
             pointValue = ((PreferredCard)card).getCategoryValue(category);
         }
-        pointsEarned = (int)(amount * pointValue);
-        card.addPoints(pointsEarned);
-        return pointsEarned;
+        transPoints = (int)(amount * pointValue);
+        return transPoints;
     }
 
     public void displayTransaction() {
@@ -41,7 +40,8 @@ public class CategoryTransaction extends Transaction {
     }
 
     public void saveTransaction() {
-        card.
+        card.addPoints(transPoints);
+        System.out.print();
     }
 
 }
