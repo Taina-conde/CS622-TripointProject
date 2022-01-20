@@ -25,6 +25,7 @@ class TransactionTest {
         //testing method calculatePoints using preferredCard
         newTrans = new CategoryTransaction(preferredCard,"grocery", 10);
         pointsEarned = newTrans.calculatePoints();
+        newTrans.saveTransaction();
         assert pointsEarned == 30 : "The method calculatePoints returned " + pointsEarned + " but it should have returned 30";
 
         //report transaction information to the console

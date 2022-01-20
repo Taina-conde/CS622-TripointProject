@@ -1,4 +1,4 @@
-package cards.CreditCard;
+package cards.CreditCardMVC;
 
 import transactions.Transaction;
 
