@@ -7,8 +7,9 @@ import java.util.ArrayList;
 public abstract class CreditCardModel {
     protected String customer;
     protected static int pointsBal;
-    protected String type;
     protected ArrayList<Transaction> transactionsRecord;
+    protected String type;
+
     public CreditCardModel(String type, String customer, int pointsBal) {
         this.type = type;
         this.customer = customer;
