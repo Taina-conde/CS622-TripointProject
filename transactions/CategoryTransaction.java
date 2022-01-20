@@ -47,11 +47,11 @@ public class CategoryTransaction extends Transaction {
             br.write(trans);
             br.write(System.lineSeparator());
             br.close();
-
         }
         catch (IOException ex) {
             ex.printStackTrace();
         }
+        card.addPoints(transPoints);
     }
 
 }
