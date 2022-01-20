@@ -18,7 +18,6 @@ public class CategoryTransaction extends Transaction {
 
     public int calculatePoints(){
         int pointValue= 0;
-        int transPoints = 0;
         if (card instanceof BasicCard) {
 
             pointValue = ((BasicCard)card).getCategoryValue(category);
@@ -28,8 +27,8 @@ public class CategoryTransaction extends Transaction {
 
             pointValue = ((PreferredCard)card).getCategoryValue(category);
         }
-        transPoints = (int)(amount * pointValue);
-        return transPoints;
+        this.transPoints = (int)(amount * pointValue);
+        return this.transPoints;
     }
 
     public void displayTransaction() {
@@ -41,7 +40,7 @@ public class CategoryTransaction extends Transaction {
     }
 
     public void saveTransaction() {
-        String trans = card.getType() + ", " + category + ", " + amount;
+        String trans = card.getType() + ", " + category + ", " + amount + ", " + calculatePoints();
         System.out.println("trans string " + trans );
         try {
             FileWriter fr = new FileWriter("io/transactionsRecord.txt");

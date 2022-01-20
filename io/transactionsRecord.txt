@@ -1,1 +1,1 @@
-preferred, grocery, 10.0
+preferred, grocery, 10.0, 30
