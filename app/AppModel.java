@@ -30,7 +30,4 @@ public class AppModel {
     public void removePoints(int points) {pointsBalance -= points;}
     public void addTransaction(Transaction newTrans) {transactionsRecord.add(newTrans);}
 
-
-
-
 }
