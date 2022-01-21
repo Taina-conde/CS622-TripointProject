@@ -21,7 +21,7 @@ public class RecordsReader {
             Scanner infile = new Scanner(new File("io/transactionsRecord.txt"));
             System.out.printf("%-15s %-15s %-15s %-15s","CARD USED", "CATEGORY", "AMOUNT", "POINTS");
             while (infile.hasNext()) {
-                System.out.printf("%-15s %-15s %-15d %-15d", infile.);
+                recordDisplay(infile.next(), infile.next(), infile.nextDouble(), infile.nextInt());
             }
             infile.close();
         }
