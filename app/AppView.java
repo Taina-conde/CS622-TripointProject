@@ -11,6 +11,7 @@ public class AppView {
         System.out.print("Username: ");
         //TODO: validate user input
         return sc.next();
-
     }
+
+
 }
