@@ -16,6 +16,9 @@ public class RecordsReader {
     public static void printAllRecords() {
         try {
             Scanner infile = new Scanner(new File("io/transactionsRecord.txt"));
+            System.out.println();
+            System.out.println("Your past transactions ...");
+            System.out.println();
             System.out.printf("%-30s %-30s %-30s %-30s\n","CARD USED", "CATEGORY", "AMOUNT", "POINTS");
             while (infile.hasNextLine()) {
                 String[] arr = infile.nextLine().split(", ");
