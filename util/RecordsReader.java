@@ -4,7 +4,7 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.IOException;
 
-/**This class reads the transactionsRecord file and prints the formatted records*/
+/**This class reads the transactionsRecord file, printing the formatted records*/
 public class RecordsReader {
     protected static void printRecord(String card, String category, String amount, String points) {
         System.out.printf("%-30s %-30s %-30s %-30s\n",
