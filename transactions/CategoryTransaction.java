@@ -3,6 +3,8 @@ package transactions;
 import cards.BasicCard;
 import cards.CreditCard;
 import cards.PreferredCard;
+import util.RecordsWriter;
+
 import java.io.*;
 
 public class CategoryTransaction extends Transaction {
@@ -40,17 +42,8 @@ public class CategoryTransaction extends Transaction {
     }
 
     public void saveTransaction() {
-        String trans = card.getType() + ", " + category + ", " + amount + ", " + transPoints;
-        try {
-            FileWriter fr = new FileWriter("io/transactionsRecord.txt", true);
-            BufferedWriter br = new BufferedWriter(fr);
-            br.write(trans);
-            br.write(System.lineSeparator());
-            br.close();
-        }
-        catch (IOException ex) {
-            ex.printStackTrace();
-        }
+        String transaction = card.getType() + ", " + category + ", " + amount + ", " + transPoints;
+        RecordsWriter.writeRecord(transaction);
         card.addPoints(transPoints);
     }
 
