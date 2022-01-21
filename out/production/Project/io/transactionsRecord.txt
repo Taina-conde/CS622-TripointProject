@@ -4,3 +4,5 @@ basic, travel, 55.6, 278
 preferred, grocery, 10.0, 30
 basic, travel, 55.6, 278
 preferred, grocery, 10.0, 30
+basic, travel, 55.6, 278
+preferred, grocery, 10.0, 30
