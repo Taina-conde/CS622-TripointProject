@@ -1,5 +1,6 @@
 package app;
 
+/**This class controls the view and model to support the points account*/
 public class AppController {
     AppModel model = new AppModel();
     AppView view = new AppView();
@@ -16,10 +17,9 @@ public class AppController {
         System.out.println("Hello, " + model.getCustomer()+ "!");
 
     }
-
     public static void main(String[] args) {
         AppController controller = new AppController();
-        
+
 
     }
 

@@ -4,7 +4,7 @@ import transactions.Transaction;
 import cards.CreditCard;
 
 import java.util.ArrayList;
-
+/**This class stores the data needed to use the points account*/
 public class AppModel {
     private ArrayList<CreditCard> cardsList;
     private String customer;
