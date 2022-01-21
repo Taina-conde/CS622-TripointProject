@@ -4,9 +4,9 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.IOException;
 
-/**This class reads the transactionsRecord file*/
+/**This class reads the transactionsRecord file and prints the formatted records*/
 public class RecordsReader {
-    protected static void recordDisplay(String card, String category, String amount, String points) {
+    protected static void printRecord(String card, String category, String amount, String points) {
         System.out.printf("%-30s %-30s %-30s %-30s\n",
                 card,
                 category,
@@ -22,7 +22,7 @@ public class RecordsReader {
             System.out.printf("%-30s %-30s %-30s %-30s\n","CARD USED", "CATEGORY", "AMOUNT", "POINTS");
             while (infile.hasNextLine()) {
                 String[] arr = infile.nextLine().split(", ");
-                recordDisplay(arr[0], arr[1], arr[2], arr[3]);
+                printRecord(arr[0], arr[1], arr[2], arr[3]);
             }
             infile.close();
         }
