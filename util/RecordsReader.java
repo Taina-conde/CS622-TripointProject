@@ -22,7 +22,9 @@ public class RecordsReader {
             System.out.printf("%-30s %-30s %-30s %-30s\n","CARD USED", "CATEGORY", "AMOUNT", "POINTS");
             while (infile.hasNextLine()) {
                 String[] arr = infile.nextLine().split(", ");
-                printRecord(arr[0], arr[1], arr[2], arr[3]);
+                if (arr.length > 1) {
+                    printRecord(arr[0], arr[1], arr[2], arr[3]);
+                }
             }
             infile.close();
         }

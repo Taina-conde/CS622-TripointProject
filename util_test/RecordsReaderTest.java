@@ -9,6 +9,5 @@ public class RecordsReaderTest {
     }
     public static void main(String[] args) {
         printAllRecordsExample();
-
     }
 }
