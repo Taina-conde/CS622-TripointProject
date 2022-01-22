@@ -27,6 +27,4 @@ public abstract class Transaction {
     public CreditCard getCard() {return card;}
     // calculate points earned in this transaction
     public abstract int calculatePoints();
-    //save transaction to transactionsRecord
-    public abstract void saveTransaction();
 }

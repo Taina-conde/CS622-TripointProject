@@ -29,8 +29,7 @@ public class AppController {
         //for now hard code a new transaction - suppose the user entered "basic, travel, 55.6"
         model.setCurrentTrans("basic", "travel", 55.6);
         int points = model.getCurrentTrans().calculatePoints();
-        model.addTransaction(model.getCurrentTrans());
-        model.addPoints(points);
+        model.saveTransaction();
         int catValue = model.getCurrentTrans().getCard().getCategoryValue("travel");
         System.out.println();
         System.out.println("Processing new transaction ...");

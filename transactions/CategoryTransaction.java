@@ -32,10 +32,5 @@ public class CategoryTransaction extends Transaction {
         this.transPoints = (int)(amount * pointValue);
         return this.transPoints;
     }
-    public void saveTransaction() {
-        String transaction = card.getType() + ", " + category + ", " + amount + ", " + transPoints;
-        RecordsWriter.writeRecord(transaction);
-        card.addPoints(transPoints);
-    }
 
 }
