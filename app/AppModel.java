@@ -3,6 +3,7 @@ package app;
 import transactions.CategoryTransaction;
 import transactions.Transaction;
 import cards.CreditCard;
+import util.RecordsWriter;
 
 import java.util.ArrayList;
 /**This class stores the data needed to use the points account*/
@@ -41,6 +42,20 @@ public class AppModel {
     }
     public void addPoints(int points) {pointsBalance += points;}
     public void removePoints(int points) {pointsBalance -= points;}
-    public void addTransaction(Transaction newTrans) {transactionsRecord.add(newTrans);}
+    public void saveTransaction() {
+        String cardType = currentTrans.getCard().getType();
+        String category = currentTrans.getCategory();
+        double amount = currentTrans.getAmount();
+        int points = currentTrans.getPoints();
+        transactionsRecord.add(currentTrans);
+        String transaction = cardType + ", " + category + ", " + amount + ", " + points;
+        RecordsWriter.writeRecord(transaction);
+        if (currentTrans instanceof CategoryTransaction) {
+            addPoints(points);
+        }
+        else {
+            removePoints(points);
+        }
+    }
 
 }

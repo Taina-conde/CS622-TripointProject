@@ -32,15 +32,6 @@ public class CategoryTransaction extends Transaction {
         this.transPoints = (int)(amount * pointValue);
         return this.transPoints;
     }
-
-    public void displayTransaction() {
-        System.out.println(
-                "You spent $" + amount + " on " + category + " using your " + card.getType() + " card.\n" +
-                "The " + card.getType() + " card gives you "+ card.getCategoryValue(category) +
-                        " points for every $1 spent on " +  category + ". \n" +
-                "You earned " + calculatePoints() + " points in this transaction. \n");
-    }
-
     public void saveTransaction() {
         String transaction = card.getType() + ", " + category + ", " + amount + ", " + transPoints;
         RecordsWriter.writeRecord(transaction);
