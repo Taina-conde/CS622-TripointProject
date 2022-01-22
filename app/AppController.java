@@ -44,10 +44,17 @@ public class AppController {
         System.out.println(card2.getType());
 
     }*/
+    private void printPastTransactions() {
+        view.displayTransactionRecords();
+    }
     public static void main(String[] args) {
         AppController controller = new AppController();
         //TODO : initial menu with options ( view past transactions, make new transaction, view points balance, view points value per card)
+        // if user makes new transaction
         controller.processTransaction();
+        // if user chooses to view past transactions
+        controller.printPastTransactions();
+
 
 
 

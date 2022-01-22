@@ -1,5 +1,7 @@
 package app;
 
+import util.RecordsReader;
+
 import java.io.InputStreamReader;
 import java.util.Scanner;
 import java.io.BufferedReader;
@@ -19,6 +21,10 @@ public class AppView {
                         " points for every $1 spent on " +  category + ". \n" +
                         "You earned " + points + " points in this transaction. \n");
     }
+    public void displayTransactionRecords() {
+        RecordsReader.printAllRecords();
+    }
+
 
 
 }

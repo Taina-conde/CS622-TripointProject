@@ -10,16 +10,12 @@ public abstract class CreditCard {
         this.customer = customer;
         this.pointsBal += pointsBal;
     }
-
-    public CreditCard(String type, String customer) {
-        this(type, customer, 0);
-    }
-    public CreditCard(String type) {
-        this(type, "");
-    }
+    public CreditCard(String type, String customer) {this(type, customer, 0);}
+    public CreditCard(String type) {this(type, "");}
     public CreditCard() {
         this("");
     }
+
     public String getType() {
         return type;
     }
