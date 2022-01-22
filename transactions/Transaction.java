@@ -18,6 +18,7 @@ public abstract class Transaction {
 
     protected int getTransPoints() { return transPoints;}
     protected void setTransPoints(int transPoints) { this.transPoints = transPoints; }
+    public CreditCard getCard() {return card;}
     // calculate points earned in this transaction
     public abstract int calculatePoints();
 

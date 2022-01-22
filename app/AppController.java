@@ -26,10 +26,16 @@ public class AppController {
 
     }
     private void processTransaction() {
-        //for now hard code a new transaction
-        Transaction newTrans = new CategoryTransaction(model.getCardsList().get(1), "travel", 55.60);
-
-
+        //for now hard code a new transaction - suppose the user entered "basic, travel, 55.6"
+        model.setCurrentTrans("basic", "travel", 55.6);
+        int points = model.getCurrentTrans().calculatePoints();
+        model.addTransaction(model.getCurrentTrans());
+        model.addPoints(points);
+        int catValue = model.getCurrentTrans().getCard().getCategoryValue("travel");
+        System.out.println();
+        System.out.println("Processing new transaction ...");
+        System.out.println();
+        view.displayTransaction("basic", "travel", 55.6, catValue, points);
 
     }
     /*private void info() {
@@ -42,7 +48,7 @@ public class AppController {
     public static void main(String[] args) {
         AppController controller = new AppController();
         //TODO : initial menu with options ( view past transactions, make new transaction, view points balance, view points value per card)
-
+        controller.processTransaction();
 
 
 

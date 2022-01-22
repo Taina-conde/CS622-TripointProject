@@ -11,7 +11,7 @@ public class AppModel {
     private String customer;
     private Transaction currentTrans;
     private int pointsBalance;
-    private ArrayList<Transaction> transactionsRecord;
+    private ArrayList<Transaction> transactionsRecord = new ArrayList<>();
 
 
     //getters
