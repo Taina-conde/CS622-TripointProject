@@ -11,7 +11,6 @@ public class AppController {
     public AppController() {
         getUsername();
         printInitialMessage();
-
         model.addCard(new PreferredCard(model.getCustomer()));
         model.addCard(new BasicCard(model.getCustomer()));
     }

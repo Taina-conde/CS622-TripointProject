@@ -5,6 +5,7 @@ import edu.bu.tbconde.tripoint.cards.CreditCard;
 import edu.bu.tbconde.tripoint.transactions.CategoryTransaction;
 import edu.bu.tbconde.tripoint.transactions.Transaction;
 
+//TODO: remove this package and write junit tests in the appropriate tests folder
 class TransactionTest {
     static void transactionDisplayExample() {
         CreditCard basicCard = new BasicCard("Taina", 5000);
