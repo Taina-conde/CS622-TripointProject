@@ -15,15 +15,25 @@ redeem these points for travel. This points system is called Tripoint.
 ## Documentation
 
 The project directory:
-* cards
-  * BasicCard.java
-  * CreditCard.java
-  * PreferredCard.java
-* transactions
-  * CategoryTransaction.java
-  * Transaction.java
-* transactions_test
-  * TransactionTest.java
+* src.edu.bu.tbconde.tripoint
+  * app
+    * AppController.java
+    * AppModel.java
+    * AppView.java
+  * cards
+    * BasicCard.java
+    * CreditCard.java
+    * PreferredCard.java
+  * transactions
+    * CategoryTransaction.java
+    * Transaction.java
+  * util
+    * RecordsReader.java
+    * RecordsWriter.java
+  * io
+    * transactionsRecords.txt
+* tests.edu.bu.tbconde.tripoint
+  * no file yet
 
 ## Instructions
 
