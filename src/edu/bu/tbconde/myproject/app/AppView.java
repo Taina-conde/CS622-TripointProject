@@ -1,6 +1,6 @@
-package app;
+package edu.bu.tbconde.myproject.app;
 
-import util.RecordsReader;
+import edu.bu.tbconde.myproject.util.RecordsReader;
 
 import java.io.InputStreamReader;
 import java.util.Scanner;

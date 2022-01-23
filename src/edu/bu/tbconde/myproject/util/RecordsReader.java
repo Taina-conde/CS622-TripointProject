@@ -1,4 +1,4 @@
-package util;
+package edu.bu.tbconde.myproject.util;
 
 import java.util.Scanner;
 import java.io.File;
@@ -37,6 +37,5 @@ public class RecordsReader {
         catch (IOException e) {
             System.out.println(e);
         }
-
     }
 }

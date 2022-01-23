@@ -1,9 +1,9 @@
-package app;
+package edu.bu.tbconde.myproject.app;
 
-import transactions.CategoryTransaction;
-import transactions.Transaction;
-import cards.CreditCard;
-import util.RecordsWriter;
+import edu.bu.tbconde.myproject.transactions.CategoryTransaction;
+import edu.bu.tbconde.myproject.transactions.Transaction;
+import edu.bu.tbconde.myproject.cards.CreditCard;
+import edu.bu.tbconde.myproject.util.RecordsWriter;
 
 import java.util.ArrayList;
 /**This class stores the data needed to use the points account*/

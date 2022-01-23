@@ -1,6 +1,6 @@
-package transactions;
+package edu.bu.tbconde.myproject.transactions;
 
-import cards.CreditCard;
+import edu.bu.tbconde.myproject.cards.CreditCard;
 
 public abstract class Transaction {
     protected double amount;

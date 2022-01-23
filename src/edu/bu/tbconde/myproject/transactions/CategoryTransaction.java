@@ -1,9 +1,9 @@
-package transactions;
+package edu.bu.tbconde.myproject.transactions;
 
-import cards.BasicCard;
-import cards.CreditCard;
-import cards.PreferredCard;
-import util.RecordsWriter;
+import edu.bu.tbconde.myproject.cards.BasicCard;
+import edu.bu.tbconde.myproject.cards.CreditCard;
+import edu.bu.tbconde.myproject.cards.PreferredCard;
+import edu.bu.tbconde.myproject.util.RecordsWriter;
 
 import java.io.*;
 

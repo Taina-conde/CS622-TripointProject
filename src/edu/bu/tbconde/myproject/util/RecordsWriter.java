@@ -1,4 +1,4 @@
-package util;
+package edu.bu.tbconde.myproject.util;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

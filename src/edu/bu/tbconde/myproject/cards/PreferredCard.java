@@ -1,4 +1,4 @@
-package cards;
+package edu.bu.tbconde.myproject.cards;
 
 public class PreferredCard extends CreditCard {
     public PreferredCard(String customer, int pointsBal) {

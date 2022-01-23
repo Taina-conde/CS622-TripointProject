@@ -1,4 +1,4 @@
-package cards;
+package edu.bu.tbconde.myproject.cards;
 
 public abstract class CreditCard {
     protected String customer;

@@ -1,10 +1,7 @@
-package app;
+package edu.bu.tbconde.myproject.app;
 
-import cards.BasicCard;
-import cards.CreditCard;
-import cards.PreferredCard;
-import transactions.CategoryTransaction;
-import transactions.Transaction;
+import edu.bu.tbconde.myproject.cards.PreferredCard;
+import edu.bu.tbconde.myproject.cards.BasicCard;
 
 /**This class controls the view and model to support the points account*/
 public class AppController {
@@ -14,6 +11,7 @@ public class AppController {
     public AppController() {
         getUsername();
         printInitialMessage();
+
         model.addCard(new PreferredCard(model.getCustomer()));
         model.addCard(new BasicCard(model.getCustomer()));
     }

@@ -1,10 +1,10 @@
-package transactions_test;
+package edu.bu.tbconde.myproject.transactions_test;
 
-import cards.BasicCard;
-import cards.CreditCard;
-import cards.PreferredCard;
-import transactions.CategoryTransaction;
-import transactions.Transaction;
+import edu.bu.tbconde.myproject.cards.BasicCard;
+import edu.bu.tbconde.myproject.cards.CreditCard;
+import edu.bu.tbconde.myproject.cards.PreferredCard;
+import edu.bu.tbconde.myproject.transactions.CategoryTransaction;
+import edu.bu.tbconde.myproject.transactions.Transaction;
 
 class TransactionTest {
     static void transactionDisplayExample() {
