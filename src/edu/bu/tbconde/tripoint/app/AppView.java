@@ -1,6 +1,6 @@
-package edu.bu.tbconde.myproject.app;
+package edu.bu.tbconde.tripoint.app;
 
-import edu.bu.tbconde.myproject.util.RecordsReader;
+import edu.bu.tbconde.tripoint.util.RecordsReader;
 
 import java.io.InputStreamReader;
 import java.util.Scanner;

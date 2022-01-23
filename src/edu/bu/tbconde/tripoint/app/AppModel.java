@@ -1,9 +1,9 @@
-package edu.bu.tbconde.myproject.app;
+package edu.bu.tbconde.tripoint.app;
 
-import edu.bu.tbconde.myproject.transactions.CategoryTransaction;
-import edu.bu.tbconde.myproject.transactions.Transaction;
-import edu.bu.tbconde.myproject.cards.CreditCard;
-import edu.bu.tbconde.myproject.util.RecordsWriter;
+import edu.bu.tbconde.tripoint.transactions.CategoryTransaction;
+import edu.bu.tbconde.tripoint.transactions.Transaction;
+import edu.bu.tbconde.tripoint.cards.CreditCard;
+import edu.bu.tbconde.tripoint.util.RecordsWriter;
 
 import java.util.ArrayList;
 /**This class stores the data needed to use the points account*/

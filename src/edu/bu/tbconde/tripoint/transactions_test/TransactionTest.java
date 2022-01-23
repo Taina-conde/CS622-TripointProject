@@ -1,10 +1,9 @@
-package edu.bu.tbconde.myproject.transactions_test;
+package edu.bu.tbconde.tripoint.transactions_test;
 
-import edu.bu.tbconde.myproject.cards.BasicCard;
-import edu.bu.tbconde.myproject.cards.CreditCard;
-import edu.bu.tbconde.myproject.cards.PreferredCard;
-import edu.bu.tbconde.myproject.transactions.CategoryTransaction;
-import edu.bu.tbconde.myproject.transactions.Transaction;
+import edu.bu.tbconde.tripoint.cards.BasicCard;
+import edu.bu.tbconde.tripoint.cards.CreditCard;
+import edu.bu.tbconde.tripoint.transactions.CategoryTransaction;
+import edu.bu.tbconde.tripoint.transactions.Transaction;
 
 class TransactionTest {
     static void transactionDisplayExample() {

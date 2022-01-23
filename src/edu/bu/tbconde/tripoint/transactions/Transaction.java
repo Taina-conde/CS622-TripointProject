@@ -1,6 +1,6 @@
-package edu.bu.tbconde.myproject.transactions;
+package edu.bu.tbconde.tripoint.transactions;
 
-import edu.bu.tbconde.myproject.cards.CreditCard;
+import edu.bu.tbconde.tripoint.cards.CreditCard;
 
 public abstract class Transaction {
     protected double amount;

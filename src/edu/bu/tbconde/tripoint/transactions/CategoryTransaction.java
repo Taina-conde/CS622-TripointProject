@@ -1,11 +1,8 @@
-package edu.bu.tbconde.myproject.transactions;
+package edu.bu.tbconde.tripoint.transactions;
 
-import edu.bu.tbconde.myproject.cards.BasicCard;
-import edu.bu.tbconde.myproject.cards.CreditCard;
-import edu.bu.tbconde.myproject.cards.PreferredCard;
-import edu.bu.tbconde.myproject.util.RecordsWriter;
-
-import java.io.*;
+import edu.bu.tbconde.tripoint.cards.BasicCard;
+import edu.bu.tbconde.tripoint.cards.CreditCard;
+import edu.bu.tbconde.tripoint.cards.PreferredCard;
 
 public class CategoryTransaction extends Transaction {
     public CategoryTransaction() {

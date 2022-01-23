@@ -1,4 +1,4 @@
-package edu.bu.tbconde.myproject.util;
+package edu.bu.tbconde.tripoint.util;
 
 import java.util.Scanner;
 import java.io.File;

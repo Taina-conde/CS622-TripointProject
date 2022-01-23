@@ -1,7 +1,7 @@
-package edu.bu.tbconde.myproject.app;
+package edu.bu.tbconde.tripoint.app;
 
-import edu.bu.tbconde.myproject.cards.PreferredCard;
-import edu.bu.tbconde.myproject.cards.BasicCard;
+import edu.bu.tbconde.tripoint.cards.PreferredCard;
+import edu.bu.tbconde.tripoint.cards.BasicCard;
 
 /**This class controls the view and model to support the points account*/
 public class AppController {
