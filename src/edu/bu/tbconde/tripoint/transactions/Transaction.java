@@ -3,11 +3,11 @@ package edu.bu.tbconde.tripoint.transactions;
 import edu.bu.tbconde.tripoint.cards.CreditCard;
 
 public abstract class Transaction {
-    protected double amount;
-    protected String cardType;
-    protected CreditCard card;
-    protected String category;
-    protected int transPoints;
+    protected double amount = 0;
+    protected String cardType = null;
+    protected CreditCard card = null;
+    protected String category = null;
+    protected int transPoints = 0;
     public Transaction() {
     }
     public Transaction(CreditCard card, String category, double amount ) {
