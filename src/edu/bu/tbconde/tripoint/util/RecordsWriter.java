@@ -14,7 +14,10 @@ public class RecordsWriter {
         https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
         https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html
         */
-        try (BufferedWriter br = new BufferedWriter(new FileWriter("io/transactionsRecord.txt", true))) {
+        try (BufferedWriter br = new BufferedWriter(
+                new FileWriter("src/edu/bu/tbconde/tripoint/io/transactionsRecord.txt",
+                        true)
+        )) {
             br.write(transaction);
             br.write(System.lineSeparator());
         }

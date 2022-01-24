@@ -22,7 +22,7 @@ public class RecordsReader {
         https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
         https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html
         */
-        try (Scanner infile = new Scanner(new File("io/transactionsRecord.txt"))) {
+        try (Scanner infile = new Scanner(new File("src/edu/bu/tbconde/tripoint/io/transactionsRecord.txt"))) {
             System.out.println();
             System.out.println("Your past transactions ...");
             System.out.println();

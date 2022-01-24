@@ -48,7 +48,7 @@ public class AppModel {
         double amount = currentTrans.getAmount();
         int points = currentTrans.getPoints();
         transactionsRecord.add(currentTrans);
-        String transaction = cardType + ", " + category + ", " + amount + ", " + points;
+        String transaction = String.format("%s, %s, %.2f, %,d", cardType, category,amount, points);
         RecordsWriter.writeRecord(transaction);
         if (currentTrans instanceof CategoryTransaction) {
             addPoints(points);
