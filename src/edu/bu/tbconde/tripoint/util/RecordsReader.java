@@ -27,7 +27,7 @@ public class RecordsReader {
         String fileName = "transactionsRecord.txt";
         String filePath = "src/edu/bu/tbconde/tripoint/io/";
         String infile = filePath + fileName;
-        try (Scanner sc = new Scanner(new File(filePath))) {
+        try (Scanner sc = new Scanner(new File(infile))) {
             System.out.println();
             System.out.println("Your past transactions ...");
             System.out.println();
@@ -39,7 +39,7 @@ public class RecordsReader {
                 }
             }
         }
-        catch (FileNotFoundException err) {
+        catch (IOException err) {
             if (!filePath.equals("src/edu/bu/tbconde/tripoint/io/")) {
                 throw new IncorrectFileNameException("Incorrect path: " + filePath, err);
             }
