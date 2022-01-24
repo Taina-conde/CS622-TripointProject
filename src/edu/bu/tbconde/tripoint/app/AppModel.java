@@ -43,18 +43,15 @@ public class AppModel {
     }
     public void addPoints(int points) {pointsBalance += points;}
     public void removePoints(int points) {pointsBalance -= points;}
-    public void saveTransaction() {
+    public void saveTransaction() throws IncorrectFileNameException {
         String cardType = currentTrans.getCard().getType();
         String category = currentTrans.getCategory();
         double amount = currentTrans.getAmount();
         int points = currentTrans.getPoints();
         String transaction = String.format("%s, %s, %.2f, %,d", cardType, category,amount, points);
-        try {
-            RecordsWriter.writeRecord(transaction);
-        }
-        catch(IncorrectFileNameException e) {
-            e.printStackTrace();
-        }
+
+        RecordsWriter.writeRecord(transaction);
+
         // if the try-catch block catches an exception the following code won't run
         transactionsRecord.add(currentTrans);
         if (currentTrans instanceof CategoryTransaction) {

@@ -21,6 +21,12 @@ public class RecordsWriter {
         String fileName = "transactionRecord.txt";
         String filePath = "src/edu/bu/tbconde/tripoint/io/";
         String outfile = filePath + fileName;
+        if (!filePath.equals("src/edu/bu/tbconde/tripoint/io/")) {
+            throw new IncorrectFileNameException("Incorrect path: " + filePath);
+        }
+        else if (!fileName.equals("transactionsRecord.txt")) {
+            throw new IncorrectFileNameException("Incorrect file name: " + fileName);
+        }
         try (BufferedWriter br = new BufferedWriter(
                 new FileWriter(outfile,
                         true)
@@ -29,12 +35,7 @@ public class RecordsWriter {
             br.write(System.lineSeparator());
         }
         catch (IOException err) {
-            if (!filePath.equals("src/edu/bu/tbconde/tripoint/io/")) {
-                throw new IncorrectFileNameException("Incorrect path: " + filePath, err);
-            }
-            else if (!fileName.equals("transactionsRecord.txt")) {
-                throw new IncorrectFileNameException("Incorrect file name: " + fileName, err);
-            }
+            err.printStackTrace();
         }
     }
 }

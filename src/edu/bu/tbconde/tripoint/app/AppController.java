@@ -2,6 +2,7 @@ package edu.bu.tbconde.tripoint.app;
 
 import edu.bu.tbconde.tripoint.cards.PreferredCard;
 import edu.bu.tbconde.tripoint.cards.BasicCard;
+import edu.bu.tbconde.tripoint.exceptions.IncorrectFileNameException;
 
 /**This class controls the view and model to support the points account*/
 public class AppController {
@@ -26,12 +27,17 @@ public class AppController {
         //for now hard code a new transaction - suppose the user entered "basic, travel, 55.6"
         model.setCurrentTrans("basic", "travel", 55.6);
         int points = model.getCurrentTrans().calculatePoints();
-        model.saveTransaction();
-        int catValue = model.getCurrentTrans().getCard().getCategoryValue("travel");
-        System.out.println();
-        System.out.println("Processing new transaction ...");
-        System.out.println();
-        view.displayTransaction("basic", "travel", 55.6, catValue, points);
+        try {
+            model.saveTransaction();
+            int catValue = model.getCurrentTrans().getCard().getCategoryValue("travel");
+            System.out.println();
+            System.out.println("Processing new transaction ...");
+            System.out.println();
+            view.displayTransaction("basic", "travel", 55.6, catValue, points);
+        }
+        catch(IncorrectFileNameException e) {
+            e.printStackTrace();
+        }
 
     }
     /*private void info() {
