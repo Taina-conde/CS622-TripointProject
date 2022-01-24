@@ -22,10 +22,4 @@ public abstract class CreditCard {
 
     public abstract int getCategoryValue(String category);
 
-    public static int getPointsBal() {
-        return pointsBal;
-    }
-    public void addPoints(int pointsEarned) {
-        pointsBal += pointsEarned;
-    }
 }

@@ -4,6 +4,8 @@ import edu.bu.tbconde.tripoint.cards.BasicCard;
 import edu.bu.tbconde.tripoint.cards.PreferredCard;
 
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class CategoryTransactionTest {
@@ -12,14 +14,14 @@ class CategoryTransactionTest {
     private PreferredCard preferred = null;
     private BasicCard basic = null;
 
-    @org.junit.jupiter.api.BeforeEach
+    @BeforeEach
     void setUp() {
         amount = 55.6;
         preferred = new PreferredCard();
         basic = new BasicCard();
     }
 
-    @org.junit.jupiter.api.AfterEach
+    @AfterEach
     void tearDown() {
         amount = 0;
         preferred = null;
