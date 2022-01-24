@@ -6,34 +6,34 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class BasicCardTest {
-    private BasicCard basic = null;
+class PreferredCardTest {
+    private PreferredCard preferred = null;
 
     @BeforeEach
     void setUp() {
-        basic = new BasicCard();
+        preferred = new PreferredCard();
     }
 
     @AfterEach
     void tearDown() {
-        basic = null;
+        preferred = null;
     }
 
     @Test
     void getTravelValue() {
-        assertTrue(basic.getCategoryValue("travel") == 5);
+        assertTrue(preferred.getCategoryValue("travel") == 10);
     }
     @Test
     void getDiningValue() {
-        assertTrue(basic.getCategoryValue("dining") == 3);
+        assertTrue(preferred.getCategoryValue("dining") == 8);
     }
     @Test
     void getOnlineShopValue() {
-        assertTrue(basic.getCategoryValue("onlineShop") == 10);
+        assertTrue(preferred.getCategoryValue("onlineShop") == 5);
     }
     @Test
     void getGroceryValue() {
-        assertTrue(basic.getCategoryValue("grocery") == 8);
+        assertTrue(preferred.getCategoryValue("grocery") == 3);
     }
 
 }

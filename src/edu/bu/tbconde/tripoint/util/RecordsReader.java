@@ -3,7 +3,6 @@ package edu.bu.tbconde.tripoint.util;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.io.File;
-import java.io.IOException;
 import edu.bu.tbconde.tripoint.exceptions.IncorrectFileNameException;
 
 /**This class reads the transactionsRecord file, printing the formatted records*/
@@ -45,6 +44,9 @@ public class RecordsReader {
             }
             else if (!fileName.equals("transactionsRecord.txt")) {
                 throw new IncorrectFileNameException("Incorrect file name: " + fileName, err);
+            }
+            else{
+                System.out.println(err);
             }
         }
     }

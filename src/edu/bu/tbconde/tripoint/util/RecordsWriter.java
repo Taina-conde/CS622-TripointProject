@@ -18,7 +18,7 @@ public class RecordsWriter {
         https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
         https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html
         */
-        String fileName = "transactionRecord.txt";
+        String fileName = "transactionsRecord.txt";
         String filePath = "src/edu/bu/tbconde/tripoint/io/";
         String outfile = filePath + fileName;
         if (!filePath.equals("src/edu/bu/tbconde/tripoint/io/")) {

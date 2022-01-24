@@ -55,7 +55,7 @@ public class AppController {
         AppController controller = new AppController();
         //TODO : initial menu with options ( view past transactions, make new transaction, view points balance, view points value per card)
         // if user makes new transaction
-        controller.processTransaction();
+        //controller.processTransaction();
         // if user chooses to view past transactions
         controller.printPastTransactions();
 
