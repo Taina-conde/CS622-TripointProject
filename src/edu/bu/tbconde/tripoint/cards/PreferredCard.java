@@ -10,7 +10,7 @@ public class PreferredCard extends CreditCard {
     public PreferredCard() {
         this("");
     }
-    
+
     @Override
     public int getCategoryValue(String category) {
         int result;
