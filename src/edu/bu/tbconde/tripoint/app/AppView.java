@@ -1,5 +1,6 @@
 package edu.bu.tbconde.tripoint.app;
 
+import edu.bu.tbconde.tripoint.exceptions.IncorrectFileNameException;
 import edu.bu.tbconde.tripoint.util.RecordsReader;
 
 import java.io.InputStreamReader;
@@ -28,7 +29,12 @@ public class AppView {
                 points);
     }
     public void displayTransactionRecords() {
-        RecordsReader.printAllRecords();
+        try {
+            RecordsReader.printAllRecords();
+        }
+        catch(IncorrectFileNameException e) {
+            System.out.println(e);
+        }
     }
 
 
