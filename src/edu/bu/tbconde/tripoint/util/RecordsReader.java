@@ -39,7 +39,7 @@ public class RecordsReader {
                 }
             }
         }
-        catch (IOException err) {
+        catch (FileNotFoundException err) {
             if (!filePath.equals("src/edu/bu/tbconde/tripoint/io/")) {
                 throw new IncorrectFileNameException("Incorrect path: " + filePath, err);
             }

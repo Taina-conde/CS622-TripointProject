@@ -1,5 +1,6 @@
 package edu.bu.tbconde.tripoint.app;
 
+import edu.bu.tbconde.tripoint.exceptions.IncorrectFileNameException;
 import edu.bu.tbconde.tripoint.transactions.CategoryTransaction;
 import edu.bu.tbconde.tripoint.transactions.Transaction;
 import edu.bu.tbconde.tripoint.cards.CreditCard;
@@ -47,9 +48,15 @@ public class AppModel {
         String category = currentTrans.getCategory();
         double amount = currentTrans.getAmount();
         int points = currentTrans.getPoints();
-        transactionsRecord.add(currentTrans);
         String transaction = String.format("%s, %s, %.2f, %,d", cardType, category,amount, points);
-        RecordsWriter.writeRecord(transaction);
+        try {
+            RecordsWriter.writeRecord(transaction);
+        }
+        catch(IncorrectFileNameException e) {
+            e.printStackTrace();
+        }
+        // if the try-catch block catches an exception the following code won't run
+        transactionsRecord.add(currentTrans);
         if (currentTrans instanceof CategoryTransaction) {
             addPoints(points);
         }
