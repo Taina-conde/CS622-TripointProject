@@ -33,7 +33,7 @@ public class AppView {
             RecordsReader.printAllRecords();
         }
         catch(IncorrectFileNameException e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
 
