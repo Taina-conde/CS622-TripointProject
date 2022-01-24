@@ -11,16 +11,23 @@ public class BasicCard extends CreditCard {
         this("");
     }
 
+    @Override
     public int getCategoryValue(String category) {
-        switch(category) {
+        int result;
+        switch (category) {
             case "travel":
-                return 5;
+                result = 5;
+                break;
             case "dining":
-                return 3;
+                result = 3;
+                break;
             case "onlineShop":
-                return 10;
+                result = 10;
+                break;
             default:
-                return 8;
+                result = 8;
+                break;
         }
+        return result;
     }
 }

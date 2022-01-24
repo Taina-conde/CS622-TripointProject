@@ -28,6 +28,8 @@ public class AppController {
         model.setCurrentTrans("basic", "travel", 55.6);
         int points = model.getCurrentTrans().calculatePoints();
         try {
+            /*All the following code is in the try block because I don't want it to print the messages and display
+            * the transaction if the fileName where the transaction was supposed to be saved to is incorrect*/
             model.saveTransaction();
             int catValue = model.getCurrentTrans().getCard().getCategoryValue("travel");
             System.out.println();
@@ -38,7 +40,6 @@ public class AppController {
         catch(IncorrectFileNameException e) {
             e.printStackTrace();
         }
-
     }
     /*private void info() {
         CreditCard card1 = model.getCardsList().get(0);

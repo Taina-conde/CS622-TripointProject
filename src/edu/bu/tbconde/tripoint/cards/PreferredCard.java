@@ -10,17 +10,24 @@ public class PreferredCard extends CreditCard {
     public PreferredCard() {
         this("");
     }
-
+    
+    @Override
     public int getCategoryValue(String category) {
+        int result;
         switch (category) {
             case "travel":
-                return 10;
+                result = 10;
+                break;
             case "dining":
-                return 8;
+                result = 8;
+                break;
             case "onlineShop":
-                return 5;
+                result = 5;
+                break;
             default:
-                return 3;
+                result = 3;
+                break;
         }
+        return result;
     }
 }

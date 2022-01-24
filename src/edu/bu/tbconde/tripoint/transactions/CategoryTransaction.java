@@ -15,6 +15,7 @@ public class CategoryTransaction extends Transaction {
         return category;
     }
 
+    @Override
     public int calculatePoints(){
         int pointValue= 0;
         if (card instanceof BasicCard) {
