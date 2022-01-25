@@ -8,19 +8,40 @@ import edu.bu.tbconde.tripoint.exceptions.IncorrectFileNameException;
 public class AppController {
     AppModel model = new AppModel();
     AppView view = new AppView();
+    boolean exit = false;
 
     public AppController() {
-        getUsername();
+        setUsername();
         printInitialMessage();
         model.addCard(new PreferredCard(model.getCustomer()));
         model.addCard(new BasicCard(model.getCustomer()));
     }
+    public boolean getExit() {return exit;}
 
-    private void getUsername() {
+    private void setUsername() {
         model.setCustomer(view.askUsername());
     }
     private void printInitialMessage() {
         System.out.println("Hello, " + model.getCustomer()+ "!");
+        System.out.printf("You have %,d points.\n", model.getPointsBalance());
+    }
+    private void showMainMenu() {
+        int selected = view.askMainMenu();
+        switch (selected) {
+            case 1:
+                processTransaction();
+                break;
+            case 2:
+                printPastTransactions();
+                break;
+            case 3:
+                //TODO: redeem points
+                System.out.println("to be implemented");
+                break;
+            default:
+                this.exit = true;
+                break;
+        }
 
     }
     private void processTransaction() {
@@ -53,11 +74,16 @@ public class AppController {
     }
     public static void main(String[] args) {
         AppController controller = new AppController();
-        //TODO : initial menu with options ( view past transactions, make new transaction, view points balance, view points value per card)
-        // if user makes new transaction
-        controller.processTransaction();
-        // if user chooses to view past transactions
-        controller.printPastTransactions();
+
+        while(!controller.getExit()) {
+            controller.showMainMenu();
+        }
+
+//        //TODO : initial menu with options ( view past transactions, make new transaction, view points balance, view points value per card)
+//        // if user makes new transaction
+//        controller.processTransaction();
+//        // if user chooses to view past transactions
+//        controller.printPastTransactions();
 
 
 
