@@ -46,7 +46,7 @@ public class RecordsReader {
                 throw new IncorrectFileNameException("Incorrect file name: " + fileName, err);
             }
             else{
-                System.out.println(err);
+                System.out.println("You have not made any transactions yet.");
             }
         }
     }
