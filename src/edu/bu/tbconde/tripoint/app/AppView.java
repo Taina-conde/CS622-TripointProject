@@ -1,6 +1,5 @@
 package edu.bu.tbconde.tripoint.app;
 
-import edu.bu.tbconde.tripoint.exceptions.IncorrectFileNameException;
 import edu.bu.tbconde.tripoint.util.MainMenu;
 import edu.bu.tbconde.tripoint.util.RecordsReader;
 

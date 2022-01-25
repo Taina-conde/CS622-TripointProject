@@ -2,7 +2,6 @@ package edu.bu.tbconde.tripoint.app;
 
 import edu.bu.tbconde.tripoint.cards.PreferredCard;
 import edu.bu.tbconde.tripoint.cards.BasicCard;
-import edu.bu.tbconde.tripoint.exceptions.IncorrectFileNameException;
 
 /**This class controls the view and model to support the points account*/
 public class AppController {
@@ -49,18 +48,13 @@ public class AppController {
         //for now hard code a new transaction - suppose the user entered "basic, travel, 55.6"
         model.setCurrentTrans("basic", "travel", 55.6);
         int points = model.getCurrentTrans().calculatePoints();
-        try {
-            /*All the following code is in the try block because I don't want it to print the messages and display
-            * the transaction if the fileName where the transaction was supposed to be saved to is incorrect*/
+
             model.saveTransaction();
             int catValue = model.getCurrentTrans().getCard().getCategoryValue("travel");
             System.out.println("Processing new transaction ...");
             System.out.println();
             view.displayTransaction("basic", "travel", 55.6, catValue, points);
-        }
-        catch(IncorrectFileNameException e) {
-            e.printStackTrace();
-        }
+
     }
 
     private void printPastTransactions() {
