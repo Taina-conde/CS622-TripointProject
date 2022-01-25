@@ -1,15 +1,12 @@
 package edu.bu.tbconde.tripoint.util;
 
-import edu.bu.tbconde.tripoint.exceptions.IncorrectFileNameException;
-
 import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import edu.bu.tbconde.tripoint.exceptions.IncorrectFileNameException;
+
 
 public class RecordsWriter {
-    public static void writeRecord(String transaction) throws IncorrectFileNameException {
+    public static void writeRecord(String transaction)  {
         /*The try-with-resources ensures that the resource is closed at the end of the statement. A resource is object
         that must be closed after the program is finished with it. In this case, BufferedWriter is a resource that
         implements the AutoCloseable interface, and, therefore, it is automatically closed when exiting a
@@ -21,12 +18,6 @@ public class RecordsWriter {
         String fileName = "transactionsRecord.txt";
         String filePath = "src/edu/bu/tbconde/tripoint/io/";
         String outfile = filePath + fileName;
-        if (!filePath.equals("src/edu/bu/tbconde/tripoint/io/")) {
-            throw new IncorrectFileNameException("Incorrect path: " + filePath);
-        }
-        else if (!fileName.equals("transactionsRecord.txt")) {
-            throw new IncorrectFileNameException("Incorrect file name: " + fileName);
-        }
         try (BufferedWriter br = new BufferedWriter(
                 new FileWriter(outfile,
                         true)

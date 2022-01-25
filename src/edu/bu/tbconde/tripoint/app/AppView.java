@@ -31,12 +31,8 @@ public class AppView {
                 points);
     }
     public void displayTransactionRecords() {
-        try {
-            RecordsReader.printAllRecords();
-        }
-        catch(IncorrectFileNameException e) {
-            e.printStackTrace();
-        }
+        RecordsReader.printAllRecords();
+
     }
     public int askMainMenu() {
         MainMenu menu = new MainMenu();

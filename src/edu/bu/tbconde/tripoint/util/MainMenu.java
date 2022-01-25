@@ -12,7 +12,7 @@ public class MainMenu {
     public int askMenuOptions() {
         String option1 = "1.Register a new purchase \n ";
         String option2 = "2.View past transactions \n ";
-        String option3 = "3.Redeem points \n";
+        String option3 = "3.Redeem points \n ";
         String option4 = "4.Exit \n";
         String selectedText;
         int selected;
