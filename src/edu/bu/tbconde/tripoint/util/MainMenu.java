@@ -16,8 +16,8 @@ public class MainMenu {
         String option4 = "4.Exit \n";
         String selectedText;
         int selected;
-        System.out.println("What would you like to do?\n " +
-              option1 + option2 + option3);
+        System.out.println("\nWhat would you like to do?\n " +
+              option1 + option2 + option3 + option4);
         do {
             System.out.println("Please, enter 1, 2, 3, or 4.");
             while(!sc.hasNextInt()) {
@@ -38,7 +38,7 @@ public class MainMenu {
                 selectedText = option3;
                 break;
             default:
-                selectedText = "Thank you! Hope to see you again soon!";
+                selectedText = option4 + "\nThank you! Hope to see you again soon!";
         }
         System.out.println("You selected: " + selectedText);
         return selected;
