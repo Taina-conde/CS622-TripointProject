@@ -49,12 +49,26 @@ public class AppView {
                 "Enter the credit card type used (basic, or preferred), the category (dining, travel, online shopping, or grocery), and the amount separated by a comma. \n" +
                 "eg: basic, dining, 40.87\n");
 
-        System.out.println("card:" + cardType);
+        do {
+            System.out.println("Please, enter basic or preferred");
+//            while(!sc.hasNext()) {
+//                System.out.println("Please, enter only characters.");
+//                sc.next();
+//            }
+            cardType = sc.next().toLowerCase();
+            System.out.println("card type" + cardType);
+
+        } while (!(cardType.equals("basic") || cardType.equals("preferred")));
+        System.out.println("card type out " + cardType);
 
 
 
 
 
+    }
+    public static void main(String[] args) {
+        AppView view = new AppView();
+        view.askTransactionInfo();
     }
 
 
