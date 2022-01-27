@@ -1,2 +1,5 @@
 basic, travel, 55.60, 278
 basic, travel, 55.60, 278
+basic, travel, 55.60, 278
+basic, grocery, 99.59, 796
+preferred, travel, 70.44, 704

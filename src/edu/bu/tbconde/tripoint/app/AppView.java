@@ -34,8 +34,7 @@ public class AppView {
         RecordsReader.printAllRecords();
 
     }
-    public int askMainMenu() {
-        return menu.askMenuOptions();
+    public int askMainMenu() {return menu.askMenuOptions();
     }
     public String askCardType() {
         String cardType;

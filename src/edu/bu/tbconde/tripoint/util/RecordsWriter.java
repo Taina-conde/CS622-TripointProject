@@ -6,7 +6,7 @@ import java.io.IOException;
 
 
 public class RecordsWriter {
-    public static void writeRecord(String transaction)  {
+    public static void writeRecord(String transaction, boolean append)  {
         /*The try-with-resources ensures that the resource is closed at the end of the statement. A resource is object
         that must be closed after the program is finished with it. In this case, BufferedWriter is a resource that
         implements the AutoCloseable interface, and, therefore, it is automatically closed when exiting a
@@ -20,7 +20,7 @@ public class RecordsWriter {
         String outfile = filePath + fileName;
         try (BufferedWriter br = new BufferedWriter(
                 new FileWriter(outfile,
-                        true)
+                        append)
         )) {
             br.write(transaction);
             br.write(System.lineSeparator());
@@ -28,5 +28,8 @@ public class RecordsWriter {
         catch (IOException err) {
             err.printStackTrace();
         }
+    }
+    public static void writeRecord(String transaction) {
+        writeRecord(transaction, true );
     }
 }

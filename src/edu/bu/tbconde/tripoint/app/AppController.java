@@ -2,6 +2,7 @@ package edu.bu.tbconde.tripoint.app;
 
 import edu.bu.tbconde.tripoint.cards.PreferredCard;
 import edu.bu.tbconde.tripoint.cards.BasicCard;
+import edu.bu.tbconde.tripoint.util.RecordsWriter;
 
 /**This class controls the view and model to support the points account*/
 public class AppController {
@@ -25,6 +26,7 @@ public class AppController {
         System.out.printf("You have %,d points.\n", model.getPointsBalance());
     }
     private void showMainMenu() {
+        System.out.printf("You have %,d points.\n", model.getPointsBalance());
         int selected = view.askMainMenu();
         switch (selected) {
             case 1:
@@ -38,7 +40,7 @@ public class AppController {
                 System.out.println("to be implemented");
                 break;
             default:
-                this.exit = true;
+                exitApp();
                 break;
         }
 
@@ -58,6 +60,7 @@ public class AppController {
         int points = model.getCurrentTrans().calculatePoints();
         model.saveTransaction();
         int catValue = model.getCurrentTrans().getCard().getCategoryValue(category);
+        System.out.println();
         System.out.println("Processing new transaction ...");
         System.out.println();
         view.displayTransaction(cardType, category, amount, catValue, points);
@@ -67,6 +70,13 @@ public class AppController {
     private void printPastTransactions() {
         view.displayTransactionRecords();
     }
+
+    private void exitApp() {
+        this.exit = true;
+        //remove all past transactions from transactionsRecord.txt
+        RecordsWriter.writeRecord("", false);
+    }
+
     public static void main(String[] args) {
         AppController controller = new AppController();
 
