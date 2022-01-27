@@ -45,11 +45,6 @@ public class AppView {
             System.out.println(cardType + " is not a valid type.\n" + "Please, enter basic or preferred");
             cardType = sc.nextLine().trim().replaceAll("\\p{P}", "").toLowerCase();
         }
-        System.out.println("card type out " + cardType);
-
-
-
-
         return cardType;
     }
     public String askCategory() {
@@ -77,13 +72,7 @@ public class AppView {
             }
             amount = sc.nextDouble();
         } while (!(amount > 0));
-        System.out.println("amount: " + amount);
         return amount;
     }
-    public static void main(String[] args) {
-        AppView view = new AppView();
-    }
-
-
 
 }
