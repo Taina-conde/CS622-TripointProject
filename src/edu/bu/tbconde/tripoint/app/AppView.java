@@ -46,26 +46,36 @@ public class AppView {
         String token = null;
         sc = new Scanner(System.in);
         System.out.println("You made a new purchase. \n" +
-                "Enter the credit card type used (basic, or preferred), the category (dining, travel, online shopping, or grocery), and the amount separated by a comma. \n" +
-                "eg: basic, dining, 40.87\n");
-        cardType = sc.nextLine().replaceAll("\\p{P}|\\s+", "").toLowerCase();
+                "Please enter the credit card type used (basic, or preferred)");
+        cardType = sc.nextLine().trim().replaceAll("\\p{P}", "").toLowerCase();
         while (!(cardType.equals("basic") || cardType.equals("preferred"))){
-            System.out.println("Please, enter basic or preferred");
-            cardType = sc.nextLine().replaceAll("\\p{P}|\\s+", "").toLowerCase();
+            System.out.println(cardType + " is not a valid type.\n" + "Please, enter basic or preferred");
+            cardType = sc.nextLine().trim().replaceAll("\\p{P}", "").toLowerCase();
         }
         System.out.println("card type out " + cardType);
-        System.out.println("Now enter the category of te purchase (dining, travel, online shopping, or grocery)");
-        category = sc.nextLine().replaceAll("\\p{P}|\\s+", "").toLowerCase();
+        System.out.println("Next, please enter the category of te purchase (dining, travel, online shopping, or grocery)");
+        category = sc.nextLine().trim().replaceAll("\\p{P}", "").toLowerCase();
         while (!(category.equals("dining")
-                || cardType.equals("travel")
-                || cardType.equals("online shopping")
-                || cardType.equals("grocery"))
+                || category.equals("travel")
+                || category.equals("online shopping")
+                || category.equals("grocery"))
         ) {
             System.out.println(category + " is not a valid category.\n" +
-                    "Please, enter one between dining, online shopping, or grocery");
-            category = sc.nextLine().replaceAll("\\p{P}|\\s+", "").toLowerCase();
+                    "Please, enter one between dining, travel,  online shopping, or grocery");
+            category = sc.nextLine().trim().replaceAll("\\p{P}", "").toLowerCase();
         }
-        
+        System.out.println("Finally, enter the amount purchased");
+        do {
+            System.out.println("Please enter a positive number greater than 0");
+            while(!sc.hasNextDouble()) {
+                System.out.println("Please enter a number");
+                sc.next();
+            }
+            amount = sc.nextDouble();
+        } while (!(amount > 0));
+        System.out.println("amount: " + amount);
+
+
 
 
 
