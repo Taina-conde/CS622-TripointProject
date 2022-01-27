@@ -12,7 +12,6 @@ public class AppModel {
     private String customer;
     private Transaction currentTrans;
     private int pointsBalance;
-    private int optionSelected;
     private ArrayList<Transaction> transactionsRecord = new ArrayList<>();
 
 
@@ -27,7 +26,6 @@ public class AppModel {
         return currentTrans;
     }
     public int getPointsBalance() {return pointsBalance;}
-    public int getOptionSelected() {return optionSelected;}
     public ArrayList<Transaction> getTransactionsRecord() {return transactionsRecord;}
 
     //setters
@@ -42,7 +40,6 @@ public class AppModel {
             }
         }
     }
-    public void setOptionSelected(int selected) { optionSelected = selected;}
     public void addPoints(int points) {pointsBalance += points;}
     public void removePoints(int points) {pointsBalance -= points;}
     public void saveTransaction() {

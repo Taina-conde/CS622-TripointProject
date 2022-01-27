@@ -5,9 +5,9 @@ import edu.bu.tbconde.tripoint.cards.BasicCard;
 
 /**This class controls the view and model to support the points account*/
 public class AppController {
-    AppModel model = new AppModel();
-    AppView view = new AppView();
-    boolean exit = false;
+    private AppModel model = new AppModel();
+    private AppView view = new AppView();
+    private boolean exit = false;
 
     public AppController() {
         setUsername();

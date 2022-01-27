@@ -1,3 +1,2 @@
 basic, travel, 55.60, 278
 basic, travel, 55.60, 278
-basic, travel, 55.60, 278
