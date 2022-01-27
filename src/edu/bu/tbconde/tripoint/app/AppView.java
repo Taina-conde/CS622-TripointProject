@@ -10,7 +10,7 @@ import java.io.BufferedReader;
 
 /**This class handles input and output on the user interface related to his points account*/
 public class AppView {
-    private Scanner sc;
+    private Scanner sc = new Scanner(System.in);;
     private MainMenu menu = new MainMenu();
     public String askUsername() {
         sc = new Scanner(System.in);
@@ -37,17 +37,23 @@ public class AppView {
     public int askMainMenu() {
         return menu.askMenuOptions();
     }
-    public void askTransactionInfo(String cardType, String category, double amount) {
-        sc = new Scanner(System.in);
-        System.out.println("You made a new purchase. \n" +
-                "Please enter the credit card type used (basic, or preferred)");
+    public String askCardType() {
+        String cardType;
+        System.out.println("Please enter the credit card type used (basic, or preferred)");
         cardType = sc.nextLine().trim().replaceAll("\\p{P}", "").toLowerCase();
         while (!(cardType.equals("basic") || cardType.equals("preferred"))){
             System.out.println(cardType + " is not a valid type.\n" + "Please, enter basic or preferred");
             cardType = sc.nextLine().trim().replaceAll("\\p{P}", "").toLowerCase();
         }
         System.out.println("card type out " + cardType);
-        System.out.println("Next, please enter the category of te purchase (dining, travel, online shopping, or grocery)");
+
+
+
+
+        return cardType;
+    }
+    public String askCategory() {
+        String category;
         category = sc.nextLine().trim().replaceAll("\\p{P}", "").toLowerCase();
         while (!(category.equals("dining")
                 || category.equals("travel")
@@ -58,7 +64,11 @@ public class AppView {
                     "Please, enter one between dining, travel,  online shopping, or grocery");
             category = sc.nextLine().trim().replaceAll("\\p{P}", "").toLowerCase();
         }
-        System.out.println("Finally, enter the amount purchased");
+        return category;
+
+    }
+    public double askAmount() {
+        double amount;
         do {
             System.out.println("Please enter a positive number greater than 0");
             while(!sc.hasNextDouble()) {
@@ -68,9 +78,8 @@ public class AppView {
             amount = sc.nextDouble();
         } while (!(amount > 0));
         System.out.println("amount: " + amount);
-
+        return amount;
     }
-
     public static void main(String[] args) {
         AppView view = new AppView();
     }

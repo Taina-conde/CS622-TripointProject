@@ -44,19 +44,23 @@ public class AppController {
 
     }
     private void processTransaction() {
-        //TODO: collect user input to create a new transaction
-        //String cardType = view.askTransactionInfo();
-        //String category = view.askTransactionInfo();
-        //double amount = view.askTransactionInfo();
-        //for now hard code a new transaction - suppose the user entered "basic, travel, 55.6"
-        model.setCurrentTrans("basic", "travel", 55.6);
+        //collect user input about a new transaction card type, category and amount
+        System.out.println("You made a new purchase. \n");
+        String cardType = view.askCardType();
+        System.out.println(
+                "Next, please enter the category of te purchase (dining, travel, online shopping, or grocery)"
+        );
+        String category = view.askCategory();
+        System.out.println("Finally, enter the amount purchased");
+        double amount = view.askAmount();
+        //set the current transaction in the model using the information the user entered
+        model.setCurrentTrans(cardType, category, amount);
         int points = model.getCurrentTrans().calculatePoints();
-
-            model.saveTransaction();
-            int catValue = model.getCurrentTrans().getCard().getCategoryValue("travel");
-            System.out.println("Processing new transaction ...");
-            System.out.println();
-            view.displayTransaction("basic", "travel", 55.6, catValue, points);
+        model.saveTransaction();
+        int catValue = model.getCurrentTrans().getCard().getCategoryValue(category);
+        System.out.println("Processing new transaction ...");
+        System.out.println();
+        view.displayTransaction(cardType, category, amount, catValue, points);
 
     }
 
