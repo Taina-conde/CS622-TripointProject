@@ -73,6 +73,7 @@ public class AppController {
 
     private void exitApp() {
         this.exit = true;
+        System.out.println("Thank you! Hope to see you again soon!");
         //remove all past transactions from transactionsRecord.txt
         RecordsWriter.writeRecord("", false);
     }

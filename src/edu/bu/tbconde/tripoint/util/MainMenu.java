@@ -38,7 +38,7 @@ public class MainMenu {
                 selectedText = option3;
                 break;
             default:
-                selectedText = option4 + "\nThank you! Hope to see you again soon!";
+                selectedText = option4;
         }
         System.out.println("You selected: " + selectedText);
 
