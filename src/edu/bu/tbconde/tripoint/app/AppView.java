@@ -48,18 +48,26 @@ public class AppView {
         System.out.println("You made a new purchase. \n" +
                 "Enter the credit card type used (basic, or preferred), the category (dining, travel, online shopping, or grocery), and the amount separated by a comma. \n" +
                 "eg: basic, dining, 40.87\n");
-
-        do {
+        cardType = sc.nextLine().replaceAll("\\p{P}|\\s+", "").toLowerCase();
+        while (!(cardType.equals("basic") || cardType.equals("preferred"))){
             System.out.println("Please, enter basic or preferred");
-//            while(!sc.hasNext()) {
-//                System.out.println("Please, enter only characters.");
-//                sc.next();
-//            }
-            cardType = sc.next().toLowerCase();
-            System.out.println("card type" + cardType);
-
-        } while (!(cardType.equals("basic") || cardType.equals("preferred")));
+            cardType = sc.nextLine().replaceAll("\\p{P}|\\s+", "").toLowerCase();
+        }
         System.out.println("card type out " + cardType);
+        System.out.println("Now enter the category of te purchase (dining, travel, online shopping, or grocery)");
+        category = sc.nextLine().replaceAll("\\p{P}|\\s+", "").toLowerCase();
+        while (!(category.equals("dining")
+                || cardType.equals("travel")
+                || cardType.equals("online shopping")
+                || cardType.equals("grocery"))
+        ) {
+            System.out.println(category + " is not a valid category.\n" +
+                    "Please, enter one between dining, online shopping, or grocery");
+            category = sc.nextLine().replaceAll("\\p{P}|\\s+", "").toLowerCase();
+        }
+        
+
+
 
 
 
