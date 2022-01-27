@@ -13,11 +13,9 @@ public class AppView {
     private Scanner sc;
     private MainMenu menu = new MainMenu();
     public String askUsername() {
-        sc = new Scanner(new BufferedReader(new InputStreamReader(System.in)));
+        sc = new Scanner(System.in);
         System.out.print("Username: ");
-        String username = sc.next();
-        //TODO: validate user input
-        return username;
+        return sc.nextLine();
     }
     public void displayTransaction(String cardType, String category, double amount, int categoryValue, int points) {
         System.out.printf(
@@ -39,11 +37,7 @@ public class AppView {
     public int askMainMenu() {
         return menu.askMenuOptions();
     }
-    public void askTransactionInfo() {
-        String cardType = null;
-        String category = null;
-        double amount = 0;
-        String token = null;
+    public void askTransactionInfo(String cardType, String category, double amount) {
         sc = new Scanner(System.in);
         System.out.println("You made a new purchase. \n" +
                 "Please enter the credit card type used (basic, or preferred)");
@@ -69,24 +63,16 @@ public class AppView {
             System.out.println("Please enter a positive number greater than 0");
             while(!sc.hasNextDouble()) {
                 System.out.println("Please enter a number");
-                sc.next();
+                sc.nextLine();
             }
             amount = sc.nextDouble();
         } while (!(amount > 0));
         System.out.println("amount: " + amount);
 
-
-
-
-
-
-
-
-
     }
+
     public static void main(String[] args) {
         AppView view = new AppView();
-        view.askTransactionInfo();
     }
 
 

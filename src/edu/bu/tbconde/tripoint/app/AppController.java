@@ -45,6 +45,9 @@ public class AppController {
     }
     private void processTransaction() {
         //TODO: collect user input to create a new transaction
+        //String cardType = view.askTransactionInfo();
+        //String category = view.askTransactionInfo();
+        //double amount = view.askTransactionInfo();
         //for now hard code a new transaction - suppose the user entered "basic, travel, 55.6"
         model.setCurrentTrans("basic", "travel", 55.6);
         int points = model.getCurrentTrans().calculatePoints();
