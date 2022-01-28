@@ -3,10 +3,7 @@ package edu.bu.tbconde.tripoint.app;
 import edu.bu.tbconde.tripoint.util.MainMenu;
 import edu.bu.tbconde.tripoint.util.RecordsReader;
 
-import java.io.InputStreamReader;
-import java.util.Locale;
 import java.util.Scanner;
-import java.io.BufferedReader;
 
 /**This class handles input and output on the user interface related to his points account*/
 public class AppView {
