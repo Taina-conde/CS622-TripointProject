@@ -1,8 +1,6 @@
 package edu.bu.tbconde.tripoint.transactions;
 
-import edu.bu.tbconde.tripoint.cards.BasicCard;
 import edu.bu.tbconde.tripoint.cards.CreditCard;
-import edu.bu.tbconde.tripoint.cards.PreferredCard;
 
 public class CategoryTransaction extends Transaction {
     public CategoryTransaction() {
