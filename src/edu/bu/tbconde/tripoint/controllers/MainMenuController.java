@@ -16,6 +16,22 @@ public class MainMenuController {
                         model.getOption4()
                 )
         );
-        
     }
+//    public void processOption() {
+//        switch (model.getSelectedOption()) {
+//            case 1:
+//                processTransaction();
+//                break;
+//            case 2:
+//                printPastTransactions();
+//                break;
+//            case 3:
+//                //TODO: redeem points
+//                System.out.println("to be implemented");
+//                break;
+//            default:
+//                exitApp();
+//                break;
+//        }
+//    }
 }

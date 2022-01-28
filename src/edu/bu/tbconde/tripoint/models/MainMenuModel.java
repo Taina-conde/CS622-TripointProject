@@ -11,6 +11,7 @@ public class MainMenuModel {
     public String getOption2() { return option2;}
     public String getOption3() { return option3;}
     public String getOption4() { return option4;}
+    public int getSelectedOption() {return selectedOption;}
     //setters
     public void setSelectedOption(int selected) {this.selectedOption = selected;}
 }
