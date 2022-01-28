@@ -17,16 +17,8 @@ public class CategoryTransaction extends Transaction {
 
     @Override
     public int calculatePoints(){
-        int pointValue= 0;
-        if (card instanceof BasicCard) {
-
-            pointValue = ((BasicCard)card).getCategoryValue(category);
-
-        }
-        if (card instanceof PreferredCard) {
-
-            pointValue = ((PreferredCard)card).getCategoryValue(category);
-        }
+        int pointValue;
+        pointValue = card.getCategoryValue(category);
         this.transPoints = (int)(amount * pointValue);
         return this.transPoints;
     }
