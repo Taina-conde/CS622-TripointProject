@@ -10,7 +10,30 @@ public class Wallet <C extends CreditCard>{
         this.card2 =card2;
         cardsList = new CreditCard[] {card1, card2};
     }
-    
+    public Wallet(C card1) {
+        this(card1, null);
+    }
+    public Wallet() {
+        cardsList = new CreditCard[2];
+    }
+    public CreditCard[] getCardsList(){return cardsList;}
+    public boolean addCard(C card) {
+        if (cardsList.length < 2) {
+            for(int i = 0; i < cardsList.length; i++) {
+                if (cardsList[i] == null) {
+                    cardsList[i] = card;
+                    break;
+                }
+            }
+            return true;
+        } else {
+            System.out.println("Wallet is full. Unable to add " + card);
+            return false;
+        }
+
+
+    }
+
 
 
 }
