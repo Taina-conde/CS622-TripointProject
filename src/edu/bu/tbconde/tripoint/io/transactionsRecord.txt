@@ -1,0 +1,2 @@
+basic, dining, 30.00, 90
+preferred, travel, 500.00, 5,000

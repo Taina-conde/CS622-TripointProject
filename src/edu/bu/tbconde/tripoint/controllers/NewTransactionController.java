@@ -1,5 +1,6 @@
 package edu.bu.tbconde.tripoint.controllers;
 
+import edu.bu.tbconde.tripoint.cards.Wallet;
 import edu.bu.tbconde.tripoint.cards.CreditCard;
 import edu.bu.tbconde.tripoint.models.NewTransactionModel;
 import edu.bu.tbconde.tripoint.util.RecordsWriter;
@@ -11,8 +12,8 @@ public class NewTransactionController {
     private NewTransactionModel model;
     private NewTransactionView view;
     private RecordsWriter writer;
-    public NewTransactionController() {
-        model = new NewTransactionModel();
+    public NewTransactionController(Wallet<CreditCard> wallet) {
+        model = new NewTransactionModel(wallet);
         view = new NewTransactionView();
         writer = new RecordsWriter();
     }

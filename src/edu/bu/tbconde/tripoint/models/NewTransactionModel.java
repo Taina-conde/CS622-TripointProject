@@ -15,8 +15,8 @@ public class NewTransactionModel{
     private Transaction currTrans;
     private int points;
     private int catValue;
-    public NewTransactionModel() {
-       wallet = new Wallet<CreditCard>(2);
+    public NewTransactionModel(Wallet<CreditCard> wallet) {
+       this.wallet = wallet;
     }
 
     //getters'
