@@ -7,7 +7,7 @@ import edu.bu.tbconde.tripoint.util.RecordsWriter;
 /**This class controls the view and model to support the points account*/
 public class AppController {
     private RecordsWriter writer = new RecordsWriter();
-    private AppModel model = new AppModel();
+    private AppModel model = new AppModel(2);
     private AppView view = new AppView();
     private boolean exit = false;
 

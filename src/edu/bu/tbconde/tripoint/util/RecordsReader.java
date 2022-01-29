@@ -35,8 +35,6 @@ public class RecordsReader {
                     System.out.printf("%-30s %-30s %-30s %-30s\n","CARD USED", "CATEGORY", "AMOUNT", "POINTS");
                     printRecord(arr[0], arr[1], arr[2], arr[3]);
                 }
-                else {System.out.println("You have not made any transactions yet.");}
-
             }
             return true;
         }

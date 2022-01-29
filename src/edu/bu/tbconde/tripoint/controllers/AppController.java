@@ -7,7 +7,8 @@ import edu.bu.tbconde.tripoint.util.RecordsWriter;
 import edu.bu.tbconde.tripoint.views.AppView;
 
 public class AppController {
-    private AppModel model = new AppModel();
+    private final int  walletCapacity = 2;
+    private AppModel model = new AppModel(walletCapacity);
     private RecordsWriter writer = new RecordsWriter();
     private AppView view = new AppView();
    private WelcomeController welcome = new WelcomeController();
@@ -21,7 +22,7 @@ public class AppController {
         String customer = welcome.greetCustomer();
         model.addCard(new PreferredCard(customer));
         model.addCard(new BasicCard(customer));
-        newTrans = new NewTransactionController(model.getCardsList());
+        newTrans = new NewTransactionController(model.getWallet());
 
     }
     public boolean getExit() {return exit;}
@@ -36,6 +37,7 @@ public class AppController {
         switch (menu.selectOption()) {
             case 1:
                 newTrans.processNewTransaction();
+                
                 break;
             case 2:
                 pastTrans.displayPastTransactions();
