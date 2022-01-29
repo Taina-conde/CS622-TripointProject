@@ -41,7 +41,7 @@ public class NewTransactionController {
             System.out.println("Unable to complete your request. Please, try again.");
         }
     }
-    public void processNewTransaction() {
+    public int processNewTransaction() {
         collectTransactionInfo();
         model.createNewTransaction();
         view.displayTransaction(
@@ -52,7 +52,7 @@ public class NewTransactionController {
                 model.getPoints()
         );
         saveTransaction();
-
+        return model.getPoints();
     }
 
 }

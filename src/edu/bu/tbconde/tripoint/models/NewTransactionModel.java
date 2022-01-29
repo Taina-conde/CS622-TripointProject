@@ -41,7 +41,7 @@ public class NewTransactionModel{
     }
     public void createNewTransaction() {
         for (int i = 0; i < wallet.size(); i++) {
-            CreditCard card = wallet.getCard(i);
+            CreditCard card = wallet.get(i);
             if (card.getType().equals(cardType)) {
                 currTrans = new CategoryTransaction(card, category, amount);
             }

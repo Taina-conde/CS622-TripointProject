@@ -42,7 +42,7 @@ public class AppModel {
     public void setCustomer(String name) {customer = name;}
     public void setCurrentTrans(String cardType, String category, double amount ) {
         for (int i = 0; i < wallet.size(); i++) {
-            CreditCard card = wallet.getCard(i);
+            CreditCard card = wallet.get(i);
             if (card.getType().equals(cardType)) {
                 currTrans = new CategoryTransaction(card, category, amount);
             }

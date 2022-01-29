@@ -36,8 +36,8 @@ public class AppController {
     public void processMenuOption() {
         switch (menu.selectOption()) {
             case 1:
-                newTrans.processNewTransaction();
-                
+                int points = newTrans.processNewTransaction();
+                model.addPoints(points);;
                 break;
             case 2:
                 pastTrans.displayPastTransactions();
