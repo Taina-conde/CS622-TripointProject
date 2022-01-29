@@ -1,11 +1,9 @@
 package edu.bu.tbconde.tripoint.models;
 
-import edu.bu.tbconde.tripoint.cards.Wallet;
+import edu.bu.tbconde.tripoint.util.Wallet;
 import edu.bu.tbconde.tripoint.cards.CreditCard;
 import edu.bu.tbconde.tripoint.transactions.CategoryTransaction;
 import edu.bu.tbconde.tripoint.transactions.Transaction;
-
-import java.util.ArrayList;
 
 public class NewTransactionModel{
     private Wallet<CreditCard> wallet;

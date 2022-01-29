@@ -1,9 +1,7 @@
 package edu.bu.tbconde.tripoint.models;
 
 import edu.bu.tbconde.tripoint.cards.CreditCard;
-import edu.bu.tbconde.tripoint.cards.Wallet;
-
-import java.util.ArrayList;
+import edu.bu.tbconde.tripoint.util.Wallet;
 
 public class AppModel {
     private Wallet<CreditCard> wallet;

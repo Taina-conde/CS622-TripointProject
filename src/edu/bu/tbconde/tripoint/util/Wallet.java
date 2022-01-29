@@ -1,4 +1,4 @@
-package edu.bu.tbconde.tripoint.cards;
+package edu.bu.tbconde.tripoint.util;
 
 public class Wallet <C>{
     private int capacity;

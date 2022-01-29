@@ -2,7 +2,7 @@ package edu.bu.tbconde.tripoint.app;
 
 import edu.bu.tbconde.tripoint.transactions.CategoryTransaction;
 import edu.bu.tbconde.tripoint.transactions.Transaction;
-import edu.bu.tbconde.tripoint.cards.Wallet;
+import edu.bu.tbconde.tripoint.util.Wallet;
 import edu.bu.tbconde.tripoint.cards.CreditCard;
 import edu.bu.tbconde.tripoint.util.RecordsWriter;
 

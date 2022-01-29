@@ -1,12 +1,10 @@
 package edu.bu.tbconde.tripoint.controllers;
 
-import edu.bu.tbconde.tripoint.cards.Wallet;
+import edu.bu.tbconde.tripoint.util.Wallet;
 import edu.bu.tbconde.tripoint.cards.CreditCard;
 import edu.bu.tbconde.tripoint.models.NewTransactionModel;
 import edu.bu.tbconde.tripoint.util.RecordsWriter;
 import edu.bu.tbconde.tripoint.views.NewTransactionView;
-
-import java.util.ArrayList;
 
 public class NewTransactionController {
     private NewTransactionModel model;
