@@ -1,23 +1,18 @@
 package edu.bu.tbconde.tripoint.cards;
 
-public class Wallet <C extends CreditCard>{
+import java.lang.reflect.Array;
+
+public class Wallet <C>{
     private C card1;
     private C card2;
-    private CreditCard[] cardsList;
+    private C[] cardsList;
 
-    public Wallet(C card1, C card2) {
-        this.card1 = card1;
-        this.card2 =card2;
-        cardsList = new CreditCard[] {card1, card2};
+    public Wallet(int capacity) {
+        cardsList = (C[]) new Object[capacity];
     }
-    public Wallet(C card1) {
-        this(card1, null);
-    }
-    public Wallet() {
-        cardsList = new CreditCard[2];
-    }
-    public CreditCard[] getCardsList(){return cardsList;}
-    public boolean addCard(C card) {
+    public C[] getCardsList(){return cardsList;}
+    public C getCard(int index) { return cardsList[index];}
+    public boolean add(C card) {
         if (cardsList.length < 2) {
             for(int i = 0; i < cardsList.length; i++) {
                 if (cardsList[i] == null) {
@@ -30,10 +25,14 @@ public class Wallet <C extends CreditCard>{
             System.out.println("Wallet is full. Unable to add " + card);
             return false;
         }
-
-
     }
-
-
-
+    public int size() {
+        int count = 0;
+        for (int i = 0; i < cardsList.length; i++) {
+            if (cardsList[i] != null) {
+                count++;
+            }
+        }
+        return count;
+    }
 }

@@ -1,5 +1,6 @@
 package edu.bu.tbconde.tripoint.models;
 
+import edu.bu.tbconde.tripoint.cards.Wallet;
 import edu.bu.tbconde.tripoint.cards.CreditCard;
 import edu.bu.tbconde.tripoint.transactions.CategoryTransaction;
 import edu.bu.tbconde.tripoint.transactions.Transaction;
@@ -7,19 +8,19 @@ import edu.bu.tbconde.tripoint.transactions.Transaction;
 import java.util.ArrayList;
 
 public class NewTransactionModel{
-    private ArrayList<CreditCard> cardsList;
+    private Wallet<CreditCard> wallet;
     private String cardType;
     private String category;
     private double amount;
     private Transaction currTrans;
     private int points;
     private int catValue;
-    public NewTransactionModel(ArrayList<CreditCard> cardsList) {
-        this.cardsList = cardsList;
+    public NewTransactionModel() {
+       wallet = new Wallet<CreditCard>(2);
     }
 
     //getters'
-    public ArrayList<CreditCard> getCardsList() {return cardsList;}
+    public Wallet<CreditCard> getWallet() {return wallet;}
     public int getPoints() {return points;}
     public int getCatValue() {return catValue;}
     public String getCardType() {return cardType;}
@@ -29,7 +30,7 @@ public class NewTransactionModel{
 
     //setters
     public void setAmount(double amount) {this.amount = amount; }
-    public void setCardsList(ArrayList<CreditCard> cardsList) { this.cardsList = cardsList;}
+    public void setWallet(Wallet<CreditCard> wallet) { this.wallet = wallet;}
     public void setCategory(String category) {this.category = category;}
     public void setCardType(String cardType) {
         this.cardType = cardType;
@@ -39,7 +40,8 @@ public class NewTransactionModel{
 
     }
     public void createNewTransaction() {
-        for (CreditCard card: cardsList) {
+        for (int i = 0; i < wallet.size(); i++) {
+            CreditCard card = wallet.getCard(i);
             if (card.getType().equals(cardType)) {
                 currTrans = new CategoryTransaction(card, category, amount);
             }

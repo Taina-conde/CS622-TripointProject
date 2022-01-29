@@ -1,16 +1,17 @@
 package edu.bu.tbconde.tripoint.models;
 
 import edu.bu.tbconde.tripoint.cards.CreditCard;
+import edu.bu.tbconde.tripoint.cards.Wallet;
 
 import java.util.ArrayList;
 
 public class AppModel {
-    private ArrayList<CreditCard> cardsList = new ArrayList<>();
+    private Wallet<CreditCard> cardsList = new Wallet<>(2);
     private int pointsBalance;
     private int selectedOption;
     //getters
     public int getSelectedOption() {return selectedOption;}
-    public ArrayList<CreditCard> getCardsList() {return cardsList;}
+    public Wallet<CreditCard> getCardsList() {return cardsList;}
     //setters
 
     public void addCard(CreditCard newCard) {

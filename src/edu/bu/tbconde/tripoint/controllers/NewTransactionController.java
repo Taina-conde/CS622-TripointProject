@@ -11,8 +11,8 @@ public class NewTransactionController {
     private NewTransactionModel model;
     private NewTransactionView view;
     private RecordsWriter writer;
-    public NewTransactionController(ArrayList<CreditCard> cardsList) {
-        model = new NewTransactionModel(cardsList);
+    public NewTransactionController() {
+        model = new NewTransactionModel();
         view = new NewTransactionView();
         writer = new RecordsWriter();
     }
