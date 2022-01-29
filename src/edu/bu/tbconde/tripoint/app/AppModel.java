@@ -5,10 +5,12 @@ import edu.bu.tbconde.tripoint.transactions.Transaction;
 import edu.bu.tbconde.tripoint.cards.CreditCard;
 import edu.bu.tbconde.tripoint.util.RecordsWriter;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 /**This class stores the data needed to use the points account*/
 public class AppModel {
     private ArrayList<CreditCard> cardsList = new ArrayList<>();
+    private RecordsWriter writer = new RecordsWriter();
     private String customer;
     private Transaction currentTrans;
     private int pointsBalance;
@@ -43,21 +45,27 @@ public class AppModel {
     public void addPoints(int points) {pointsBalance += points;}
     public void removePoints(int points) {pointsBalance -= points;}
     public void saveTransaction() {
+        boolean isWritten;
         String cardType = currentTrans.getCard().getType();
         String category = currentTrans.getCategory();
         double amount = currentTrans.getAmount();
         int points = currentTrans.getPoints();
         String transaction = String.format("%s, %s, %.2f, %,d", cardType, category,amount, points);
 
-        RecordsWriter.writeRecord(transaction);
+        isWritten = writer.writeRecord(transaction);
 
-        transactionsRecord.add(currentTrans);
-        if (currentTrans instanceof CategoryTransaction) {
-            addPoints(points);
+        if (isWritten) {
+            transactionsRecord.add(currentTrans);
+            if (currentTrans instanceof CategoryTransaction) {
+                addPoints(points);
+            }
+            else {
+                removePoints(points);
+            }
+        } else {
+            System.out.println("A problem occurred. Please, try again");
         }
-        else {
-            removePoints(points);
-        }
+
     }
 
 }

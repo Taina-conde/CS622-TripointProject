@@ -1,4 +1,0 @@
-
-basic, online shopping, 77.00, 616
-basic, dining, 50.00, 150
-preferred, dining, 50.00, 400

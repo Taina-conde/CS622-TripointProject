@@ -6,7 +6,12 @@ import java.io.IOException;
 
 
 public class RecordsWriter {
-    public static void writeRecord(String transaction, boolean append)  {
+    private String outfile;
+
+    public RecordsWriter() {
+        outfile = "src/edu/bu/tbconde/tripoint/io/transactionsRecord.txt";
+    }
+    public boolean writeRecord(String transaction, boolean append)  {
         /*The try-with-resources ensures that the resource is closed at the end of the statement. A resource is object
         that must be closed after the program is finished with it. In this case, BufferedWriter is a resource that
         implements the AutoCloseable interface, and, therefore, it is automatically closed when exiting a
@@ -15,21 +20,20 @@ public class RecordsWriter {
         https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
         https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html
         */
-        String fileName = "transactionsRecord.txt";
-        String filePath = "src/edu/bu/tbconde/tripoint/io/";
-        String outfile = filePath + fileName;
         try (BufferedWriter br = new BufferedWriter(
                 new FileWriter(outfile,
                         append)
         )) {
             br.write(transaction);
             br.write(System.lineSeparator());
+            return true;
         }
         catch (IOException err) {
             err.printStackTrace();
+            return false;
         }
     }
-    public static void writeRecord(String transaction) {
-        writeRecord(transaction, true );
+    public boolean writeRecord(String transaction) {
+        return writeRecord(transaction, true );
     }
 }

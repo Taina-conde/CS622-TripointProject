@@ -7,7 +7,12 @@ import java.util.ArrayList;
 public class AppModel {
     private ArrayList<CreditCard> cardsList = new ArrayList<>();
     private int pointsBalance;
+    private int selectedOption;
+    //getters
+    public int getSelectedOption() {return selectedOption;}
+    public ArrayList<CreditCard> getCardsList() {return cardsList;}
     //setters
+
     public void addCard(CreditCard newCard) {
         cardsList.add(newCard);
     }

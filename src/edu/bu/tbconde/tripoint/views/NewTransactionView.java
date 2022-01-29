@@ -41,4 +41,17 @@ public class NewTransactionView {
         } while (!(amount > 0));
         return amount;
     }
+    public void displayTransaction(String cardType, String category, double amount, int categoryValue, int points) {
+        System.out.printf(
+                "You spent $%.2f on %s  using your %s card.\n" +
+                        "The %s  card gives you %d points for every $1 spent on %s. \n" +
+                        "You earned %,d points in this transaction. \n",
+                amount,
+                category,
+                cardType,
+                cardType,
+                categoryValue,
+                category,
+                points);
+    }
 }

@@ -6,8 +6,9 @@ import edu.bu.tbconde.tripoint.models.WelcomeModel;
 public class WelcomeController {
     private WelcomeView view = new WelcomeView();
     private WelcomeModel model = new WelcomeModel();
-    public void greetCustomer() {
+    public String greetCustomer() {
         model.setUsername(view.askUsername());
         System.out.println("Hello, " + model.getUsername()+ "!");
+        return model.getUsername();
     }
 }

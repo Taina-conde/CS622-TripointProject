@@ -6,8 +6,7 @@ import edu.bu.tbconde.tripoint.views.MainMenuView;
 public class MainMenuController {
     private MainMenuView view = new MainMenuView();
     private MainMenuModel model = new MainMenuModel();
-
-    public void showMenu() {
+    private void showMenu() {
         model.setSelectedOption(
                 view.displayOptions(
                         model.getOption1(),
@@ -16,6 +15,11 @@ public class MainMenuController {
                         model.getOption4()
                 )
         );
+
+    }
+    public int selectOption(){
+        showMenu();
+        return model.getSelectedOption();
     }
 //    public void processOption() {
 //        switch (model.getSelectedOption()) {

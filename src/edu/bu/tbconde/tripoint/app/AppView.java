@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 /**This class handles input and output on the user interface related to his points account*/
 public class AppView {
+    private RecordsReader reader = new RecordsReader();
     private Scanner sc = new Scanner(System.in);;
     private MainMenu menu = new MainMenu();
     public String askUsername() {
@@ -28,7 +29,7 @@ public class AppView {
                 points);
     }
     public void displayTransactionRecords() {
-        RecordsReader.printAllRecords();
+        reader.printAllRecords();
 
     }
     public int askMainMenu() {return menu.askMenuOptions();

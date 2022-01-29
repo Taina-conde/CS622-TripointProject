@@ -6,6 +6,7 @@ import edu.bu.tbconde.tripoint.util.RecordsWriter;
 
 /**This class controls the view and model to support the points account*/
 public class AppController {
+    private RecordsWriter writer = new RecordsWriter();
     private AppModel model = new AppModel();
     private AppView view = new AppView();
     private boolean exit = false;
@@ -72,10 +73,9 @@ public class AppController {
     }
 
     private void exitApp() {
-        this.exit = true;
-        System.out.println("Thank you! Hope to see you again soon!");
         //remove all past transactions from transactionsRecord.txt
-        RecordsWriter.writeRecord("", false);
+        this.exit = writer.writeRecord("", false);
+        if (this.exit) {System.out.println("Thank you! Hope to see you again soon!");}
     }
 
     public static void main(String[] args) {
