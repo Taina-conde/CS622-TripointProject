@@ -5,8 +5,10 @@ public class Wallet <C>{
     private C[] objList;
 
     public Wallet( C... objs) {
-        this.capacity = objs.length;
-        objList = (C[]) new Object[capacity];
+        this(objs.length);
+        for (int i = 0; i < capacity; i++) {
+            objList[i] = objs[i];
+        }
     }
     public Wallet(int capacity) {
         this.capacity = capacity;

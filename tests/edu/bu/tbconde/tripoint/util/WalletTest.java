@@ -11,15 +11,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class WalletTest {
     private Wallet<CreditCard> wallet = null;
-    private CreditCard basic;
-    private CreditCard preferred;
+    private CreditCard card1;
+    private CreditCard card2;
     private int capacity = 0;
     @BeforeEach
     void setUp() {
         capacity = 2;
         wallet = new Wallet<>(capacity);
-        basic = new BasicCard();
-        preferred = new PreferredCard();
+        card1 = new BasicCard();
+        card2 = new PreferredCard();
     }
 
     @AfterEach
@@ -30,19 +30,30 @@ class WalletTest {
 
     @Test
     void get() {
+        int index = 0;
+        wallet.add(card1);
+        assertEquals(card1, wallet.get(index));
+    }
+    @Test
+    void getNull() {
         int index = 1;
-        wallet.add(basic);
-        assertEquals(wallet.get(index), basic );
-
-
+        wallet.add(card1);
+        /* we added one element to the wallet with capacity for 2 cards
+        if we try to get the second element, we should expect null,
+        since there is no second element in this particular wallet.*/
+        assertEquals(null, wallet.get(index));
     }
 
     @Test
     void add() {
-        assertEquals(wallet.add(basic), basic);
+        assertEquals(card1, wallet.add(card1));
     }
 
     @Test
     void size() {
+        wallet.add(card1);
+        assertEquals(1, wallet.size());
+        wallet.add(card2);
+        assertEquals(2, wallet.size());
     }
 }
