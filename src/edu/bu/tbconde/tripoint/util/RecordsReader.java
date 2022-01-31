@@ -13,13 +13,6 @@ public class RecordsReader {
         infile = "src/edu/bu/tbconde/tripoint/io/transactionsRecord.txt";
         lines = new ArrayList<>();
     }
-    protected void printRecord(String card, String category, String amount, String points) {
-        System.out.printf("%-30s %-30s %-30s %-30s\n",
-                card,
-                category,
-                amount,
-                points);
-    }
     public ArrayList<String> readLine() {
         /*The try-with-resources ensures that the resource is closed at the end of the statement. A resource is object
         that must be closed after the program is finished with it. In this case, Scanner is a resource that
@@ -39,10 +32,11 @@ public class RecordsReader {
                     lines.add(line);
                 }
             }
-            return lines;
+
         }
         catch (FileNotFoundException err) {
             err.printStackTrace();
         }
+        return lines;
     }
 }
