@@ -1,14 +1,17 @@
 package edu.bu.tbconde.tripoint.util;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
 
 /**This class reads the transactionsRecord file, printing the formatted records*/
 public class RecordsReader {
+    private ArrayList<String> lines;
     private String infile;
     public RecordsReader() {
         infile = "src/edu/bu/tbconde/tripoint/io/transactionsRecord.txt";
+        lines = new ArrayList<>();
     }
     protected void printRecord(String card, String category, String amount, String points) {
         System.out.printf("%-30s %-30s %-30s %-30s\n",
@@ -17,7 +20,7 @@ public class RecordsReader {
                 amount,
                 points);
     }
-    public boolean printAllRecords() {
+    public ArrayList<String> readLine() {
         /*The try-with-resources ensures that the resource is closed at the end of the statement. A resource is object
         that must be closed after the program is finished with it. In this case, Scanner is a resource that
         implements the AutoCloseable interface, and, therefore, it is automatically closed when exiting a
@@ -28,20 +31,18 @@ public class RecordsReader {
         */
         try (Scanner sc = new Scanner(new File(infile))) {
             while (sc.hasNextLine()) {
-                String[] arr = sc.nextLine().split(", ");
-                if (arr.length > 1) {
-                    System.out.println("Your past transactions ...");
-                    System.out.println();
-                    System.out.printf("%-30s %-30s %-30s %-30s\n","CARD USED", "CATEGORY", "AMOUNT", "POINTS");
-                    printRecord(arr[0], arr[1], arr[2], arr[3]);
+                String line = sc.nextLine();
+                if (line != null) {
+//                    System.out.println("Your past transactions ...");
+//                    System.out.println();
+//                    System.out.printf("%-30s %-30s %-30s %-30s\n","CARD USED", "CATEGORY", "AMOUNT", "POINTS");
+                    lines.add(line);
                 }
             }
-            return true;
+            return lines;
         }
         catch (FileNotFoundException err) {
-
             err.printStackTrace();
-            return false;
         }
     }
 }
