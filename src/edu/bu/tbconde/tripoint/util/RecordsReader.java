@@ -13,7 +13,7 @@ public class RecordsReader {
         infile = "src/edu/bu/tbconde/tripoint/io/transactionsRecord.txt";
         lines = new ArrayList<>();
     }
-    public ArrayList<String> readLine() {
+    public ArrayList<String> readLines() {
         /*The try-with-resources ensures that the resource is closed at the end of the statement. A resource is object
         that must be closed after the program is finished with it. In this case, Scanner is a resource that
         implements the AutoCloseable interface, and, therefore, it is automatically closed when exiting a
@@ -25,7 +25,7 @@ public class RecordsReader {
         try (Scanner sc = new Scanner(new File(infile))) {
             while (sc.hasNextLine()) {
                 String line = sc.nextLine();
-                if (line != null) {
+                if (!line.equals("")) {
 //                    System.out.println("Your past transactions ...");
 //                    System.out.println();
 //                    System.out.printf("%-30s %-30s %-30s %-30s\n","CARD USED", "CATEGORY", "AMOUNT", "POINTS");

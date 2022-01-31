@@ -12,7 +12,6 @@ public class PastTransactionsView {
         System.out.println();
         System.out.printf("%-30s %-30s %-30s %-30s\n","CARD USED", "CATEGORY", "AMOUNT", "POINTS");
 
-
     }
     public void printRecord(String card, String category, String amount, String points) {
         System.out.printf("%-30s %-30s %-30s %-30s\n",
