@@ -8,10 +8,14 @@ import java.io.File;
 /**This class reads the transactionsRecord file, printing the formatted records*/
 public class RecordsReader {
     private ArrayList<String> lines;
-    private String infile;
+    private String path = "src/edu/bu/tbconde/tripoint/io/transactionsRecord.txt";
     public RecordsReader() {
-        infile = "src/edu/bu/tbconde/tripoint/io/transactionsRecord.txt";
         lines = new ArrayList<>();
+    }
+    public RecordsReader(String path) {
+        this();
+        this.path = path;
+
     }
     public ArrayList<String> readLines() {
         /*The try-with-resources ensures that the resource is closed at the end of the statement. A resource is object
@@ -22,7 +26,7 @@ public class RecordsReader {
         https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
         https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html
         */
-        try (Scanner sc = new Scanner(new File(infile))) {
+        try (Scanner sc = new Scanner(new File(path))) {
             while (sc.hasNextLine()) {
                 String line = sc.nextLine();
                 if (!line.equals("")) {
