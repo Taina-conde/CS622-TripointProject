@@ -1,19 +1,16 @@
 package edu.bu.tbconde.tripoint.controllers;
 
 import edu.bu.tbconde.tripoint.models.PastTransactionsModel;
-import edu.bu.tbconde.tripoint.util.RecordsReader;
 import edu.bu.tbconde.tripoint.views.PastTransactionsView;
 
-import java.util.ArrayList;
 
 public class PastTransactionsController {
     private PastTransactionsModel model;
     private PastTransactionsView view ;
-    private RecordsReader reader;
+
     public PastTransactionsController() {
         model = new PastTransactionsModel();
         view = new PastTransactionsView();
-        reader = new RecordsReader();
     }
 
     public void displayPastTransactions() {
