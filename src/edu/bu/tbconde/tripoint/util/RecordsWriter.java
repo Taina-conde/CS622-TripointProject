@@ -8,8 +8,11 @@ import java.io.IOException;
 public class RecordsWriter {
     private String outfile;
 
+    public RecordsWriter(String path) {
+        outfile = path;
+    }
     public RecordsWriter() {
-        outfile = "src/edu/bu/tbconde/tripoint/io/transactionsRecord.txt";
+        outfile= "src/edu/bu/tbconde/tripoint/io/transactionsRecord.txt";
     }
     public boolean writeRecord(String transaction, boolean append)  {
         /*The try-with-resources ensures that the resource is closed at the end of the statement. A resource is object
