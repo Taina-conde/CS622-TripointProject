@@ -8,21 +8,29 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RecordsWriterTest {
     private RecordsWriter writer = null;
+    private String transactionTest = null;
+    private String empty = null;
     @BeforeEach
     void setUp() {
         writer = new RecordsWriter("tests/edu/bu/tbconde/tripoint/io/testWriter.txt");
+        transactionTest = "grocery, basic, 100";
+        empty = "";
     }
 
     @AfterEach
     void tearDown() {
         writer = null;
+        transactionTest = null;
+        empty = null;
     }
 
     @Test
     void writeRecord() {
+        assertTrue(writer.writeRecord(transactionTest, true));
     }
 
     @Test
-    void testWriteRecord() {
+    void deleteRecords() {
+        assertTrue(writer.deleteRecords());
     }
 }

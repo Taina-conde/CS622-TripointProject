@@ -34,7 +34,7 @@ public class NewTransactionController {
                 model.getAmount(),
                 model.getPoints()
         );
-        isWritten = writer.writeRecord(transaction);
+        isWritten = writer.writeRecord(transaction, true);
         if (!isWritten) {
             System.out.println("Unable to complete your request. Please, try again.");
         }

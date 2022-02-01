@@ -28,7 +28,7 @@ public class AppController {
     public boolean getExit() {return exit;}
     private void exitApp() {
         //remove all past transactions from transactionsRecord.txt
-        exit = writer.writeRecord("", false);
+        exit = writer.deleteRecords();
         if (exit == true) {System.out.println("Thank you! Hope to see you again soon!");}
 
 

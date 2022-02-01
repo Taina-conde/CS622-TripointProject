@@ -36,7 +36,7 @@ public class RecordsWriter {
             return false;
         }
     }
-    public boolean writeRecord(String transaction) {
-        return writeRecord(transaction, true );
+    public boolean deleteRecords() {
+        return writeRecord("", false );
     }
 }
