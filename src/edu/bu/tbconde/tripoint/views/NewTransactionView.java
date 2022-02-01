@@ -43,7 +43,7 @@ public class NewTransactionView {
     }
     public void displayTransaction(String cardType, String category, double amount, int categoryValue, int points) {
         System.out.printf(
-                "You spent $%.2f on %s  using your %s card.\n" +
+                "\nYou spent $%.2f on %s  using your %s card.\n" +
                         "The %s  card gives you %d points for every $1 spent on %s. \n" +
                         "You earned %,d points in this transaction. \n",
                 amount,
