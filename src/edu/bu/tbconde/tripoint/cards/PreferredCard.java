@@ -1,8 +1,9 @@
 package edu.bu.tbconde.tripoint.cards;
 
 public class PreferredCard extends CreditCard {
+    private final String type = "preferred";
     public PreferredCard(String customer, int pointsBal) {
-        super("preferred", customer, pointsBal);
+        super( customer, pointsBal);
     }
     public PreferredCard(String customer) {
         this(customer, 0);
@@ -10,7 +11,8 @@ public class PreferredCard extends CreditCard {
     public PreferredCard() {
         this("");
     }
-
+    @Override
+    public String getType() {return type;}
     @Override
     public int getCategoryValue(String category) {
         int result;
@@ -29,5 +31,9 @@ public class PreferredCard extends CreditCard {
                 break;
         }
         return result;
+    }
+    @Override
+    public String toString() {
+        return type.substring(0,1).toUpperCase() + type.substring(1);
     }
 }

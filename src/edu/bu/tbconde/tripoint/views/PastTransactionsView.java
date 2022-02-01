@@ -1,11 +1,6 @@
 package edu.bu.tbconde.tripoint.views;
 
-import edu.bu.tbconde.tripoint.util.RecordsReader;
-
-import java.util.ArrayList;
-
 public class PastTransactionsView {
-    private RecordsReader reader = new RecordsReader();
 
     public void printHeader() {
         System.out.println("Your past transactions ...");
