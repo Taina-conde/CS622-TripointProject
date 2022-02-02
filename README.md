@@ -16,10 +16,24 @@ redeem these points for travel. This points system is called Tripoint.
 
 The project directory:
 * src.edu.bu.tbconde.tripoint
-  * app
-    * AppController.java
-    * AppModel.java
+  * views
     * AppView.java
+    * NewTransactionView.java
+    * PastTransactionsView.java
+    * WelcomeView.java
+    * MainMenuView.java
+  * controllers
+    * AppController.java
+    * NewTransactionController.java
+    * PastTransactionsController.java
+    * WelcomeController.java
+    * MainMenuController.java
+  * models
+    * NewTransactionModel.java
+    * PastTransactionsModel.java
+    * WelcomeModel.java
+    * MainMenuModel.java
+    * AppModel.java
   * cards
     * BasicCard.java
     * CreditCard.java
@@ -30,12 +44,13 @@ The project directory:
   * util
     * RecordsReader.java
     * RecordsWriter.java
+    * Wallet.java
   * io
     * transactionsRecords.txt
 * tests.edu.bu.tbconde.tripoint
-  * no file yet
 
-## Instructions
 
-Open the AppController.java file and run the main method in a code editor.
+## Instructions to execute
+
+Go to controllers package, open the AppController.java file and run the main method in a code editor.
 
