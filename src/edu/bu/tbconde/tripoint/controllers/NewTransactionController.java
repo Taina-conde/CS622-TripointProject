@@ -18,13 +18,13 @@ public class NewTransactionController {
 
     private void collectTransactionInfo() {
         System.out.println("You made a new purchase. \n");
-        model.setCardType(view.askCardType(view.getUserInput()));
+        model.setCardType(view.askCardType());
         System.out.println(
                 "Next, please enter the category of te purchase (dining, travel, online shopping, or grocery)"
         );
-        model.setCategory(view.askCategory(view.getUserInput()));
+        model.setCategory(view.askCategory());
         System.out.println("Finally, enter the amount purchased");
-        model.setAmount(view.askAmount(view.getAmount()));
+        model.setAmount(view.askAmount());
     }
     private void saveTransaction() {
         boolean isWritten;
