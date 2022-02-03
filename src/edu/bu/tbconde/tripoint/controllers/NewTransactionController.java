@@ -27,8 +27,8 @@ public class NewTransactionController {
     }
 
     private void collectRedeemInfo() {
-        System.out.println("Redeem points for travel.\n");
-        System.out.println("Enter the price of the item you want to pay for using your points");
+        System.out.println("You want to redeem points.\n");
+        System.out.println("Please, enter the price of the item you want to pay for using your points");
         model.setAmount(view.askAmount());
     }
     private void saveTransaction() {
