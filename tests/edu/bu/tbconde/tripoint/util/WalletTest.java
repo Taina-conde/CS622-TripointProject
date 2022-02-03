@@ -17,7 +17,7 @@ class WalletTest {
     @BeforeEach
     void setUp() {
         capacity = 2;
-        wallet = new Wallet<>(capacity);
+        wallet = new Wallet<CreditCard>(capacity);
         card1 = new BasicCard();
         card2 = new PreferredCard();
     }
@@ -41,7 +41,7 @@ class WalletTest {
         /* we added one element to the wallet with capacity for 2 cards
         if we try to get the second element, we should expect null,
         since there is no second element in this particular wallet.*/
-        assertEquals(null, wallet.get(index));
+        assertNull( wallet.get(index));
     }
 
     @Test

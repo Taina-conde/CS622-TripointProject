@@ -34,49 +34,49 @@ class CategoryTransactionTest {
     void testCalculatePointsBasicTravel() {
 
         transaction = new CategoryTransaction(basic, "travel", amount);
-        assertEquals(transaction.calculatePoints(), 278);
+        assertEquals( 278, transaction.calculatePoints());
     }
     @Test
     void testCalculatePointsBasicDining() {
 
         transaction = new CategoryTransaction(basic, "dining", amount);
-        assertEquals(transaction.calculatePoints(), 166);
+        assertEquals(166, transaction.calculatePoints());
     }
     @Test
     void testCalculatePointsBasicOnlineShop() {
 
         transaction = new CategoryTransaction(basic, "onlineShop", amount);
-        assertEquals(transaction.calculatePoints(), 556);
+        assertEquals(556, transaction.calculatePoints());
     }
     @Test
     void testCalculatePointsBasicGrocery() {
 
         transaction = new CategoryTransaction(basic, "grocery", amount);
-        assertEquals(transaction.calculatePoints(), 444);
+        assertEquals(444, transaction.calculatePoints());
     }
 
     @Test
     void testCalculatePointsPreferredTravel() {
 
         transaction = new CategoryTransaction(preferred, "travel", amount);
-        assertEquals(transaction.calculatePoints(), 556);
+        assertEquals(556, transaction.calculatePoints());
     }
     @Test
     void testCalculatePointsPreferredDining() {
 
         transaction = new CategoryTransaction(preferred, "dining", amount);
-        assertEquals(transaction.calculatePoints(), 444);
+        assertEquals(444, transaction.calculatePoints());
     }
     @Test
     void testCalculatePointsPreferredOnlineShop() {
 
         transaction = new CategoryTransaction(preferred, "onlineShop", amount);
-        assertEquals(transaction.calculatePoints(), 278);
+        assertEquals(278, transaction.calculatePoints());
     }
     @Test
     void testCalculatePointsPreferredGrocery() {
 
         transaction = new CategoryTransaction(preferred, "grocery", amount);
-        assertEquals(transaction.calculatePoints(), 166);
+        assertEquals(166, transaction.calculatePoints());
     }
 }
