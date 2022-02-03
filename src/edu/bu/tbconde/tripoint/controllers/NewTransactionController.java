@@ -15,8 +15,7 @@ public class NewTransactionController {
         view = new NewTransactionView();
         writer = new RecordsWriter();
     }
-
-    private void collectTransactionInfo() {
+    private void collectPurchaseInfo() {
         System.out.println("You made a new purchase. \n");
         model.setCardType(view.askCardType());
         System.out.println(
@@ -24,6 +23,12 @@ public class NewTransactionController {
         );
         model.setCategory(view.askCategory());
         System.out.println("Finally, enter the amount purchased");
+        model.setAmount(view.askAmount());
+    }
+
+    private void collectRedeemInfo() {
+        System.out.println("Redeem points for travel.\n");
+        System.out.println("Enter the price of the item you want to pay for using your points");
         model.setAmount(view.askAmount());
     }
     private void saveTransaction() {
@@ -40,7 +45,7 @@ public class NewTransactionController {
         }
     }
     public int processNewTransaction() {
-        collectTransactionInfo();
+        collectPurchaseInfo();
         model.createNewTransaction();
         view.displayTransaction(
                 model.getCardType(),

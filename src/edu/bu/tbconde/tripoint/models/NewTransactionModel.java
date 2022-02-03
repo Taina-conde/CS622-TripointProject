@@ -2,7 +2,7 @@ package edu.bu.tbconde.tripoint.models;
 
 import edu.bu.tbconde.tripoint.util.Wallet;
 import edu.bu.tbconde.tripoint.cards.CreditCard;
-import edu.bu.tbconde.tripoint.transactions.CategoryTransaction;
+import edu.bu.tbconde.tripoint.transactions.PurchaseTransaction;
 import edu.bu.tbconde.tripoint.transactions.Transaction;
 
 public class NewTransactionModel{
@@ -41,7 +41,7 @@ public class NewTransactionModel{
         for (int i = 0; i < wallet.size(); i++) {
             CreditCard card = wallet.get(i);
             if (card.getType().equals(cardType)) {
-                currTrans = new CategoryTransaction(card, category, amount);
+                currTrans = new PurchaseTransaction(card, category, amount);
             }
         }
         this.points = currTrans.calculatePoints();

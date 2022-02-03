@@ -7,7 +7,7 @@ public abstract class Transaction {
     protected String cardType = null;
     protected CreditCard card = null;
     protected String category = null;
-    protected int transPoints = 0;
+    protected int points = 0;
     public Transaction() {
     }
     public Transaction(CreditCard card, String category, double amount ) {
@@ -15,12 +15,15 @@ public abstract class Transaction {
         this.category = category;
         this.card = card;
     }
+    public Transaction( String category, double amount ) {
+        this.amount = amount;
+        this.category = category;
+    }
 
-    protected int getTransPoints() { return transPoints;}
-    protected void setTransPoints(int transPoints) { this.transPoints = transPoints; }
+    protected void setPoints(int points) { this.points = points; }
     //getters
     public String getCategory() { return category;}
-    public int getPoints() { return transPoints;}
+    public int getPoints() { return points;}
     public double getAmount() {
         return amount;
     }
