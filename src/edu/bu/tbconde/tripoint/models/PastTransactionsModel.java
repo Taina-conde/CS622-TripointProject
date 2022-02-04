@@ -33,7 +33,7 @@ public class PastTransactionsModel {
     public void setAmount(String amount) {this.amount= amount;}
     public void setPoints(String points) { this.points = points;}
 
-    //read transactionsRecord.dat file
+    //read transactions ArrayList from transactionsRecord.dat file
     public int readAllRecords() {
         try {
             this.records = reader.readRecords();

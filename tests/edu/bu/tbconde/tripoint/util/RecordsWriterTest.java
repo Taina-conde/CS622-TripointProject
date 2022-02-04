@@ -9,35 +9,43 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class RecordsWriterTest {
     private RecordsWriter writer = null;
     private Transaction transaction = null;
+    private Transaction transaction2 = null;
     private CreditCard card = null;
+    ArrayList<Transaction> records = null;
 
     @BeforeEach
     void setUp() {
         writer = new RecordsWriter("tests/edu/bu/tbconde/tripoint/io/testWriter.dat");
         card = new BasicCard();
-        transaction = new PurchaseTransaction(card, "dining", 70 );
+        transaction = new PurchaseTransaction(card, "dining", 70);
+        transaction2 = new PurchaseTransaction(card, "travel", 500);
+        records = new ArrayList<Transaction>();
+        records.add(transaction);
+        records.add(transaction2);
     }
-
     @AfterEach
     void tearDown() {
         writer = null;
         transaction = null;
+        transaction2 = null;
         card = null;
+        records = null;
     }
 
     @Test
-    void writeRecordThrowsIOException() {
-        assertThrows(IOException.class, () -> writer.writeRecord(transaction, true));
+    void writeRecordsThrowsIOException() {
+        assertThrows(IOException.class, () -> writer.writeRecords(records));
     }
     @Test
     void writeRecord() throws IOException {
-        assertTrue(writer.writeRecord(transaction, true));
+        assertTrue(writer.writeRecords(records));
     }
 
 //    @Test

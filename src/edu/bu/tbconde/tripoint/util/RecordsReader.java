@@ -3,6 +3,7 @@ package edu.bu.tbconde.tripoint.util;
 import edu.bu.tbconde.tripoint.transactions.Transaction;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
@@ -39,6 +40,9 @@ public class RecordsReader {
                     hasNextObj = false;
                 }
             }
+        }
+        catch (FileNotFoundException ex) {
+            System.out.println("You haven't made any transactions yet.");
         }
         return records;
     }

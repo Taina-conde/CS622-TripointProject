@@ -4,6 +4,8 @@ import edu.bu.tbconde.tripoint.models.PastTransactionsModel;
 import edu.bu.tbconde.tripoint.views.PastTransactionsView;
 import edu.bu.tbconde.tripoint.transactions.Transaction;
 
+import java.util.ArrayList;
+
 
 public class PastTransactionsController {
     private PastTransactionsModel model;
@@ -14,14 +16,13 @@ public class PastTransactionsController {
         view = new PastTransactionsView();
     }
 
-    public void displayPastTransactions() {
-        int numberTrans = model.readAllRecords();
-        if (numberTrans == 0) {
+    public void displayPastTransactions(ArrayList<Transaction> records) {
+        if (records.size() == 0) {
             System.out.println("You haven't made any transactions yet.");
         }
         else {
             view.printHeader();
-            for (Transaction trans: model.getRecords()) {
+            for (Transaction trans: records) {
                 view.printRecord(trans);
             }
         }

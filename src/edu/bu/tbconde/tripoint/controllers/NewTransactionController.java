@@ -1,5 +1,6 @@
 package edu.bu.tbconde.tripoint.controllers;
 
+import edu.bu.tbconde.tripoint.transactions.Transaction;
 import edu.bu.tbconde.tripoint.util.Wallet;
 import edu.bu.tbconde.tripoint.cards.CreditCard;
 import edu.bu.tbconde.tripoint.models.NewTransactionModel;
@@ -33,19 +34,7 @@ public class NewTransactionController {
         System.out.println("Please, enter the price of the item you want to pay for using your points");
         model.setAmount(view.askAmount());
     }
-    private void saveTransaction() {
-        boolean isWritten = false;
-        try {
-            isWritten = writer.writeRecord(model.getCurrTrans(), true);
-        }
-        catch(IOException err) {
-            err.printStackTrace();
-        }
-        if (!isWritten) {
-            System.out.println("Unable to complete your request. Please, try again.");
-        }
-    }
-    public int processNewTransaction() {
+    public Transaction processNewTransaction() {
         collectPurchaseInfo();
         model.createNewTransaction();
         view.displayTransaction(
@@ -55,8 +44,7 @@ public class NewTransactionController {
                 model.getCatValue(),
                 model.getPoints()
         );
-        saveTransaction();
-        return model.getPoints();
+        return model.getCurrTrans();
     }
 
 }

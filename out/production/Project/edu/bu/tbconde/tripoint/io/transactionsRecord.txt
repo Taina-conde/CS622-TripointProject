@@ -1,2 +1,0 @@
-
-basic, grocery, 33.50, 268
