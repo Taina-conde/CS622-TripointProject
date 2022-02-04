@@ -23,6 +23,8 @@ public abstract class Transaction implements Serializable {
     }
     public Transaction( double amount ) {
         this.amount = amount;
+        cardType = "NA";
+        category ="NA";
     }
 
     protected void setPoints(int points) { this.points = points; }

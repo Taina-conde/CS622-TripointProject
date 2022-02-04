@@ -46,8 +46,8 @@ public class NewTransactionModel{
                 currTrans = new PurchaseTransaction(card, category, amount);
             }
         }
-        this.points = currTrans.calculatePoints();
-        this.catValue = currTrans.getCard().getCategoryValue(this.category);
+        //this.points = currTrans.calculatePoints();
+        //this.catValue = currTrans.getCard().getCategoryValue(this.category);
         return currTrans;
     }
     public Transaction createRedeemTransaction() {

@@ -4,19 +4,16 @@ import edu.bu.tbconde.tripoint.transactions.Transaction;
 import edu.bu.tbconde.tripoint.util.Wallet;
 import edu.bu.tbconde.tripoint.cards.CreditCard;
 import edu.bu.tbconde.tripoint.models.NewTransactionModel;
-import edu.bu.tbconde.tripoint.util.RecordsWriter;
 import edu.bu.tbconde.tripoint.views.NewTransactionView;
 
-import java.io.IOException;
 
 public class NewTransactionController {
     private NewTransactionModel model;
     private NewTransactionView view;
-    private RecordsWriter writer;
+
     public NewTransactionController(Wallet<CreditCard> wallet) {
         model = new NewTransactionModel(wallet);
         view = new NewTransactionView();
-        writer = new RecordsWriter();
     }
     private void collectPurchaseInfo() {
         System.out.println("You made a new purchase. \n");
@@ -37,19 +34,13 @@ public class NewTransactionController {
     public Transaction processPurchaseTransaction() {
         collectPurchaseInfo();
         Transaction trans = model.createPurchaseTransaction();
-        view.displayTransaction(
-                trans.getCardType(),
-                trans.getCategory(),
-                trans.getAmount(),
-                trans.getCatValue(),
-                trans.getPoints()
-        );
+        view.displayTransaction(trans);
         return model.getCurrTrans();
     }
     public Transaction processRedeemTransaction() {
         collectRedeemInfo();
         Transaction trans = model.createRedeemTransaction();
-        
+        view.displayTransaction(trans);
         return model.getCurrTrans();
 
     }

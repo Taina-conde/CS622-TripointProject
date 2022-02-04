@@ -77,7 +77,8 @@ public class AppController {
                 break;
             case 3:
                 //TODO: redeem points
-                System.out.println("to be implemented");
+                trans = newTrans.processPurchaseTransaction();
+                saveTransaction(trans);
                 break;
             default:
                 exitApp();
