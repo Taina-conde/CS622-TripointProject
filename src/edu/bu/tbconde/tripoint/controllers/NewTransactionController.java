@@ -6,6 +6,8 @@ import edu.bu.tbconde.tripoint.models.NewTransactionModel;
 import edu.bu.tbconde.tripoint.util.RecordsWriter;
 import edu.bu.tbconde.tripoint.views.NewTransactionView;
 
+import java.io.IOException;
+
 public class NewTransactionController {
     private NewTransactionModel model;
     private NewTransactionView view;
@@ -32,14 +34,13 @@ public class NewTransactionController {
         model.setAmount(view.askAmount());
     }
     private void saveTransaction() {
-        boolean isWritten;
-        String transaction = String.format("%s, %s, %.2f, %,d",
-                model.getCardType(),
-                model.getCategory(),
-                model.getAmount(),
-                model.getPoints()
-        );
-        isWritten = writer.writeRecord(transaction, true);
+        boolean isWritten = false;
+        try {
+            isWritten = writer.writeRecord(model.getCurrTrans(), true);
+        }
+        catch(IOException err) {
+            err.printStackTrace();
+        }
         if (!isWritten) {
             System.out.println("Unable to complete your request. Please, try again.");
         }

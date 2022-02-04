@@ -2,7 +2,9 @@ package edu.bu.tbconde.tripoint.transactions;
 
 import edu.bu.tbconde.tripoint.cards.CreditCard;
 
-public abstract class Transaction {
+import java.io.Serializable;
+
+public abstract class Transaction implements Serializable {
     protected double amount = 0;
     protected String cardType = null;
     protected CreditCard card = null;

@@ -19,6 +19,7 @@ public class NewTransactionModel{
 
     //getters'
     public Wallet<CreditCard> getWallet() {return wallet;}
+    public Transaction getCurrTrans() { return currTrans;}
     public int getPoints() {return points;}
     public int getCatValue() {return catValue;}
     public String getCardType() {return cardType;}

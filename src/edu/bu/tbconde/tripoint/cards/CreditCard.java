@@ -1,6 +1,8 @@
 package edu.bu.tbconde.tripoint.cards;
 
-public abstract class CreditCard {
+import java.io.Serializable;
+
+public abstract class CreditCard implements Serializable {
     protected String customer;
     protected static int pointsBal;
 

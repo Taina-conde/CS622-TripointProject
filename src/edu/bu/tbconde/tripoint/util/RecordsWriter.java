@@ -33,7 +33,7 @@ public class RecordsWriter {
             return true;
         }
     }
-    public boolean deleteRecords() {
-        return writeRecord("", false );
-    }
+//    public boolean deleteRecords() {
+//        return writeRecord("", false );
+//    }
 }
