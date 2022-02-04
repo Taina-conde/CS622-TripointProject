@@ -16,6 +16,7 @@ public abstract class Transaction implements Serializable {
         this.amount = amount;
         this.category = category;
         this.card = card;
+        this.cardType = card.getType();
     }
     public Transaction( String category, double amount ) {
         this.amount = amount;
@@ -32,4 +33,5 @@ public abstract class Transaction implements Serializable {
     public CreditCard getCard() {return card;}
     // calculate points earned in this transaction
     public abstract int calculatePoints();
+
 }

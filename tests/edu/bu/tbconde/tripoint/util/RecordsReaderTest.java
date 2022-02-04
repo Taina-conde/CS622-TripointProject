@@ -16,25 +16,25 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RecordsReaderTest {
     private RecordsReader reader = null;
-    private ArrayList<Transaction> records = null;
+    private ArrayList<Transaction> expectedRecords = null;
     private PurchaseTransaction trans1 = null;
     private PurchaseTransaction trans2 = null;
     private CreditCard card = null;
     @BeforeEach
     void setUp() {
-        reader = new RecordsReader("tests/edu/bu/tbconde/tripoint/io/testFile.txt");
-        records = new ArrayList<Transaction>();
+        reader = new RecordsReader("tests/edu/bu/tbconde/tripoint/io/testFile.dat");
+        expectedRecords = new ArrayList<Transaction>();
         card = new BasicCard();
         trans1 = new PurchaseTransaction(card, "dining", 70);
         trans2 = new PurchaseTransaction(card, "travel", 500);
-        records.add(trans1);
-        records.add(trans2);
+        expectedRecords.add(trans1);
+        expectedRecords.add(trans2);
     }
 
     @AfterEach
     void tearDown() {
         reader = null;
-        records = null;
+        expectedRecords = null;
         card = null;
         trans1 = null;
         trans2 = null;
@@ -44,9 +44,17 @@ class RecordsReaderTest {
     void readRecordsThrowsIOException() {
         assertThrows(IOException.class, () -> reader.readRecords());
     }
+//    @Test
+//    void readRecordsThrowsClassNotFoundException() {
+//        assertThrows(ClassNotFoundException.class, () -> reader.readRecords());
+//    }
     @Test
-    void readRecordsThrowsClassNotFoundException() {
-        assertThrows(ClassNotFoundException.class, () -> reader.readRecords());
+    void readRecords() throws IOException, ClassNotFoundException {
+        ArrayList<Transaction> actualRecords = reader.readRecords();
+        int maxSize = Math.max(expectedRecords.size(), actualRecords.size());
+        for (int i = 0; i < maxSize; i++) {
+            assertEquals(expectedRecords.get(i).toString(), actualRecords.get(i).toString());
+        }
     }
 
 }

@@ -20,5 +20,8 @@ public class PurchaseTransaction extends Transaction {
         this.points = (int)(amount * pointValue);
         return this.points;
     }
-
+    @Override
+    public String toString() {
+        return cardType + ", " + category + ", " + amount;
+    }
 }

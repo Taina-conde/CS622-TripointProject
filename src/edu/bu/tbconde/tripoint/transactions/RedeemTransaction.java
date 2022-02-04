@@ -9,4 +9,8 @@ public class RedeemTransaction extends Transaction {
         int points = 2 * (int)this.amount;
         return points;
     }
+    @Override
+    public String toString() {
+        return category + ", " + amount;
+    }
 }

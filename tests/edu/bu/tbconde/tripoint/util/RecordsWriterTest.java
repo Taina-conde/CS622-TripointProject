@@ -22,7 +22,7 @@ class RecordsWriterTest {
 
     @BeforeEach
     void setUp() {
-        writer = new RecordsWriter("tests/edu/bu/tbconde/tripoint/io/testWriter.dat");
+
         card = new BasicCard();
         transaction = new PurchaseTransaction(card, "dining", 70);
         transaction2 = new PurchaseTransaction(card, "travel", 500);
@@ -41,10 +41,12 @@ class RecordsWriterTest {
 
     @Test
     void writeRecordsThrowsIOException() {
+        writer = new RecordsWriter("tests/edu/bu/tbconde/tripoint/io/testWrong.dat");
         assertThrows(IOException.class, () -> writer.writeRecords(records));
     }
     @Test
     void writeRecord() throws IOException {
+        writer = new RecordsWriter("tests/edu/bu/tbconde/tripoint/io/testFile.dat");
         assertTrue(writer.writeRecords(records));
     }
 
