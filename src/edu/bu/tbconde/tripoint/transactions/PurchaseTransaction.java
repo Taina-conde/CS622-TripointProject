@@ -6,11 +6,8 @@ public class PurchaseTransaction extends Transaction {
     public PurchaseTransaction(CreditCard card, String category, double amount) {
         super(card, category, amount);
         type = "purchase";
+        calculatePoints();
     }
-    public String getCategory() {
-        return category;
-    }
-
     @Override
     public int calculatePoints(){
         this.points = (int)(amount * catValue);

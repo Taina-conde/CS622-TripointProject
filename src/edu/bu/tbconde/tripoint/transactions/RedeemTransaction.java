@@ -6,6 +6,7 @@ public class RedeemTransaction extends Transaction {
         type = "redeem";
         //to redeem: for every $1 dollar, he/she has to spend 2 points.
         catValue = 2;
+        calculatePoints();
     }
     public int calculatePoints(){
         points = (int)(amount * catValue);

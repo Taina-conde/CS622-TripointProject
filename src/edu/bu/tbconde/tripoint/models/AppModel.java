@@ -10,7 +10,7 @@ public class AppModel {
     private Wallet<CreditCard> wallet;
     private int pointsBalance;
     private int selectedOption;
-    private ArrayList<Transaction> records;
+    private ArrayList<Transaction> records = new ArrayList<Transaction>();
     public AppModel(int capacity) {
         wallet = new Wallet<>(capacity);
     }
