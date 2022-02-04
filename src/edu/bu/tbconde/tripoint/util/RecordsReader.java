@@ -31,15 +31,8 @@ public class RecordsReader {
         https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html
         */
         try (ObjectInputStream infile = new ObjectInputStream(new FileInputStream(path))) {
-            boolean hasNextObj = true;
-            while (hasNextObj) {
-                Transaction trans = (Transaction)infile.readObject();
-                if (trans != null) {
-                    records.add(trans);
-                } else {
-                    hasNextObj = false;
-                }
-            }
+
+            records = (ArrayList<Transaction>) infile.readObject();
         }
         catch (FileNotFoundException ex) {
             System.out.println("You haven't made any transactions yet.");
