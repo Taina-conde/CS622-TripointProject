@@ -34,9 +34,7 @@ public class RecordsReader {
 
             records = (ArrayList<Transaction>) infile.readObject();
         }
-        catch (FileNotFoundException ex) {
-            System.out.println("You haven't made any transactions yet.");
-        }
         return records;
     }
+
 }
