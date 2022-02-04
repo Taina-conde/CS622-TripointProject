@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.stream.Stream;
 
 
 /**This class reads the transactionsRecord file*/
@@ -35,6 +36,12 @@ public class RecordsReader {
             records = (ArrayList<Transaction>) infile.readObject();
         }
         return records;
+    }
+    public ArrayList<Transaction> readTravelRecords() throws IOException, ClassNotFoundException {
+        ArrayList<Transaction> travelRecords = new ArrayList<Transaction>();
+        Stream<Transaction> transStream = readRecords().stream();
+        transStream.filter( i -> i.getCategory() == "travel").forEach( i -> travelRecords.add(i));
+        return travelRecords;
     }
 
 }
