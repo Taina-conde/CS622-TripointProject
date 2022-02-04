@@ -11,7 +11,7 @@ public class PastTransactionsView {
 
     }
     public void printRecord(Transaction trans) {
-        System.out.printf("%-30s %-30s %-30.2f %,-30d\n",
+        System.out.printf("%-30s %-30s $%-29.2f %,-30d\n",
                 trans.getCard(),
                 trans.getCategory(),
                 trans.getAmount(),
