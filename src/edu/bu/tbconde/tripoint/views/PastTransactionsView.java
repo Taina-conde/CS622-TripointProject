@@ -1,5 +1,7 @@
 package edu.bu.tbconde.tripoint.views;
 
+import edu.bu.tbconde.tripoint.transactions.Transaction;
+
 public class PastTransactionsView {
 
     public void printHeader() {
@@ -8,11 +10,12 @@ public class PastTransactionsView {
         System.out.printf("%-30s %-30s %-30s %-30s\n","CARD USED", "CATEGORY", "AMOUNT", "POINTS");
 
     }
-    public void printRecord(String card, String category, String amount, String points) {
+    public void printRecord(Transaction trans) {
         System.out.printf("%-30s %-30s %-30s %-30s\n",
-                card,
-                category,
-                amount,
-                points);
+                trans.getCard(),
+                trans.getCategory(),
+                trans.getAmount(),
+                trans.getPoints()
+        );
     }
 }

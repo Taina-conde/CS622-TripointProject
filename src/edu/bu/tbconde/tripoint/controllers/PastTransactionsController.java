@@ -2,6 +2,7 @@ package edu.bu.tbconde.tripoint.controllers;
 
 import edu.bu.tbconde.tripoint.models.PastTransactionsModel;
 import edu.bu.tbconde.tripoint.views.PastTransactionsView;
+import edu.bu.tbconde.tripoint.transactions.Transaction;
 
 
 public class PastTransactionsController {
@@ -20,20 +21,8 @@ public class PastTransactionsController {
         }
         else {
             view.printHeader();
-            for (String line: model.getRecords()) {
-                String[] tokens = line.split(", ");
-                if (tokens.length == 4) {
-                    model.setCardType(tokens[0].trim());
-                    model.setCategory(tokens[1].trim());
-                    model.setAmount(tokens[2].trim()) ;
-                    model.setPoints(tokens[3].trim());
-                    view.printRecord(
-                            model.getCardType(),
-                            model.getCategory(),
-                            model.getAmount(),
-                            model.getPoints()
-                    );
-                }
+            for (Transaction trans: model.getRecords()) {
+                view.printRecord(trans);
             }
         }
     }
