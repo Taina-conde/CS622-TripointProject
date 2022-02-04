@@ -67,9 +67,10 @@ public class AppController {
         return model.getRecords();
     }
     public void processMenuOption() {
+        Transaction trans;
         switch (menu.selectOption()) {
             case 1:
-                Transaction trans = newTrans.processPurchaseTransaction();
+                trans = newTrans.processPurchaseTransaction();
                 saveTransaction(trans);
                 break;
             case 2:
@@ -77,7 +78,7 @@ public class AppController {
                 break;
             case 3:
                 //TODO: redeem points
-                trans = newTrans.processPurchaseTransaction();
+                trans = newTrans.processRedeemTransaction();
                 saveTransaction(trans);
                 break;
             default:
