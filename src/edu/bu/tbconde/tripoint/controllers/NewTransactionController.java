@@ -34,17 +34,24 @@ public class NewTransactionController {
         System.out.println("Please, enter the price of the item you want to pay for using your points");
         model.setAmount(view.askAmount());
     }
-    public Transaction processNewTransaction() {
+    public Transaction processPurchaseTransaction() {
         collectPurchaseInfo();
-        model.createNewTransaction();
+        Transaction trans = model.createPurchaseTransaction();
         view.displayTransaction(
-                model.getCardType(),
-                model.getCategory(),
-                model.getAmount(),
-                model.getCatValue(),
-                model.getPoints()
+                trans.getCardType(),
+                trans.getCategory(),
+                trans.getAmount(),
+                trans.getCatValue(),
+                trans.getPoints()
         );
         return model.getCurrTrans();
+    }
+    public Transaction processRedeemTransaction() {
+        collectRedeemInfo();
+        Transaction trans = model.createRedeemTransaction();
+        
+        return model.getCurrTrans();
+
     }
 
 }

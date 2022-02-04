@@ -69,7 +69,7 @@ public class AppController {
     public void processMenuOption() {
         switch (menu.selectOption()) {
             case 1:
-                Transaction trans = newTrans.processNewTransaction();
+                Transaction trans = newTrans.processPurchaseTransaction();
                 saveTransaction(trans);
                 break;
             case 2:

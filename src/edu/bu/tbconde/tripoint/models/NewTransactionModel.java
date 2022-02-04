@@ -1,5 +1,6 @@
 package edu.bu.tbconde.tripoint.models;
 
+import edu.bu.tbconde.tripoint.transactions.RedeemTransaction;
 import edu.bu.tbconde.tripoint.util.Wallet;
 import edu.bu.tbconde.tripoint.cards.CreditCard;
 import edu.bu.tbconde.tripoint.transactions.PurchaseTransaction;
@@ -38,7 +39,7 @@ public class NewTransactionModel{
         this.currTrans = currTrans;
 
     }
-    public void createNewTransaction() {
+    public Transaction createPurchaseTransaction() {
         for (int i = 0; i < wallet.size(); i++) {
             CreditCard card = wallet.get(i);
             if (card.getType().equals(cardType)) {
@@ -47,5 +48,10 @@ public class NewTransactionModel{
         }
         this.points = currTrans.calculatePoints();
         this.catValue = currTrans.getCard().getCategoryValue(this.category);
+        return currTrans;
+    }
+    public Transaction createRedeemTransaction() {
+        currTrans = new RedeemTransaction(amount);
+        return currTrans;
     }
 }

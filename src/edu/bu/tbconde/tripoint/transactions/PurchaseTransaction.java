@@ -3,11 +3,9 @@ package edu.bu.tbconde.tripoint.transactions;
 import edu.bu.tbconde.tripoint.cards.CreditCard;
 
 public class PurchaseTransaction extends Transaction {
-    public PurchaseTransaction() {
-        super();
-    }
     public PurchaseTransaction(CreditCard card, String category, double amount) {
         super(card, category, amount);
+        type = "purchase";
     }
     public String getCategory() {
         return category;
@@ -15,9 +13,7 @@ public class PurchaseTransaction extends Transaction {
 
     @Override
     public int calculatePoints(){
-        int pointValue;
-        pointValue = card.getCategoryValue(category);
-        this.points = (int)(amount * pointValue);
+        this.points = (int)(amount * catValue);
         return this.points;
     }
     @Override

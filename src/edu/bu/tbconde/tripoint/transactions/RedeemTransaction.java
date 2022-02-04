@@ -1,12 +1,14 @@
 package edu.bu.tbconde.tripoint.transactions;
 
 public class RedeemTransaction extends Transaction {
-    public RedeemTransaction(String category, double amount) {
-        super(category, amount);
+    public RedeemTransaction( double amount) {
+        super(amount);
+        type = "redeem";
+        //to redeem: for every $1 dollar, he/she has to spend 2 points.
+        catValue = 2;
     }
     public int calculatePoints(){
-        //to redeem: for every $1 dollar, he/she has to spend 2 points.
-        int points = 2 * (int)this.amount;
+        points = (int)(amount * catValue);
         return points;
     }
     @Override
