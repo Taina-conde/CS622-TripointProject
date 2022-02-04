@@ -1,7 +1,9 @@
 package edu.bu.tbconde.tripoint.models;
 
+import edu.bu.tbconde.tripoint.transactions.Transaction;
 import edu.bu.tbconde.tripoint.util.RecordsReader;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class PastTransactionsModel {
@@ -10,10 +12,10 @@ public class PastTransactionsModel {
     private String category;
     private String amount;
     private String points;
-    private ArrayList<String> records;
+    private ArrayList<Transaction> records;
     public PastTransactionsModel() {
         reader = new RecordsReader();
-        records = new ArrayList<>();
+        records = new ArrayList<Transaction>();
     }
 
     //getters
@@ -21,7 +23,7 @@ public class PastTransactionsModel {
     public String getAmount() {return amount;}
     public String getCardType() {return cardType;}
     public String getPoints(){return points;}
-    public ArrayList<String> getRecords() {
+    public ArrayList<Transaction> getRecords() {
         return records;
     }
 
@@ -30,13 +32,15 @@ public class PastTransactionsModel {
     public void setCardType(String cardType) {this.cardType = cardType;}
     public void setAmount(String amount) {this.amount= amount;}
     public void setPoints(String points) { this.points = points;}
-    public void setRecords(ArrayList<String> records) {
-        this.records = records;
-    }
 
-    //read transactionsRecord.txt file
+    //read transactionsRecord.dat file
     public int readAllRecords() {
-        this.records = reader.readLines();
+        try {
+            this.records = reader.readRecords();
+        }
+        catch (IOException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
         return records.size();
     }
 }

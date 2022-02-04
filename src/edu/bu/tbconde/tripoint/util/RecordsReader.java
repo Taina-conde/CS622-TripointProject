@@ -8,7 +8,7 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 
-/**This class reads the transactionsRecord file, printing the formatted records*/
+/**This class reads the transactionsRecord file*/
 public class RecordsReader {
     private ArrayList<Transaction> records;
     private String path = "src/edu/bu/tbconde/tripoint/io/transactionsRecord.dat";
