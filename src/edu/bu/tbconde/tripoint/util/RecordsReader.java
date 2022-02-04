@@ -1,43 +1,45 @@
 package edu.bu.tbconde.tripoint.util;
 
-import java.io.FileNotFoundException;
+import edu.bu.tbconde.tripoint.transactions.Transaction;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
-import java.util.Scanner;
-import java.io.File;
+
 
 /**This class reads the transactionsRecord file, printing the formatted records*/
 public class RecordsReader {
-    private ArrayList<String> lines;
-    private String path = "src/edu/bu/tbconde/tripoint/io/transactionsRecord.txt";
+    private ArrayList<Transaction> records;
+    private String path = "src/edu/bu/tbconde/tripoint/io/transactionsRecord.dat";
     public RecordsReader() {
-        lines = new ArrayList<>();
+        records = new ArrayList<Transaction>();
     }
     public RecordsReader(String path) {
         this();
         this.path = path;
 
     }
-    public ArrayList<String> readLines() {
+    public ArrayList<Transaction> readRecords() throws IOException, ClassNotFoundException {
         /*The try-with-resources ensures that the resource is closed at the end of the statement. A resource is object
-        that must be closed after the program is finished with it. In this case, Scanner is a resource that
+        that must be closed after the program is finished with it. In this case, ObjectInputStream is a resource that
         implements the AutoCloseable interface, and, therefore, it is automatically closed when exiting a
         try-with-resources statement.
         sources:
         https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
         https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html
         */
-        try (Scanner sc = new Scanner(new File(path))) {
-            while (sc.hasNextLine()) {
-                String line = sc.nextLine();
-                if (!line.equals("")) {
-                    lines.add(line);
+        try (ObjectInputStream infile = new ObjectInputStream(new FileInputStream(path))) {
+            boolean hasNextObj = true;
+            while (hasNextObj) {
+                Transaction trans = (Transaction)infile.readObject();
+                if (trans != null) {
+                    records.add(trans);
+                } else {
+                    hasNextObj = false;
                 }
             }
-
         }
-        catch (FileNotFoundException err) {
-            err.printStackTrace();
-        }
-        return lines;
+        return records;
     }
 }
