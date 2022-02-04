@@ -18,6 +18,7 @@ public class AppModel {
     public ArrayList<Transaction> getRecords() {return records;}
     public int getSelectedOption() {return selectedOption;}
     public Wallet<CreditCard> getWallet() {return wallet;}
+    public int getPointsBalance() {return pointsBalance;}
 
     //setters
     public void setRecords(ArrayList<Transaction> records) {this.records = records;}

@@ -47,7 +47,11 @@ public class AppController {
         boolean isWritten = false;
         try {
             model.addTrans(transaction);
-            model.addPoints(transaction.getPoints());
+            if(transaction.getType() == "purchase") {
+                model.addPoints(transaction.getPoints());
+            } else {
+                model.removePoints(transaction.getPoints());
+            }
             isWritten = writer.writeRecords(model.getRecords());
         }
         catch(IOException err) {
@@ -78,8 +82,12 @@ public class AppController {
                 break;
             case 3:
                 //TODO: redeem points
-                trans = newTrans.processRedeemTransaction();
-                saveTransaction(trans);
+                trans = newTrans.processRedeemTransaction(model.getPointsBalance());
+                if (trans == null) {
+                    view.printRedeemFail(model.getPointsBalance());
+                } else {
+                    saveTransaction(trans);
+                }
                 break;
             default:
                 exitApp();

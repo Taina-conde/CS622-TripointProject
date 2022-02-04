@@ -37,11 +37,14 @@ public class NewTransactionController {
         view.displayTransaction(trans);
         return model.getCurrTrans();
     }
-    public Transaction processRedeemTransaction() {
+    public Transaction processRedeemTransaction(int pointsBalance) {
         collectRedeemInfo();
         Transaction trans = model.createRedeemTransaction();
-        view.displayTransaction(trans);
-        return model.getCurrTrans();
+        if(model.getCurrTrans().getPoints() < pointsBalance) {
+            view.displayTransaction(trans);
+            return model.getCurrTrans();
+        }
+        return null;
 
     }
 
