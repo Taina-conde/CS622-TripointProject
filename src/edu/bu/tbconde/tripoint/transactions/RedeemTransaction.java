@@ -14,6 +14,6 @@ public class RedeemTransaction extends Transaction {
     }
     @Override
     public String toString() {
-        return category + ", " + amount;
+        return type + ", " + amount + ", " + "-" + points;
     }
 }

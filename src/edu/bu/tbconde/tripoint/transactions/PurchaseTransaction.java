@@ -15,6 +15,6 @@ public class PurchaseTransaction extends Transaction {
     }
     @Override
     public String toString() {
-        return cardType + ", " + category + ", " + amount;
+        return cardType + ", " + category + ", " + amount + ", " + points;
     }
 }
