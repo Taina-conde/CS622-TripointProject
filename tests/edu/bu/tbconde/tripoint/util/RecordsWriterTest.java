@@ -38,10 +38,9 @@ class RecordsWriterTest {
         card = null;
         records = null;
     }
-
     @Test
     void writeRecordsThrowsIOException() {
-        writer = new RecordsWriter("tests/edu/bu/tbconde/tripoint/io/testWrong.dat");
+        writer = new RecordsWriter("tests/edu/bu/tbconde/tripoint/io/testFile.dat");
         assertThrows(IOException.class, () -> writer.writeRecords(records));
     }
     @Test
@@ -49,9 +48,5 @@ class RecordsWriterTest {
         writer = new RecordsWriter("tests/edu/bu/tbconde/tripoint/io/testFile.dat");
         assertTrue(writer.writeRecords(records));
     }
-
-//    @Test
-//    void deleteRecords() {
-//        assertTrue(writer.deleteRecords());
-//    }
+    
 }
