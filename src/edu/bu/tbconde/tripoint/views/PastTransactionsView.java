@@ -12,12 +12,18 @@ public class PastTransactionsView {
 
     }
     public void printRecord(Transaction trans) {
+        int points;
+        if (trans.getType().equals("redeem")) {
+            points = -trans.getPoints();
+        } else {
+            points = trans.getPoints();
+        }
         System.out.printf("%-30s %-30s %-30s $%-29.2f %,-30d\n",
                 trans.getType(),
                 trans.getCardType(),
                 trans.getCategory(),
                 trans.getAmount(),
-                trans.getPoints()
+                points
         );
     }
 }
