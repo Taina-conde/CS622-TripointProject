@@ -8,8 +8,10 @@ import edu.bu.tbconde.tripoint.util.RecordsReader;
 import edu.bu.tbconde.tripoint.util.RecordsWriter;
 import edu.bu.tbconde.tripoint.views.AppView;
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.stream.Stream;
 
 public class AppController {
     private final int  walletCapacity = 2;
@@ -33,6 +35,7 @@ public class AppController {
         reader = new RecordsReader();
         menu = new MainMenuController();
         pastTrans = new PastTransactionsController();
+        readAllRecords();
     }
     public boolean getExit() {return exit;}
     private void exitApp() {
@@ -64,13 +67,27 @@ public class AppController {
     public ArrayList<Transaction> readAllRecords() {
         try {
             model.setRecords(reader.readRecords());
+            for (Transaction trans: model.getRecords()) {
+                if (trans.getType() == "purchase") {
+                    model.addPoints(trans.getPoints());
+                } else {
+                    model.removePoints(trans.getPoints());
+                }
+            }
         }
-        catch (IOException | ClassNotFoundException ex) {
+        catch (IOException ex) {
+            try { writer.writeRecords(model.getRecords());}
+            catch(IOException err) {
+                err.printStackTrace();
+            }
+        }
+        catch( ClassNotFoundException ex) {
             ex.printStackTrace();
         }
         return model.getRecords();
     }
     public void processMenuOption() {
+        int pastTransPoints;
         Transaction trans;
         switch (menu.selectOption()) {
             case 1:
@@ -78,10 +95,11 @@ public class AppController {
                 saveTransaction(trans);
                 break;
             case 2:
-                pastTrans.displayPastTransactions(readAllRecords());
+                pastTransPoints = pastTrans.displayPastTransactions(readAllRecords());
+                model.addPoints(pastTransPoints);
                 break;
             case 3:
-                //TODO: redeem points
+                view.printRedeemMessage(model.getPointsBalance());
                 trans = newTrans.processRedeemTransaction(model.getPointsBalance());
                 if (trans == null) {
                     view.printRedeemFail(model.getPointsBalance());

@@ -16,7 +16,8 @@ public class PastTransactionsController {
         view = new PastTransactionsView();
     }
 
-    public void displayPastTransactions(ArrayList<Transaction> records) {
+    public int displayPastTransactions(ArrayList<Transaction> records) {
+        int pointsBalance = 0;
         if (records.size() == 0) {
             System.out.println("You haven't made any transactions yet.");
         }
@@ -24,7 +25,13 @@ public class PastTransactionsController {
             view.printHeader();
             for (Transaction trans: records) {
                 view.printRecord(trans);
+                if(trans.getType() == "redeem") {
+                    pointsBalance -= trans.getPoints();
+                } else {
+                    pointsBalance += trans.getPoints();
+                }
             }
         }
+        return pointsBalance;
     }
 }

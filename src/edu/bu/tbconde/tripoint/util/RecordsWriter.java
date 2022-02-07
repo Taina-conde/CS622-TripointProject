@@ -7,7 +7,6 @@ import java.io.ObjectOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
-
 public class RecordsWriter {
     private String path;
 
@@ -33,7 +32,4 @@ public class RecordsWriter {
             return true;
         }
     }
-//    public boolean deleteRecords() {
-//        return writeRecord("", false );
-//    }
 }

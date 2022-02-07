@@ -3,7 +3,6 @@ package edu.bu.tbconde.tripoint.util;
 import edu.bu.tbconde.tripoint.transactions.Transaction;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
@@ -20,7 +19,6 @@ public class RecordsReader {
     public RecordsReader(String path) {
         this();
         this.path = path;
-
     }
     public ArrayList<Transaction> readRecords() throws IOException, ClassNotFoundException {
         /*The try-with-resources ensures that the resource is closed at the end of the statement. A resource is object
@@ -32,7 +30,6 @@ public class RecordsReader {
         https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html
         */
         try (ObjectInputStream infile = new ObjectInputStream(new FileInputStream(path))) {
-
             records = (ArrayList<Transaction>) infile.readObject();
         }
         return records;
@@ -49,6 +46,4 @@ public class RecordsReader {
         transStream.filter( i -> i.getType() == "redeem").forEach( i -> redeemRecords.add(i));
         return redeemRecords;
     }
-
-
 }
