@@ -35,7 +35,7 @@ public class AppController {
         reader = new RecordsReader();
         menu = new MainMenuController();
         pastTrans = new PastTransactionsController();
-        readAllRecords();
+        initializeRecords();
     }
     public boolean getExit() {return exit;}
     private void exitApp() {
@@ -64,14 +64,14 @@ public class AppController {
             System.out.println("Unable to complete your request. Please, try again.");
         }
     }
-    public ArrayList<Transaction> readAllRecords() {
+    private void initializeRecords() {
         try {
             model.setRecords(reader.readRecords());
             for (Transaction trans: model.getRecords()) {
-                if (trans.getType() == "purchase") {
-                    model.addPoints(trans.getPoints());
-                } else {
+                if (trans.getType().equals("redeem")) {
                     model.removePoints(trans.getPoints());
+                } else {
+                    model.addPoints(trans.getPoints());
                 }
             }
         }
@@ -82,6 +82,14 @@ public class AppController {
             }
         }
         catch( ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+    }
+    public ArrayList<Transaction> readAllRecords() {
+        try {
+            model.setRecords(reader.readRecords());
+        }
+        catch (IOException | ClassNotFoundException ex) {
             ex.printStackTrace();
         }
         return model.getRecords();
@@ -95,8 +103,8 @@ public class AppController {
                 saveTransaction(trans);
                 break;
             case 2:
-                pastTransPoints = pastTrans.displayPastTransactions(readAllRecords());
-                model.addPoints(pastTransPoints);
+                pastTrans.displayPastTransactions(readAllRecords(), model.getPointsBalance());
+                //model.addPoints(pastTransPoints);
                 break;
             case 3:
                 view.printRedeemMessage(model.getPointsBalance());

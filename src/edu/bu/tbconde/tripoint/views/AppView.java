@@ -7,7 +7,8 @@ public class AppView {
         );
     }
     public void printRedeemMessage(int pointsBalance) {
-        System.out.println("You have " + pointsBalance + " points to redeem.\n" +
-                        "Every $1 is equivalent to 2 points.\n");
+        System.out.printf("You have %,d points to redeem \n"  +
+                        "Every $1 is equivalent to 2 points.\n",
+                pointsBalance);
     }
 }
