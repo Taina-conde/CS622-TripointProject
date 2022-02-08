@@ -48,19 +48,6 @@ class RecordsReaderTest {
         trans1 = null;
         trans2 = null;
     }
-    private void createObjFile() {
-        String path = "tests/edu/bu/tbconde/tripoint/io/throwsTest.dat";
-        ArrayList<Transaction> testList = new ArrayList<>();
-        try (ObjectOutputStream outfile = new ObjectOutputStream(new FileOutputStream(path))) {
-
-            outfile.writeObject(testList);
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     @Test
     void readRecordsThrowsIOException() {
