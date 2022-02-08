@@ -11,16 +11,23 @@ public class AppModel {
     private int pointsBalance;
     private int selectedOption;
     private ArrayList<Transaction> records = new ArrayList<Transaction>();
+    private ArrayList<Transaction> purchaseRecords = new ArrayList<Transaction>();
+    private ArrayList<Transaction> redeemRecords = new ArrayList<Transaction>();
+
     public AppModel(int capacity) {
         wallet = new Wallet<>(capacity);
     }
     //getters
+    public ArrayList<Transaction> getPurchaseRecords() {return purchaseRecords;}
+    public ArrayList<Transaction> getRedeemRecords() {return redeemRecords;}
     public ArrayList<Transaction> getRecords() {return records;}
     public int getSelectedOption() {return selectedOption;}
     public Wallet<CreditCard> getWallet() {return wallet;}
     public int getPointsBalance() {return pointsBalance;}
 
     //setters
+    public void setPurchaseRecords(ArrayList<Transaction> records) {purchaseRecords = records;}
+    public void setRedeemRecords(ArrayList<Transaction> records) {redeemRecords = records;}
     public void setRecords(ArrayList<Transaction> records) {this.records = records;}
     public void addTrans(Transaction newTrans) {records.add(newTrans);}
     public void addCard(CreditCard newCard) {

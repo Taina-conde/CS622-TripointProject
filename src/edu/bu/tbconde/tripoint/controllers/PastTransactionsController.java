@@ -15,6 +15,18 @@ public class PastTransactionsController {
         model = new PastTransactionsModel();
         view = new PastTransactionsView();
     }
+    private void handleMenu() {
+        model.setSelectedOption(view.askMenu(
+                model.getOption1(),
+                model.getOption2(),
+                model.getOption3()
+        ));
+        switch(model.getSelectedOption()) {
+            case 1:
+
+        }
+
+    }
 
     public int displayPastTransactions(ArrayList<Transaction> records, int pointsBalance) {
         if (records.size() == 0) {

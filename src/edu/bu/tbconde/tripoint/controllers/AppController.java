@@ -8,10 +8,8 @@ import edu.bu.tbconde.tripoint.util.RecordsReader;
 import edu.bu.tbconde.tripoint.util.RecordsWriter;
 import edu.bu.tbconde.tripoint.views.AppView;
 
-import java.io.EOFException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.stream.Stream;
 
 public class AppController {
     private final int  walletCapacity = 2;
@@ -46,7 +44,7 @@ public class AppController {
 
 
     }
-    private void saveTransaction(Transaction transaction) {
+    private boolean saveTransaction(Transaction transaction) {
         boolean isWritten = false;
         try {
             model.addTrans(transaction);
@@ -63,6 +61,7 @@ public class AppController {
         if (!isWritten) {
             System.out.println("Unable to complete your request. Please, try again.");
         }
+        return isWritten;
     }
     private void initializeRecords() {
         try {
@@ -94,8 +93,12 @@ public class AppController {
         }
         return model.getRecords();
     }
+    private ArrayList<Transaction> readPurchaseTransactions() {
+        try {
+
+        }
+    }
     public void processMenuOption() {
-        int pastTransPoints;
         Transaction trans;
         switch (menu.selectOption()) {
             case 1:
@@ -104,7 +107,6 @@ public class AppController {
                 break;
             case 2:
                 pastTrans.displayPastTransactions(readAllRecords(), model.getPointsBalance());
-                //model.addPoints(pastTransPoints);
                 break;
             case 3:
                 view.printRedeemMessage(model.getPointsBalance());

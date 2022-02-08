@@ -48,5 +48,5 @@ class RecordsWriterTest {
         writer = new RecordsWriter("tests/edu/bu/tbconde/tripoint/io/testFile.dat");
         assertTrue(writer.writeRecords(records));
     }
-    
+
 }
