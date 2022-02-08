@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class RecordsWriter {
     private String path;
 
+
     public RecordsWriter(String path) {
         this.path = path;
     }

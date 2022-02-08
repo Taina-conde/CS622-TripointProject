@@ -8,7 +8,6 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.stream.Stream;
 
-
 /**This class reads the transactionsRecord file*/
 public class RecordsReader {
     private ArrayList<Transaction> records;

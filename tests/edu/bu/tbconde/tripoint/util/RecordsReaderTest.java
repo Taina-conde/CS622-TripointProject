@@ -3,13 +3,13 @@ package edu.bu.tbconde.tripoint.util;
 import edu.bu.tbconde.tripoint.cards.BasicCard;
 import edu.bu.tbconde.tripoint.cards.CreditCard;
 import edu.bu.tbconde.tripoint.transactions.PurchaseTransaction;
+import edu.bu.tbconde.tripoint.transactions.RedeemTransaction;
 import edu.bu.tbconde.tripoint.transactions.Transaction;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -21,6 +21,14 @@ class RecordsReaderTest {
     private PurchaseTransaction trans1 = null;
     private PurchaseTransaction trans2 = null;
     private CreditCard card = null;
+
+    public class TestObj implements Serializable {
+        private int att;
+        public TestObj() {
+            att = 5;
+        }
+    }
+
     @BeforeEach
     void setUp() {
         writer = new RecordsWriter("tests/edu/bu/tbconde/tripoint/io/testFile.dat");
@@ -54,7 +62,22 @@ class RecordsReaderTest {
     }
     @Test
     void readRecordsThrowsClassNotFoundException() {
-        reader = new RecordsReader("tests/edu/bu/tbconde/tripoint/io/testFile.dat");
+        String path = "tests/edu/bu/tbconde/tripoint/io/throwsTest.dat";
+        //create a serializable obj that isn't the obj that RecordsReader expects to read
+        TestObj test = new TestObj();
+        ArrayList<TestObj> testList = new ArrayList<>();
+        // write that obj to throwsTest.dat file
+        try (ObjectOutputStream outfile = new ObjectOutputStream(new FileOutputStream(path))) {
+
+            outfile.writeObject(testList);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //Test if reader throws ClassNotFoundException when reading the throwsTest.dat file
+        reader = new RecordsReader("tests/edu/bu/tbconde/tripoint/io/throwsTest.dat");
         assertThrows(ClassNotFoundException.class, () -> reader.readRecords());
     }
     @Test

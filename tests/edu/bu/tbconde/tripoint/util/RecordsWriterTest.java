@@ -19,6 +19,7 @@ class RecordsWriterTest {
     private Transaction transaction2 = null;
     private CreditCard card = null;
     ArrayList<Transaction> records = null;
+    public static final String OSTYPE = System.getProperty("os.name").toLowerCase();
 
     @BeforeEach
     void setUp() {
@@ -40,7 +41,8 @@ class RecordsWriterTest {
     }
     @Test
     void writeRecordsThrowsIOException() {
-        writer = new RecordsWriter("tests/edu/bu/tbconde/tripoint/io/testFile.dat");
+        String path = OSTYPE.contains("win") ? "\\\\////" : "/var/log";
+        writer = new RecordsWriter(path);
         assertThrows(IOException.class, () -> writer.writeRecords(records));
     }
     @Test
