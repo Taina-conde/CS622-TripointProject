@@ -11,9 +11,9 @@ public class PastTransactionsModel {
     private String option3;
 
     public PastTransactionsModel() {
-        option1 = "1.Show purchase transactions \n ";
-        option2 = "2.Show redeem transactions \n ";
-        option3 = "3.Show all transactions \n ";
+        option1 = "1.View purchase transactions \n ";
+        option2 = "2.View redeem transactions \n ";
+        option3 = "3.View all transactions \n ";
     }
 
     //getters
