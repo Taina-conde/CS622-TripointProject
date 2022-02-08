@@ -84,7 +84,8 @@ public class AppController {
             ex.printStackTrace();
         }
     }
-    public ArrayList<Transaction> readAllRecords() {
+
+    private ArrayList<Transaction> readAllRecords() {
         try {
             model.setRecords(reader.readRecords());
         }
@@ -93,11 +94,38 @@ public class AppController {
         }
         return model.getRecords();
     }
+
     private ArrayList<Transaction> readPurchaseTransactions() {
         try {
+            model.setPurchaseRecords(reader.readPurchaseRecords());
+        }
+        catch (IOException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        return model.getPurchaseRecords();
+    }
 
+    private ArrayList<Transaction> readRedeemTransactions() {
+        try {
+            model.setRedeemRecords(reader.readRedeemRecords());
+        }
+        catch (IOException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        return model.getRedeemRecords();
+    }
+
+    private void handlePastTransactions() {
+        int selected = pastTrans.handleMenu();
+        if (selected == 1) {
+            pastTrans.displayPastTransactions(readPurchaseTransactions(), model.getPointsBalance());
+        } else if (selected == 2) {
+            pastTrans.displayPastTransactions(readRedeemTransactions(), model.getPointsBalance());
+        } else {
+            pastTrans.displayPastTransactions(readAllRecords(), model.getPointsBalance());
         }
     }
+
     public void processMenuOption() {
         Transaction trans;
         switch (menu.selectOption()) {
@@ -106,7 +134,7 @@ public class AppController {
                 saveTransaction(trans);
                 break;
             case 2:
-                pastTrans.displayPastTransactions(readAllRecords(), model.getPointsBalance());
+                handlePastTransactions();
                 break;
             case 3:
                 view.printRedeemMessage(model.getPointsBalance());

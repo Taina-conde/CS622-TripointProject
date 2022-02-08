@@ -37,13 +37,13 @@ public class RecordsReader {
     public ArrayList<Transaction> readPurchaseRecords() throws IOException, ClassNotFoundException {
         ArrayList<Transaction> purchaseRecords = new ArrayList<Transaction>();
         Stream<Transaction> transStream = readRecords().stream();
-        transStream.filter( i -> i.getType() == "purchase").forEach( i -> purchaseRecords.add(i));
+        transStream.filter( i -> i.getType().equals("purchase")).forEach( i -> purchaseRecords.add(i));
         return purchaseRecords;
     }
     public ArrayList<Transaction> readRedeemRecords() throws IOException, ClassNotFoundException {
         ArrayList<Transaction> redeemRecords = new ArrayList<Transaction>();
         Stream<Transaction> transStream = readRecords().stream();
-        transStream.filter( i -> i.getType() == "redeem").forEach( i -> redeemRecords.add(i));
+        transStream.filter( i -> i.getType().equals("redeem")).forEach( i -> redeemRecords.add(i));
         return redeemRecords;
     }
 }
