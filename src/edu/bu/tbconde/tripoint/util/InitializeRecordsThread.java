@@ -15,6 +15,11 @@ public class InitializeRecordsThread implements Callable<ArrayList<Transaction>>
         reader = new RecordsReader();
         writer = new RecordsWriter();
     }
+    public InitializeRecordsThread(String path) {
+        records = new ArrayList<Transaction>();
+        reader = new RecordsReader(path);
+        writer = new RecordsWriter(path);
+    }
     public ArrayList<Transaction> call(){
         try {
             records = reader.readRecords();
