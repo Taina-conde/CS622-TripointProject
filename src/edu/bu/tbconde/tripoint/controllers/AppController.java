@@ -4,7 +4,6 @@ import edu.bu.tbconde.tripoint.cards.BasicCard;
 import edu.bu.tbconde.tripoint.cards.PreferredCard;
 import edu.bu.tbconde.tripoint.models.AppModel;
 import edu.bu.tbconde.tripoint.transactions.Transaction;
-import edu.bu.tbconde.tripoint.util.InitializeRecordsThread;
 import edu.bu.tbconde.tripoint.util.RecordsReader;
 import edu.bu.tbconde.tripoint.util.RecordsWriter;
 import edu.bu.tbconde.tripoint.views.AppView;
@@ -12,7 +11,6 @@ import edu.bu.tbconde.tripoint.views.AppView;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.FutureTask;
 
 public class AppController {
     private final int  walletCapacity = 2;
@@ -39,13 +37,13 @@ public class AppController {
         isInit = false;
     }
     public boolean getExit() {return exit;}
-    private void exitApp() {
+    public boolean exitApp() {
         exit = true;
         if (exit) {System.out.println("Thank you! Hope to see you again soon!");}
-
+        return exit;
 
     }
-    private boolean saveTransaction(Transaction transaction) {
+    public boolean saveTransaction(Transaction transaction) {
         boolean isWritten = false;
         try {
             model.addTrans(transaction);
@@ -65,7 +63,7 @@ public class AppController {
         return isWritten;
     }
 
-    private ArrayList<Transaction> readAllRecords() {
+    public ArrayList<Transaction> readAllRecords() {
         try {
             model.setRecords(reader.readRecords());
         }
@@ -75,7 +73,7 @@ public class AppController {
         return model.getRecords();
     }
 
-    private ArrayList<Transaction> readPurchaseRecords() {
+    public ArrayList<Transaction> readPurchaseRecords() {
         try {
             model.setPurchaseRecords(reader.readPurchaseRecords());
         }
@@ -85,7 +83,7 @@ public class AppController {
         return model.getPurchaseRecords();
     }
 
-    private ArrayList<Transaction> readRedeemRecords() {
+    public ArrayList<Transaction> readRedeemRecords() {
         try {
             model.setRedeemRecords(reader.readRedeemRecords());
         }
@@ -94,7 +92,7 @@ public class AppController {
         }
         return model.getRedeemRecords();
     }
-    private boolean handleInitializeRecords() {
+    public boolean handleInitializeRecords() {
         if (!isInit) {
             try {
                 model.initializeRecords();
@@ -108,7 +106,7 @@ public class AppController {
         return isInit;
     }
 
-    private void handlePastTransactions() {
+    public void handlePastTransactions() {
         int selected = pastTrans.handleMenu();
         if (selected == 1) {
             pastTrans.displayPastTransactions(readPurchaseRecords(), model.getPointsBalance());

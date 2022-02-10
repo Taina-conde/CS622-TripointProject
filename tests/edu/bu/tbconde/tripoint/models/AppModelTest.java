@@ -38,4 +38,8 @@ class AppModelTest {
         }
         assertTrue(model.getPointsBalance() == points);
     }
+    @Test
+    void initializeRecordThrowsExecutionException() {
+
+    }
 }
