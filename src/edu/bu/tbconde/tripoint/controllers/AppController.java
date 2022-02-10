@@ -96,8 +96,14 @@ public class AppController {
     }
     private boolean handleInitializeRecords() {
         if (!isInit) {
-            model.initializeRecords();
-            isInit = true;
+            try {
+                model.initializeRecords();
+                isInit = true;
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
         return isInit;
     }

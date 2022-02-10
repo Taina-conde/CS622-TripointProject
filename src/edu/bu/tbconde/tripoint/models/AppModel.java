@@ -43,20 +43,14 @@ public class AppModel {
     public void addPoints(int points) {pointsBalance += points;}
     public void removePoints(int points) {pointsBalance -= points;}
 
-    public ArrayList<Transaction> initializeRecords() {
-        try {
-            records = future.get();
-            for (Transaction trans: records) {
-                if (trans.getType().equals("redeem")) {
-                    removePoints(trans.getPoints());
-                } else {
-                    addPoints(trans.getPoints());
-                }
+    public ArrayList<Transaction> initializeRecords() throws ExecutionException, InterruptedException {
+        records = future.get();
+        for (Transaction trans: records) {
+            if (trans.getType().equals("redeem")) {
+                removePoints(trans.getPoints());
+            } else {
+                addPoints(trans.getPoints());
             }
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
         return records;
     }
