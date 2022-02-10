@@ -22,7 +22,7 @@ public class AppController {
    private NewTransactionController newTrans;
    private MainMenuController menu ;
    private PastTransactionsController pastTrans;
-   private boolean isInit;
+   private boolean isInitialized;
     private boolean exit = false;
 
     public AppController() {
@@ -34,7 +34,7 @@ public class AppController {
         reader = new RecordsReader();
         menu = new MainMenuController();
         pastTrans = new PastTransactionsController();
-        isInit = false;
+        isInitialized = false;
     }
     public boolean getExit() {return exit;}
     public boolean exitApp() {
@@ -93,20 +93,21 @@ public class AppController {
         return model.getRedeemRecords();
     }
     public boolean handleInitializeRecords() {
-        if (!isInit) {
-            try {
-                model.initializeRecords();
-                isInit = true;
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        try {
+            model.initializeRecords();
+            isInitialized = true;
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-        return isInit;
+        return isInitialized;
     }
 
     public void handlePastTransactions() {
+        if (!isInitialized) {
+            handleInitializeRecords();
+        }
         int selected = pastTrans.handleMenu();
         if (selected == 1) {
             pastTrans.displayPastTransactions(readPurchaseRecords(), model.getPointsBalance());
@@ -125,7 +126,6 @@ public class AppController {
                 saveTransaction(trans);
                 break;
             case 2:
-                handleInitializeRecords();
                 handlePastTransactions();
                 break;
             case 3:
