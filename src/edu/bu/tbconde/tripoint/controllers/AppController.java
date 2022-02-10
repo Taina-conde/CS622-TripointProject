@@ -4,15 +4,20 @@ import edu.bu.tbconde.tripoint.cards.BasicCard;
 import edu.bu.tbconde.tripoint.cards.PreferredCard;
 import edu.bu.tbconde.tripoint.models.AppModel;
 import edu.bu.tbconde.tripoint.transactions.Transaction;
+import edu.bu.tbconde.tripoint.util.InitializeRecordsThread;
 import edu.bu.tbconde.tripoint.util.RecordsReader;
 import edu.bu.tbconde.tripoint.util.RecordsWriter;
 import edu.bu.tbconde.tripoint.views.AppView;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.FutureTask;
 
 public class AppController {
     private final int  walletCapacity = 2;
+    private FutureTask<ArrayList<Transaction>> future = new FutureTask<ArrayList<Transaction>>(new InitializeRecordsThread());
+    private Thread initThread;
     private AppModel model = new AppModel(walletCapacity);
     private AppView view = new AppView();
     private RecordsWriter writer;
@@ -26,6 +31,9 @@ public class AppController {
 
     public AppController() {
         String customer = welcome.greetCustomer();
+        //start thread that will check that reads the file to get the arraylist of transactions
+        initThread = new Thread(future);
+        initThread.start();
         model.addCard(new PreferredCard(customer));
         model.addCard(new BasicCard(customer));
         newTrans = new NewTransactionController(model.getWallet());
@@ -33,7 +41,6 @@ public class AppController {
         reader = new RecordsReader();
         menu = new MainMenuController();
         pastTrans = new PastTransactionsController();
-        initializeRecords();
     }
     public boolean getExit() {return exit;}
     private void exitApp() {
@@ -63,9 +70,10 @@ public class AppController {
         }
         return isWritten;
     }
-    private void initializeRecords() {
+    
+    private ArrayList<Transaction> initializeRecords() {
         try {
-            model.setRecords(reader.readRecords());
+            model.setRecords(future.get());
             for (Transaction trans: model.getRecords()) {
                 if (trans.getType().equals("redeem")) {
                     model.removePoints(trans.getPoints());
@@ -73,16 +81,12 @@ public class AppController {
                     model.addPoints(trans.getPoints());
                 }
             }
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-        catch (IOException ex) {
-            try { writer.writeRecords(model.getRecords());}
-            catch(IOException err) {
-                err.printStackTrace();
-            }
-        }
-        catch( ClassNotFoundException ex) {
-            ex.printStackTrace();
-        }
+        return model.getRecords();
     }
 
     private ArrayList<Transaction> readAllRecords() {
@@ -134,6 +138,7 @@ public class AppController {
                 saveTransaction(trans);
                 break;
             case 2:
+                initializeRecords();
                 handlePastTransactions();
                 break;
             case 3:
