@@ -95,7 +95,7 @@ public class AppController {
         return model.getRecords();
     }
 
-    private ArrayList<Transaction> readPurchaseTransactions() {
+    private ArrayList<Transaction> readPurchaseRecords() {
         try {
             model.setPurchaseRecords(reader.readPurchaseRecords());
         }
@@ -105,7 +105,7 @@ public class AppController {
         return model.getPurchaseRecords();
     }
 
-    private ArrayList<Transaction> readRedeemTransactions() {
+    private ArrayList<Transaction> readRedeemRecords() {
         try {
             model.setRedeemRecords(reader.readRedeemRecords());
         }
@@ -118,9 +118,9 @@ public class AppController {
     private void handlePastTransactions() {
         int selected = pastTrans.handleMenu();
         if (selected == 1) {
-            pastTrans.displayPastTransactions(readPurchaseTransactions(), model.getPointsBalance());
+            pastTrans.displayPastTransactions(readPurchaseRecords(), model.getPointsBalance());
         } else if (selected == 2) {
-            pastTrans.displayPastTransactions(readRedeemTransactions(), model.getPointsBalance());
+            pastTrans.displayPastTransactions(readRedeemRecords(), model.getPointsBalance());
         } else {
             pastTrans.displayPastTransactions(readAllRecords(), model.getPointsBalance());
         }
