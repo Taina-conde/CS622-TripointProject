@@ -16,8 +16,6 @@ import java.util.concurrent.FutureTask;
 
 public class AppController {
     private final int  walletCapacity = 2;
-    private FutureTask<ArrayList<Transaction>> future = new FutureTask<ArrayList<Transaction>>(new InitializeRecordsThread());
-    private Thread initThread;
     private AppModel model = new AppModel(walletCapacity);
     private AppView view = new AppView();
     private RecordsWriter writer;
@@ -26,14 +24,11 @@ public class AppController {
    private NewTransactionController newTrans;
    private MainMenuController menu ;
    private PastTransactionsController pastTrans;
-
+   private boolean isInit;
     private boolean exit = false;
 
     public AppController() {
         String customer = welcome.greetCustomer();
-        //start thread that will check that reads the file to get the arraylist of transactions
-        initThread = new Thread(future);
-        initThread.start();
         model.addCard(new PreferredCard(customer));
         model.addCard(new BasicCard(customer));
         newTrans = new NewTransactionController(model.getWallet());
@@ -41,11 +36,10 @@ public class AppController {
         reader = new RecordsReader();
         menu = new MainMenuController();
         pastTrans = new PastTransactionsController();
+        isInit = false;
     }
     public boolean getExit() {return exit;}
     private void exitApp() {
-        //remove all past transactions from transactionsRecord.txt
-        //exit = writer.deleteRecords();
         exit = true;
         if (exit) {System.out.println("Thank you! Hope to see you again soon!");}
 
@@ -69,24 +63,6 @@ public class AppController {
             System.out.println("Unable to complete your request. Please, try again.");
         }
         return isWritten;
-    }
-    
-    private ArrayList<Transaction> initializeRecords() {
-        try {
-            model.setRecords(future.get());
-            for (Transaction trans: model.getRecords()) {
-                if (trans.getType().equals("redeem")) {
-                    model.removePoints(trans.getPoints());
-                } else {
-                    model.addPoints(trans.getPoints());
-                }
-            }
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return model.getRecords();
     }
 
     private ArrayList<Transaction> readAllRecords() {
@@ -118,6 +94,13 @@ public class AppController {
         }
         return model.getRedeemRecords();
     }
+    private boolean handleInitializeRecords() {
+        if (!isInit) {
+            model.initializeRecords();
+            isInit = true;
+        }
+        return isInit;
+    }
 
     private void handlePastTransactions() {
         int selected = pastTrans.handleMenu();
@@ -138,7 +121,7 @@ public class AppController {
                 saveTransaction(trans);
                 break;
             case 2:
-                initializeRecords();
+                handleInitializeRecords();
                 handlePastTransactions();
                 break;
             case 3:
