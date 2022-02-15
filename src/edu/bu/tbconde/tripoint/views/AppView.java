@@ -11,4 +11,7 @@ public class AppView {
                         "Every $1 is equivalent to 2 points.\n",
                 pointsBalance);
     }
+    public void checkBalance(int pointsBalance) {
+        System.out.println("You have %,d points \n");
+    }
 }

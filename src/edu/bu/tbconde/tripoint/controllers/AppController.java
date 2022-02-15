@@ -137,6 +137,9 @@ public class AppController {
                     saveTransaction(trans);
                 }
                 break;
+            case 4:
+                view.checkBalance(model.getPointsBalance());
+                break;
             default:
                 exitApp();
                 break;

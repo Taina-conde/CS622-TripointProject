@@ -8,7 +8,7 @@ public class MainMenuView {
         int selected;
         String selectedText;
         System.out.println("\nWhat would you like to do?\n " +
-                option1 + option2 + option3 + option4);
+                option1 + option2 + option3 + option4 + option5);
         do {
             System.out.println("Please, enter 1, 2, 3, 4, or 5.");
             while(!sc.hasNextInt()) {
@@ -29,10 +29,11 @@ public class MainMenuView {
                 selectedText = option3;
                 break;
             case 4:
-                selectedText = option5;
+                selectedText = option4;
                 break;
             default:
                 selectedText = option5;
+                break;
         }
         System.out.println("You selected: " + selectedText);
         return selected;
