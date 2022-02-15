@@ -140,6 +140,9 @@ public class AppController {
             case 4:
                 view.checkBalance(model.getPointsBalance());
                 break;
+            case 5:
+                //close account
+                break;
             default:
                 exitApp();
                 break;
