@@ -21,7 +21,14 @@ public class AppModel {
     public AppModel(int capacity) {
         wallet = new Wallet<>(capacity);
         future = new FutureTask<ArrayList<Transaction>>(new InitializeRecordsThread());
-        //start thread that will check that reads the file to get the arraylist of transactions
+        //start thread that will read the file to get the arraylist of transactions
+        initThread = new Thread(future);
+        initThread.start();
+    }
+    public AppModel(int capacity, String path) {
+        wallet = new Wallet<>(capacity);
+        future = new FutureTask<ArrayList<Transaction>>(new InitializeRecordsThread(path));
+        //start thread that will read the file to get the arraylist of transactions
         initThread = new Thread(future);
         initThread.start();
     }
@@ -43,6 +50,9 @@ public class AppModel {
     public void addPoints(int points) {pointsBalance += points;}
     public void removePoints(int points) {pointsBalance -= points;}
 
+    public void interruptThread() throws InterruptedException {
+        Thread.sleep(5000);
+    }
     public ArrayList<Transaction> initializeRecords() throws ExecutionException, InterruptedException {
         records = future.get();
         for (Transaction trans: records) {

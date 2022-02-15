@@ -20,7 +20,7 @@ public class InitializeRecordsThread implements Callable<ArrayList<Transaction>>
         reader = new RecordsReader(path);
         writer = new RecordsWriter(path);
     }
-    public ArrayList<Transaction> call(){
+    public ArrayList<Transaction> call() throws ClassNotFoundException{
         try {
             records = reader.readRecords();
         }
@@ -29,9 +29,6 @@ public class InitializeRecordsThread implements Callable<ArrayList<Transaction>>
             catch(IOException err) {
                 err.printStackTrace();
             }
-        }
-        catch( ClassNotFoundException ex) {
-            ex.printStackTrace();
         }
         return records;
     }
