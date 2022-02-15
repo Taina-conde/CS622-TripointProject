@@ -12,6 +12,6 @@ public class AppView {
                 pointsBalance);
     }
     public void checkBalance(int pointsBalance) {
-        System.out.println("You have %,d points \n");
+        System.out.printf("You have %,d points \n", pointsBalance);
     }
 }

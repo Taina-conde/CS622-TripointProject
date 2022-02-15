@@ -105,9 +105,6 @@ public class AppController {
     }
 
     public void handlePastTransactions() {
-        if (!isInitialized) {
-            handleInitializeRecords();
-        }
         int selected = pastTrans.handleMenu();
         if (selected == 1) {
             pastTrans.displayPastTransactions(readPurchaseRecords(), model.getPointsBalance());
@@ -119,6 +116,9 @@ public class AppController {
     }
 
     public void processMenuOption() {
+        if (!isInitialized) {
+            handleInitializeRecords();
+        }
         Transaction trans;
         switch (menu.selectOption()) {
             case 1:
