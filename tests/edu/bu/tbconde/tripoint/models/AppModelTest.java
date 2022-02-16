@@ -2,12 +2,14 @@ package edu.bu.tbconde.tripoint.models;
 
 import edu.bu.tbconde.tripoint.controllers.WelcomeController;
 import edu.bu.tbconde.tripoint.transactions.Transaction;
+import edu.bu.tbconde.tripoint.util.InitializeRecordsThread;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.FutureTask;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -50,6 +52,20 @@ class AppModelTest {
         model = new AppModel(2, path );
         assertThrows(ExecutionException.class, () -> model.initializeRecords());
 
+    }
+    @Test
+    void initializeRecordThrowsInterruptedException() {
+        String path = "tests/edu/bu/tbconde/tripoint/io/testFile.dat";
+        FutureTask<ArrayList<Transaction>> future = new FutureTask<ArrayList<Transaction>>(new InitializeRecordsThread(path));;
+        Thread initThread = new Thread(future);
+        initThread.start();
+        model = new AppModel(initThread, future);
+        assertThrows(InterruptedException.class, () -> {
+            model.initializeRecords();
+            initThread.interrupt();
+
+
+        });
     }
 
 }

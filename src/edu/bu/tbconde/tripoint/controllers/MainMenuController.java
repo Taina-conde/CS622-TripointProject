@@ -13,7 +13,8 @@ public class MainMenuController {
                         model.getOption2(),
                         model.getOption3(),
                         model.getOption4(),
-                        model.getOption5()
+                        model.getOption5(),
+                        model.getOption6()
                 )
         );
 

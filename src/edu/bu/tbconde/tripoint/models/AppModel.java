@@ -32,6 +32,11 @@ public class AppModel {
         initThread = new Thread(future);
         initThread.start();
     }
+    public AppModel(Thread initThread, FutureTask<ArrayList<Transaction>> future) {
+        wallet = new Wallet<>(2);
+        this.initThread = initThread;
+        this.future = future;
+    }
     //getters
     public ArrayList<Transaction> getPurchaseRecords() {return purchaseRecords;}
     public ArrayList<Transaction> getRedeemRecords() {return redeemRecords;}
