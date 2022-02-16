@@ -116,6 +116,14 @@ public class AppController {
             pastTrans.displayPastTransactions(readAllRecords(), model.getPointsBalance());
         }
     }
+    public void handleCloseAccount() {
+        boolean closed;
+        closed = closeAccount.handleCloseAccount(writer);
+        if (closed) {
+            model.setPointsBalance(0);
+        }
+
+    }
 
     public void processMenuOption() {
         if (!isInitialized) {
@@ -143,8 +151,7 @@ public class AppController {
                 view.checkBalance(model.getPointsBalance());
                 break;
             case 5:
-                closeAccount.handleCloseAccount(writer);
-                model.setPointsBalance(0);
+                handleCloseAccount();
                 break;
             default:
                 exitApp();

@@ -23,4 +23,9 @@ public class CloseAccountView {
         }
         return false;
     }
+    public void successMessage() {
+        System.out.println("You successfully closed your account...\n" +
+                "You now have 0 points and your records have been reset.\n");
+
+    }
 }

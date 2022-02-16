@@ -17,6 +17,7 @@ public class CloseAccountController {
         if (closeAccount) {
             try {
                 writer.deleteRecords();
+                view.successMessage();
             }
             catch (IOException e) {
                 e.printStackTrace();
