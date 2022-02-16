@@ -54,6 +54,7 @@ public class AppModel {
     }
     public void addPoints(int points) {pointsBalance += points;}
     public void removePoints(int points) {pointsBalance -= points;}
+    public void setPointsBalance(int points) {pointsBalance = points;}
 
     public void interruptThread() throws InterruptedException {
         Thread.sleep(5000);

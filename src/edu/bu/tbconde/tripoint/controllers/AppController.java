@@ -143,7 +143,8 @@ public class AppController {
                 view.checkBalance(model.getPointsBalance());
                 break;
             case 5:
-                closeAccount.handleCloseAccount();
+                closeAccount.handleCloseAccount(writer);
+                model.setPointsBalance(0);
                 break;
             default:
                 exitApp();

@@ -7,12 +7,10 @@ import java.io.IOException;
 
 public class CloseAccountController {
     private CloseAccountView view;
-    private RecordsWriter writer;
     public CloseAccountController(){
         view = new CloseAccountView();
-        writer = new RecordsWriter();
     }
-    public boolean handleCloseAccount(){
+    public boolean handleCloseAccount(RecordsWriter writer){
         boolean closeAccount;
         view.displayCloseMessage();
         closeAccount = view.askCloseAccount();

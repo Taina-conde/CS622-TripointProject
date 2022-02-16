@@ -34,7 +34,7 @@ public class RecordsWriter {
         }
     }
     public void deleteRecords() throws IOException{
-        ObjectOutputStream outfile = new ObjectOutputStream(new FileOutputStream(path));
-        outfile.close();
+        ArrayList<Transaction> reset = new ArrayList<Transaction>();
+        writeRecords(reset);
     }
 }
