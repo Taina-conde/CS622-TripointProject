@@ -22,6 +22,7 @@ public class AppController {
    private NewTransactionController newTrans;
    private MainMenuController menu ;
    private PastTransactionsController pastTrans;
+   private CloseAccountController closeAccount;
    private boolean isInitialized;
     private boolean exit = false;
 
@@ -34,6 +35,7 @@ public class AppController {
         reader = new RecordsReader();
         menu = new MainMenuController();
         pastTrans = new PastTransactionsController();
+        closeAccount = new CloseAccountController();
         isInitialized = false;
     }
     public boolean getExit() {return exit;}
@@ -141,7 +143,7 @@ public class AppController {
                 view.checkBalance(model.getPointsBalance());
                 break;
             case 5:
-                //close account
+                closeAccount.handleCloseAccount();
                 break;
             default:
                 exitApp();

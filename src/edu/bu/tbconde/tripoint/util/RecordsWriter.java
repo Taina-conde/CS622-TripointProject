@@ -33,4 +33,8 @@ public class RecordsWriter {
             return true;
         }
     }
+    public void deleteRecords() throws IOException{
+        ObjectOutputStream outfile = new ObjectOutputStream(new FileOutputStream(path));
+        outfile.close();
+    }
 }
