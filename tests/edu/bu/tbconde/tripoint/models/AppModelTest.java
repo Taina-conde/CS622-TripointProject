@@ -24,6 +24,7 @@ class AppModelTest {
     void tearDown() {
         records = null;
     }
+
     @Test
     void initializeRecords() throws ExecutionException, InterruptedException {
         model = new AppModel(2);
@@ -51,21 +52,5 @@ class AppModelTest {
         String path = "tests/edu/bu/tbconde/tripoint/io/throwsTest.dat";
         model = new AppModel(2, path );
         assertThrows(ExecutionException.class, () -> model.initializeRecords());
-
     }
-    @Test
-    void initializeRecordThrowsInterruptedException() {
-        String path = "tests/edu/bu/tbconde/tripoint/io/testFile.dat";
-        FutureTask<ArrayList<Transaction>> future = new FutureTask<ArrayList<Transaction>>(new InitializeRecordsThread(path));;
-        Thread initThread = new Thread(future);
-        initThread.start();
-        model = new AppModel(initThread, future);
-        assertThrows(InterruptedException.class, () -> {
-            model.initializeRecords();
-            initThread.interrupt();
-
-
-        });
-    }
-
 }

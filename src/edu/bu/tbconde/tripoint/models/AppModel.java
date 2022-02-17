@@ -56,9 +56,6 @@ public class AppModel {
     public void removePoints(int points) {pointsBalance -= points;}
     public void setPointsBalance(int points) {pointsBalance = points;}
 
-    public void interruptThread() throws InterruptedException {
-        Thread.sleep(5000);
-    }
     public ArrayList<Transaction> initializeRecords() throws ExecutionException, InterruptedException {
         records = future.get();
         for (Transaction trans: records) {

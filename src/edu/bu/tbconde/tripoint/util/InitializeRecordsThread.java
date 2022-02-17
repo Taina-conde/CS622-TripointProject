@@ -32,4 +32,12 @@ public class InitializeRecordsThread implements Callable<ArrayList<Transaction>>
         }
         return records;
     }
+
+    public static void main(String[] args) throws ClassNotFoundException {
+        InitializeRecordsThread initThread = new InitializeRecordsThread();
+        ArrayList<Transaction> savedRecords = initThread.call();
+        for (Transaction trans: savedRecords) {
+            System.out.println(trans);
+        }
+    }
 }
