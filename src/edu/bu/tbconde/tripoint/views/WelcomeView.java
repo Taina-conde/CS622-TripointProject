@@ -5,9 +5,9 @@ import java.util.Scanner;
 
 public class WelcomeView {
     private Scanner sc = new Scanner(System.in);;
-    public boolean welcomeMessage() {
+    public boolean initialMessage() {
         String answer;
-        System.out.println("Welcome to Tripoint - A Point System for Credit Cards");
+        System.out.println("\nWelcome to Tripoint - A Point System for Credit Cards\n");
         System.out.println("Do you have an account?");
         System.out.println("Please, enter \"y\" if you want to login, or \"n\" if you want to create an account.");
         answer = sc.nextLine().trim().replaceAll("\\p{P}", "").toLowerCase();
@@ -20,6 +20,9 @@ public class WelcomeView {
             return true;
         }
         return false;
+    }
+    public void greetUser(String firstName, String lastName){
+        System.out.println("\nHello " + firstName + " " + lastName + "!\n");
     }
     public String askFirstName(){
         String answer;

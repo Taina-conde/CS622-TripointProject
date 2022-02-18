@@ -12,6 +12,16 @@ public class UseDataBase {
             pstmt.executeUpdate();
         }
     }
+    public void searchUser(Connection conn, String un, String pswd) throws SQLException {
+        String sql = "SELECT user_id, first_name, last_name, username, password FROM User WHERE " +
+                "username LIKE "+ un + " AND password LIKE "+ pswd;
+        try (Statement stmt = conn.createStatement();
+        ResultSet rs = stmt. executeQuery(sql)) {
+            while(rs.next()) {
+
+            }
+        }
+    }
 
 
 }
