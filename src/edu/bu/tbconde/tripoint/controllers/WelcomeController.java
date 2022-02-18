@@ -17,7 +17,11 @@ public class WelcomeController {
         model = new WelcomeModel(username);
     }
     public String greetCustomer() {
+        System.out.println("Welcome to Tripoint - ");
         System.out.println("Hello, " + model.getUsername()+ "!");
         return model.getUsername();
+    }
+    public void collectUserInfo() {
+
     }
 }
