@@ -16,10 +16,15 @@ public class WelcomeController {
         view = new WelcomeView();
         model = new WelcomeModel(username);
     }
-    public String greetCustomer() {
+    public void greetCustomer() {
+        boolean hasAccount;
         System.out.println("Welcome to Tripoint - A Point System for Credit Card");
-        System.out.println("Hello, " + model.getUsername()+ "!");
-        return model.getUsername();
+        hasAccount = view.welcomeMessage();
+        if (hasAccount) {
+            login();
+        } else {
+            createAccount();
+        }
     }
     public void createAccount() {
 
