@@ -42,6 +42,7 @@ public class AppController {
     public boolean exitApp() {
         exit = true;
         if (exit) {System.out.println("Thank you! Hope to see you again soon!");}
+        model.setUser(null);
         return exit;
 
     }

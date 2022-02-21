@@ -6,7 +6,6 @@ import edu.bu.tbconde.tripoint.views.WelcomeView;
 import edu.bu.tbconde.tripoint.models.WelcomeModel;
 
 import java.sql.Connection;
-import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
@@ -71,7 +70,5 @@ public class WelcomeController {
         }
         //view.greetUser(model.getFirstName(), model.getLastName());
         return user;
-
-
     }
 }
