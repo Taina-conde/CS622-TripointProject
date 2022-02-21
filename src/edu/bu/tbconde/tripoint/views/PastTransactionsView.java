@@ -10,7 +10,7 @@ public class PastTransactionsView {
         System.out.printf("You have %,d points.\n", pointsBalance);
         System.out.println("\nYour past transactions ...");
         System.out.println();
-        System.out.printf("%-30s %-30s %-30s %-30s %-30s\n","TYPE", "CARD USED", "CATEGORY", "AMOUNT", "POINTS");
+        System.out.printf("%-30s %-30s %-30s %-30s %-30s %-30s\n","TYPE", "CARD USED", "CATEGORY", "AMOUNT", "POINTS", "DATE");
 
     }
     public void printRecord(Transaction trans) {
@@ -20,12 +20,13 @@ public class PastTransactionsView {
         } else {
             points = trans.getPoints();
         }
-        System.out.printf("%-30s %-30s %-30s $%-29.2f %,-30d\n",
+        System.out.printf("%-30s %-30s %-30s $%-29.2f %,-30d %-30s\n",
                 trans.getType(),
                 trans.getCardType(),
                 trans.getCategory(),
                 trans.getAmount(),
-                points
+                points,
+                trans.getTimestamp()
         );
     }
     public int askMenu(String option1, String option2, String option3) {

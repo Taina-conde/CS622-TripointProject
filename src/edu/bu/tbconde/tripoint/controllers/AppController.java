@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 public class AppController {
+    private String url = "jdbc:sqlite:src/edu/bu/tbconde/tripoint/database/Database.db";
     private UseDataBase db = new UseDataBase();
     private final int  walletCapacity = 2;
     private AppModel model = new AppModel(walletCapacity);
@@ -52,7 +53,6 @@ public class AppController {
 
     }
     public Transaction saveTransaction(Transaction transaction) {
-        String url = "jdbc:sqlite:src/edu/bu/tbconde/tripoint/database/Database.db";
         Transaction trans = null;
         try (Connection conn = DriverManager.getConnection(url)) {
             model.addTrans(transaction);
@@ -131,7 +131,6 @@ public class AppController {
 
     }
     public Integer handleCheckBalance() {
-        String url = "jdbc:sqlite:src/edu/bu/tbconde/tripoint/database/Database.db";
         try (Connection conn = DriverManager.getConnection(url)) {
             return db.calculatePointsBalance(conn, model.getUser().getId());
         }
@@ -142,6 +141,7 @@ public class AppController {
     }
 
     public void processMenuOption() {
+        int pointsBalance = handleCheckBalance();
         if (!isInitialized) {
             handleInitializeRecords();
         }
@@ -155,16 +155,15 @@ public class AppController {
                 handlePastTransactions();
                 break;
             case 3:
-                view.printRedeemMessage(model.getPointsBalance());
-                trans = newTrans.processRedeemTransaction(model.getPointsBalance());
+                view.printRedeemMessage(pointsBalance);
+                trans = newTrans.processRedeemTransaction(pointsBalance);
                 if (trans == null) {
-                    view.printRedeemFail(model.getPointsBalance());
+                    view.printRedeemFail(pointsBalance);
                 } else {
                     saveTransaction(trans);
                 }
                 break;
             case 4:
-                int pointsBalance = handleCheckBalance();
                 view.checkBalance(pointsBalance);
                 break;
             case 5:
