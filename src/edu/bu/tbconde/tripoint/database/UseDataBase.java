@@ -1,4 +1,6 @@
 package edu.bu.tbconde.tripoint.database;
+import edu.bu.tbconde.tripoint.util.User;
+
 import java.sql.*;
 
 public class UseDataBase {
@@ -12,19 +14,19 @@ public class UseDataBase {
             pstmt.executeUpdate();
         }
     }
-    public void searchUser(Connection conn, String un, String pswd) throws SQLException {
+    public User searchUser(Connection conn, String un, String pswd) throws SQLException {
         String sql = "SELECT user_id, first_name, last_name, username, password FROM User WHERE " +
                 "username = ? AND password = ?";
+        User user = null;
         try ( PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, un);
             pstmt.setString(2, pswd);
             ResultSet rs = pstmt.executeQuery();
             while(rs.next()) {
-
-                System.out.printf("%d %s %s %s %s", rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
-                        rs.getString(5));
+                user = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
             }
         }
+        return user;
     }
 
 

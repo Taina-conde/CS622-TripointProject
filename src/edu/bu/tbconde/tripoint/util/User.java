@@ -1,12 +1,19 @@
 package edu.bu.tbconde.tripoint.util;
 
 public class User {
-    private int userId;
+    private int id;
     private String firstName;
     private String lastName;
     private String username;
+    public User(int id, String firstName, String lastName, String username) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.id = id;
+
+    }
     //getters
-    public int getUserId() {return userId;}
+    public int geId() {return id;}
     public String getFirstName() {return firstName;}
     public String getLastName() {
         return lastName;
@@ -24,8 +31,8 @@ public class User {
         this.lastName = lastName;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setUsername(String username) {
