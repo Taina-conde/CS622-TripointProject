@@ -130,6 +130,16 @@ public class AppController {
         }
 
     }
+    public Integer handleCheckBalance() {
+        String url = "jdbc:sqlite:src/edu/bu/tbconde/tripoint/database/Database.db";
+        try (Connection conn = DriverManager.getConnection(url)) {
+            return db.calculatePointsBalance(conn, model.getUser().getId());
+        }
+        catch(SQLException err) {
+            err.printStackTrace();
+        }
+        return null;
+    }
 
     public void processMenuOption() {
         if (!isInitialized) {
@@ -154,7 +164,8 @@ public class AppController {
                 }
                 break;
             case 4:
-                view.checkBalance(model.getPointsBalance());
+                int pointsBalance = handleCheckBalance();
+                view.checkBalance(pointsBalance);
                 break;
             case 5:
                 handleCloseAccount();

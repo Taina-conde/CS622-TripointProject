@@ -56,6 +56,25 @@ public class UseDataBase {
         }
 
     }
+    public int calculatePointsBalance(Connection conn, int userId) throws SQLException {
+        int purchasePoints = 0;
+        int redeemPoints = 0;
+        String sql = "SELECT SUM(points) FROM Trans WHERE " +
+                "user_id = ? AND type LIKE 'purchase'";
+        try ( PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, userId);
+            ResultSet rs = pstmt.executeQuery();
+             purchasePoints = rs.getInt(1);
+        }
+        sql = "SELECT SUM(points) FROM Trans WHERE " +
+                "user_id = ? AND type LIKE 'redeem'";
+        try ( PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, userId);
+            ResultSet rs = pstmt.executeQuery();
+            redeemPoints = rs.getInt(1);
+        }
+        return purchasePoints - redeemPoints;
+    }
 
 
 }
