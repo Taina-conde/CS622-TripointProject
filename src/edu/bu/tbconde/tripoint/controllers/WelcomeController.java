@@ -40,7 +40,7 @@ public class WelcomeController {
     }
     public User createAccount() throws SQLException{
         User user = null;
-        String url = "jdbc:sqlite:src/edu/bu/tbconde/tripoint/database/User.db";
+        String url = "jdbc:sqlite:src/edu/bu/tbconde/tripoint/database/Database.db";
         model.setFirstName(view.askFirstName());
         model.setLastName(view.askLastName());
         model.setUsername(view.askUsername());
@@ -59,7 +59,7 @@ public class WelcomeController {
     }
     public User login(){
         User user = null;
-        String url = "jdbc:sqlite:src/edu/bu/tbconde/tripoint/database/User.db";
+        String url = "jdbc:sqlite:src/edu/bu/tbconde/tripoint/database/Database.db";
         String username = view.askUsername();
         String password = view.askPassword();
         try (Connection conn = DriverManager.getConnection(url)) {

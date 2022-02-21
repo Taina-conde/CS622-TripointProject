@@ -1,4 +1,5 @@
 package edu.bu.tbconde.tripoint.database;
+import edu.bu.tbconde.tripoint.transactions.Transaction;
 import edu.bu.tbconde.tripoint.util.User;
 
 import java.sql.*;
@@ -28,6 +29,18 @@ public class UseDataBase {
             }
         }
         return user;
+    }
+    public void insertTrans(Connection conn, Transaction trans, int userId) throws SQLException {
+        String sql = "INSERT INTO Trans(type, card_used, category, amount, points, user_id) VALUES (?, ?, ?, ?, ?, ?)";
+        try(PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, trans.getType());
+            pstmt.setString(2, trans.getCardType());
+            pstmt.setString(3, trans.getCategory());
+            pstmt.setDouble(4, trans.getAmount());
+            pstmt.setInt(5, trans.getPoints());
+            pstmt.setInt(6, userId);
+            pstmt.executeUpdate();
+        }
     }
 
 
