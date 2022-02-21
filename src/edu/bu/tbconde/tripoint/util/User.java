@@ -16,7 +16,7 @@ public class User {
 
     }
     //getters
-    public int geId() {return id;}
+    public int getId() {return id;}
     public String getFirstName() {return firstName;}
     public String getLastName() {
         return lastName;

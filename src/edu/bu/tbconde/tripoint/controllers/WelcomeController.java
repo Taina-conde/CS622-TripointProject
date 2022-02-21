@@ -25,18 +25,20 @@ public class WelcomeController {
         db = new UseDataBase();
     }
     public User greetCustomer() {
+        User user = null;
         boolean hasAccount;
         hasAccount = view.initialMessage();
         if (hasAccount) {
-            return login();
+            user = login();
         } else {
             try {
-                return createAccount();
+                user = createAccount();
             } catch(SQLException ex) {
                 ex.printStackTrace();
             }
         }
-        return null;
+        if (user != null) { view.greetUser(user.getFirstName(), user.getLastName());}
+        return user;
     }
     public User createAccount() throws SQLException{
         User user = null;
@@ -68,7 +70,6 @@ public class WelcomeController {
         catch (SQLException ex) {
             ex.printStackTrace();
         }
-        //view.greetUser(model.getFirstName(), model.getLastName());
         return user;
     }
 }

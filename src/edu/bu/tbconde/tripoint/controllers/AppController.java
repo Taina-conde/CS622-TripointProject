@@ -2,6 +2,7 @@ package edu.bu.tbconde.tripoint.controllers;
 
 import edu.bu.tbconde.tripoint.cards.BasicCard;
 import edu.bu.tbconde.tripoint.cards.PreferredCard;
+import edu.bu.tbconde.tripoint.database.UseDataBase;
 import edu.bu.tbconde.tripoint.models.AppModel;
 import edu.bu.tbconde.tripoint.transactions.Transaction;
 import edu.bu.tbconde.tripoint.util.RecordsReader;
@@ -9,10 +10,14 @@ import edu.bu.tbconde.tripoint.util.RecordsWriter;
 import edu.bu.tbconde.tripoint.views.AppView;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 public class AppController {
+    private UseDataBase db = new UseDataBase();
     private final int  walletCapacity = 2;
     private AppModel model = new AppModel(walletCapacity);
     private AppView view = new AppView();
@@ -46,24 +51,24 @@ public class AppController {
         return exit;
 
     }
-    public boolean saveTransaction(Transaction transaction) {
-        boolean isWritten = false;
-        try {
+    public Transaction saveTransaction(Transaction transaction) {
+        String url = "jdbc:sqlite:src/edu/bu/tbconde/tripoint/database/Database.db";
+        Transaction trans = null;
+        try (Connection conn = DriverManager.getConnection(url)) {
             model.addTrans(transaction);
             if(transaction.getType() == "purchase") {
                 model.addPoints(transaction.getPoints());
             } else {
                 model.removePoints(transaction.getPoints());
             }
-            isWritten = writer.writeRecords(model.getRecords());
+            db.insertTrans(conn, transaction, model.getUser().getId());
+            trans = transaction;
+
         }
-        catch(IOException err) {
+        catch(SQLException err) {
             err.printStackTrace();
         }
-        if (!isWritten) {
-            System.out.println("Unable to complete your request. Please, try again.");
-        }
-        return isWritten;
+        return trans;
     }
 
     public ArrayList<Transaction> readAllRecords() {

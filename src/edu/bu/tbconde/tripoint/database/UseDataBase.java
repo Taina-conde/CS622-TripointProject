@@ -3,6 +3,7 @@ import edu.bu.tbconde.tripoint.transactions.Transaction;
 import edu.bu.tbconde.tripoint.util.User;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class UseDataBase {
     public void createNewUser(Connection conn, String firstName, String lastName, String username, String password) throws SQLException{
@@ -41,6 +42,19 @@ public class UseDataBase {
             pstmt.setInt(6, userId);
             pstmt.executeUpdate();
         }
+    }
+    public void searchUserTransactions(Connection conn, int userId) throws SQLException {
+        ArrayList<Transaction> records = new ArrayList<Transaction>();
+        String sql = "SELECT type, card_used, category, amount, points FROM Trans WHERE " +
+                "user_id = ?";
+        try ( PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, userId);
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next()) {
+
+            }
+        }
+
     }
 
 
