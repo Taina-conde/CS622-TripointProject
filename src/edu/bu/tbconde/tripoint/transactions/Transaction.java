@@ -3,7 +3,7 @@ package edu.bu.tbconde.tripoint.transactions;
 import edu.bu.tbconde.tripoint.cards.CreditCard;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.sql.Date;
 
 public abstract class Transaction implements Serializable {
     protected String type;
@@ -13,7 +13,7 @@ public abstract class Transaction implements Serializable {
     protected String category = null;
     protected int catValue = 0;
     protected int points = 0;
-    protected Timestamp timestamp;
+    protected Date timestamp;
     public Transaction() {
     }
     public Transaction(CreditCard card, String category, double amount ) {
@@ -22,13 +22,13 @@ public abstract class Transaction implements Serializable {
         this.card = card;
         this.cardType = card.getType();
         this.catValue = card.getCategoryValue(this.category);
-        this.timestamp = new Timestamp(System.currentTimeMillis());
+        this.timestamp = new Date(System.currentTimeMillis());
     }
     public Transaction( double amount ) {
         this.amount = amount;
         cardType = "NA";
         category ="NA";
-        this.timestamp = new Timestamp(System.currentTimeMillis());
+        this.timestamp = new Date(System.currentTimeMillis());
     }
 
     protected void setPoints(int points) { this.points = points; }
@@ -42,7 +42,7 @@ public abstract class Transaction implements Serializable {
         return amount;
     }
     public CreditCard getCard() {return card;}
-    public Timestamp getTimestamp() {return timestamp;}
+    public Date getTimestamp() {return timestamp;}
     // calculate points earned in this transaction
     public abstract int calculatePoints();
 

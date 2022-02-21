@@ -32,14 +32,15 @@ public class UseDataBase {
         return user;
     }
     public void insertTrans(Connection conn, Transaction trans, int userId) throws SQLException {
-        String sql = "INSERT INTO Trans(type, card_used, category, amount, points, user_id) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Trans(type, card_used, category, amount, points, timestamp, user_id) VALUES (?, ?, ?, ?, ?, ?)";
         try(PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, trans.getType());
             pstmt.setString(2, trans.getCardType());
             pstmt.setString(3, trans.getCategory());
             pstmt.setDouble(4, trans.getAmount());
             pstmt.setInt(5, trans.getPoints());
-            pstmt.setInt(6, userId);
+            pstmt.setDate(6,trans.getTimestamp());
+            pstmt.setInt(7, userId);
             pstmt.executeUpdate();
         }
     }
