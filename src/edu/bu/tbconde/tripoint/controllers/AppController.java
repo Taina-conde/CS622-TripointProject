@@ -27,9 +27,9 @@ public class AppController {
     private boolean exit = false;
 
     public AppController() {
-        String customer = welcome.greetCustomer();
-        model.addCard(new PreferredCard(customer));
-        model.addCard(new BasicCard(customer));
+        model.setUser(welcome.greetCustomer());
+        model.addCard(new PreferredCard(model.getUser().getUsername()));
+        model.addCard(new BasicCard(model.getUser().getUsername()));
         newTrans = new NewTransactionController(model.getWallet());
         writer = new RecordsWriter();
         reader = new RecordsReader();

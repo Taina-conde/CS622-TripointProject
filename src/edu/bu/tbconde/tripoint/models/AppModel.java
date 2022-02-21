@@ -3,6 +3,7 @@ package edu.bu.tbconde.tripoint.models;
 import edu.bu.tbconde.tripoint.cards.CreditCard;
 import edu.bu.tbconde.tripoint.transactions.Transaction;
 import edu.bu.tbconde.tripoint.util.InitializeRecordsThread;
+import edu.bu.tbconde.tripoint.util.User;
 import edu.bu.tbconde.tripoint.util.Wallet;
 
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
 
 public class AppModel {
+    private User user = new User();
     private Wallet<CreditCard> wallet;
     private int pointsBalance;
     private ArrayList<Transaction> records = new ArrayList<Transaction>();
@@ -38,6 +40,7 @@ public class AppModel {
         this.future = future;
     }
     //getters
+    public User getUser() {return user;}
     public ArrayList<Transaction> getPurchaseRecords() {return purchaseRecords;}
     public ArrayList<Transaction> getRedeemRecords() {return redeemRecords;}
     public ArrayList<Transaction> getRecords() {return records;}
@@ -45,6 +48,7 @@ public class AppModel {
     public int getPointsBalance() {return pointsBalance;}
 
     //setters
+    public void setUser(User user) {this.user = user;}
     public void setPurchaseRecords(ArrayList<Transaction> records) {purchaseRecords = records;}
     public void setRedeemRecords(ArrayList<Transaction> records) {redeemRecords = records;}
     public void setRecords(ArrayList<Transaction> records) {this.records = records;}

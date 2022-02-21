@@ -1,6 +1,7 @@
 package edu.bu.tbconde.tripoint.controllers;
 
 import edu.bu.tbconde.tripoint.database.UseDataBase;
+import edu.bu.tbconde.tripoint.util.User;
 import edu.bu.tbconde.tripoint.views.WelcomeView;
 import edu.bu.tbconde.tripoint.models.WelcomeModel;
 
@@ -24,7 +25,7 @@ public class WelcomeController {
         model = new WelcomeModel(username);
         db = new UseDataBase();
     }
-    public String greetCustomer() {
+    public User greetCustomer() {
         boolean hasAccount;
         hasAccount = view.initialMessage();
         if (hasAccount) {
@@ -38,7 +39,8 @@ public class WelcomeController {
         }
         return null;
     }
-    public String createAccount() throws SQLException{
+    public User createAccount() throws SQLException{
+        User user = null;
         String url = "jdbc:sqlite:src/edu/bu/tbconde/tripoint/database/User.db";
         model.setFirstName(view.askFirstName());
         model.setLastName(view.askLastName());
@@ -48,26 +50,27 @@ public class WelcomeController {
             try {
                 db.createNewUser(conn, model.getFirstName(), model.getLastName(), model.getUsername(), model.getPassword());
                 view.greetUser(model.getFirstName(), model.getLastName());
-                return model.getFirstName() + model.getLastName();
+                user = db.searchUser(conn, model.getUsername(), model.getPassword());
             }
             catch (SQLException ex) {
                 ex.printStackTrace();
             }
         }
-        return null;
+        return user;
     }
-    public String login(){
+    public User login(){
+        User user = null;
         String url = "jdbc:sqlite:src/edu/bu/tbconde/tripoint/database/User.db";
         String username = view.askUsername();
         String password = view.askPassword();
         try (Connection conn = DriverManager.getConnection(url)) {
-            db.searchUser(conn,username, password);
+            user = db.searchUser(conn,username, password);
         }
         catch (SQLException ex) {
             ex.printStackTrace();
         }
         //view.greetUser(model.getFirstName(), model.getLastName());
-        return username;
+        return user;
 
 
     }
