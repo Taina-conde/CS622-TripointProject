@@ -45,14 +45,35 @@ public class UseDataBase {
         }
     }
     public void searchUserTransactions(Connection conn, int userId) throws SQLException {
-        ArrayList<Transaction> records = new ArrayList<Transaction>();
-        String sql = "SELECT type, card_used, category, amount, points FROM Trans WHERE " +
-                "user_id = ?";
+        String sql = "SELECT type, card_used, category, amount, points, timestamp FROM Trans WHERE " +
+                "user_id = ? ORDER BY timestamp DESC";
+        String type ;
+        String cardUsed;
+        String category;
+        double amount;
+        int points;
+        Date timestamp;
         try ( PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, userId);
             ResultSet rs = pstmt.executeQuery();
             while(rs.next()) {
-
+                type = rs.getString(1);
+                cardUsed = rs.getString(2);
+                category = rs.getString(3);
+                amount = rs.getDouble(4);
+                points = rs.getInt(5);
+                timestamp = rs.getDate(6);
+                if (type.equals("redeem")) {
+                    points = -points;
+                }
+                System.out.printf("%-30s %-30s %-30s $%-29.2f %,-30d %-30s\n",
+                        type,
+                        cardUsed,
+                        category,
+                        amount,
+                        points,
+                        timestamp
+                );
             }
         }
 
