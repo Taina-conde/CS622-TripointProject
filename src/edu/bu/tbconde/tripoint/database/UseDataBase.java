@@ -48,7 +48,7 @@ public class UseDataBase {
     public ArrayList<TransInfo> searchUserTransactions(Connection conn, int userId) throws SQLException {
         String sql = "SELECT first_name, last_name, type, card_used, category, amount, points, timestamp" +
                 " FROM User INNER JOIN Trans on User.user_id = Trans.user_id " +
-                " WHERE user_id = ?" +
+                " WHERE Trans.user_id = ?" +
                 " ORDER BY timestamp DESC";
         try ( PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, userId);
@@ -61,7 +61,7 @@ public class UseDataBase {
     public ArrayList<TransInfo> searchRecordsByType(Connection conn, int userId, String typeSearched) throws SQLException {
         String sql = "SELECT first_name, last_name, type, card_used, category, amount, points, timestamp"+
                 " FROM User INNER JOIN Trans on User.user_id = Trans.user_id " +
-                " WHERE user_id = ? AND type = ?  ORDER BY timestamp DESC";
+                " WHERE Trans.user_id = ? AND type = ?  ORDER BY timestamp DESC";
         try ( PreparedStatement pstmt = conn.prepareStatement(sql) ) {
             pstmt.setInt(1, userId);
             pstmt.setString(2, typeSearched);
