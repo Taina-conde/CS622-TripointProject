@@ -1,5 +1,6 @@
 package edu.bu.tbconde.tripoint.database;
 import edu.bu.tbconde.tripoint.transactions.Transaction;
+import edu.bu.tbconde.tripoint.util.TransInfo;
 import edu.bu.tbconde.tripoint.util.User;
 
 import java.sql.*;
@@ -44,7 +45,7 @@ public class UseDataBase {
             pstmt.executeUpdate();
         }
     }
-    public ArrayList<String> searchUserTransactions(Connection conn, int userId) throws SQLException {
+    public ArrayList<TransInfo> searchUserTransactions(Connection conn, int userId) throws SQLException {
         String sql = "SELECT first_name, last_name, type, card_used, category, amount, points, timestamp" +
                 " FROM User INNER JOIN Trans on User.user_id = Trans.user_id " +
                 " WHERE user_id = ?" +
@@ -52,12 +53,12 @@ public class UseDataBase {
         try ( PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, userId);
             ResultSet rs = pstmt.executeQuery();
-            ArrayList<String> transList = query(rs);
+            ArrayList<TransInfo> transList = query(rs);
             return transList;
         }
 
     }
-    public ArrayList<String> searchRecordsByType(Connection conn, int userId, String typeSearched) throws SQLException {
+    public ArrayList<TransInfo> searchRecordsByType(Connection conn, int userId, String typeSearched) throws SQLException {
         String sql = "SELECT first_name, last_name, type, card_used, category, amount, points, timestamp"+
                 " FROM User INNER JOIN Trans on User.user_id = Trans.user_id " +
                 " WHERE user_id = ? AND type = ?  ORDER BY timestamp DESC";
@@ -65,12 +66,12 @@ public class UseDataBase {
             pstmt.setInt(1, userId);
             pstmt.setString(2, typeSearched);
             ResultSet rs = pstmt.executeQuery();
-            ArrayList<String> transList = query(rs);
-            return transList;
+            ArrayList<TransInfo> transInfoList = query(rs);
+            return transInfoList;
         }
     }
-    private ArrayList<String> query(ResultSet rs) throws SQLException {
-        ArrayList<String> transList = new ArrayList<String>();
+    private ArrayList<TransInfo> query(ResultSet rs) throws SQLException {
+        ArrayList<TransInfo> transInfoList = new ArrayList<TransInfo>();
         String firstName;
         String lastName;
         String type;
@@ -80,7 +81,6 @@ public class UseDataBase {
         int points;
         Timestamp timestamp;
         while(rs.next()) {
-            String trans;
             firstName = rs.getString(1);
             lastName = rs.getString(2);
             type = rs.getString(3);
@@ -93,10 +93,19 @@ public class UseDataBase {
             if (type.equals("redeem")) {
                 points = -points;
             }
-            trans = firstName + ", " + lastName + ", " + type + ", " + cardUsed + ", " + category + ", " + amount + ", " + points + ", " + timestamp;
-            transList.add(trans);
+            TransInfo transInfo = new TransInfo(
+                    firstName,
+                    lastName,
+                    type,
+                    cardUsed,
+                    category,
+                    amount,
+                    points,
+                    timestamp
+            );
+            transInfoList.add(transInfo);
         }
-        return transList;
+        return transInfoList;
     }
     public int calculatePointsBalance(Connection conn, int userId) throws SQLException {
         int purchasePoints = 0;

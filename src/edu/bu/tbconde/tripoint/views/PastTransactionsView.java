@@ -1,27 +1,27 @@
 package edu.bu.tbconde.tripoint.views;
 
 import edu.bu.tbconde.tripoint.transactions.Transaction;
+import edu.bu.tbconde.tripoint.util.TransInfo;
 
 import java.util.Scanner;
 
 public class PastTransactionsView {
     private Scanner sc = new Scanner(System.in);
-    public void printHeader(int pointsBalance) {
+    public void printHeader(int pointsBalance, String firstName, String lastName) {
         System.out.printf("You have %,d points.\n", pointsBalance);
-        System.out.println("\nYour past transactions ...");
+        System.out.printf("\n%s %s, your past transactions ...", firstName, lastName);
         System.out.println();
         System.out.printf("%-30s %-30s %-30s %-30s %-30s %-30s\n","TYPE", "CARD USED", "CATEGORY", "AMOUNT", "POINTS", "DATE");
 
     }
-    public void printRecord(String trans) {
-        String[] info = trans.split(", ");
+    public void printRecord(TransInfo trans) {
         System.out.printf("%-30s %-30s %-30s $%-29.2f %,-30d %-30s\n",
-                info[0],
-                info[1],
-                info[2],
-                Double.parseDouble(info[3]),
-                Integer.parseInt(info[4]),
-                info[5]
+                trans.getType(),
+                trans.getCardUsed(),
+                trans.getCategory(),
+                trans.getAmount(),
+                trans.getPoints(),
+                trans.getTimestamp()
         );
     }
     public int askMenu(String option1, String option2, String option3) {

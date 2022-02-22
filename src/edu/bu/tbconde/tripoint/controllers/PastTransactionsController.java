@@ -1,6 +1,7 @@
 package edu.bu.tbconde.tripoint.controllers;
 
 import edu.bu.tbconde.tripoint.models.PastTransactionsModel;
+import edu.bu.tbconde.tripoint.util.TransInfo;
 import edu.bu.tbconde.tripoint.views.PastTransactionsView;
 import edu.bu.tbconde.tripoint.transactions.Transaction;
 
@@ -24,14 +25,13 @@ public class PastTransactionsController {
         return model.getSelectedOption();
     }
 
-    public int displayPastTransactions(ArrayList<String> transList, int pointsBalance) {
+    public int displayPastTransactions(ArrayList<TransInfo> transList, int pointsBalance) {
         if (transList.size() == 0) {
             System.out.println("You haven't made any transactions yet.");
         }
         else {
-            String firstName = transList[0]
-            view.printHeader(pointsBalance, firstName, lastName);
-            for(String trans: transList) {
+            view.printHeader(pointsBalance, transList.get(0).getFirstName(), transList.get(0).getLastName());
+            for(TransInfo trans: transList) {
                 view.printRecord(trans);
             }
         }

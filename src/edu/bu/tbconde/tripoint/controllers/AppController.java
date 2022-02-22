@@ -7,6 +7,7 @@ import edu.bu.tbconde.tripoint.models.AppModel;
 import edu.bu.tbconde.tripoint.transactions.Transaction;
 import edu.bu.tbconde.tripoint.util.RecordsReader;
 import edu.bu.tbconde.tripoint.util.RecordsWriter;
+import edu.bu.tbconde.tripoint.util.TransInfo;
 import edu.bu.tbconde.tripoint.util.User;
 import edu.bu.tbconde.tripoint.views.AppView;
 
@@ -85,7 +86,7 @@ public class AppController {
     }
 
     public void handlePastTransactions(int pointsBalance) {
-        ArrayList<String> transList;
+        ArrayList<TransInfo> transList;
         int selected = pastTrans.handleMenu();
         String typeSearched;
         int userId = model.getUser().getId();
