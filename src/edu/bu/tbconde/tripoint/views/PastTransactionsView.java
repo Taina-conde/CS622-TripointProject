@@ -19,8 +19,8 @@ public class PastTransactionsView {
                 info[0],
                 info[1],
                 info[2],
-                info[3],
-                info[4],
+                Double.parseDouble(info[3]),
+                Integer.parseInt(info[4]),
                 info[5]
         );
     }
