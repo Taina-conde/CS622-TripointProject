@@ -9,13 +9,13 @@ public class PastTransactionsView {
     private Scanner sc = new Scanner(System.in);
     public void printHeader(int pointsBalance, String firstName, String lastName) {
         System.out.printf("You have %,d points.\n", pointsBalance);
-        System.out.printf("\n%s %s, your past transactions ...", firstName, lastName);
+        System.out.printf("\n%s %s, your past transactions ...\n", firstName, lastName);
         System.out.println();
-        System.out.printf("%-30s %-30s %-30s %-30s %-30s %-30s\n","TYPE", "CARD USED", "CATEGORY", "AMOUNT", "POINTS", "DATE");
+        System.out.printf("%-25s %-25s %-25s %-25s %-25s %-25s\n","TYPE", "CARD USED", "CATEGORY", "AMOUNT", "POINTS", "DATE");
 
     }
     public void printRecord(TransInfo trans) {
-        System.out.printf("%-30s %-30s %-30s $%-29.2f %,-30d %-30s\n",
+        System.out.printf("%-25s %-25s %-25s $%-24.2f %,-25d %-25s\n",
                 trans.getType(),
                 trans.getCardUsed(),
                 trans.getCategory(),
