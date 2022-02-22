@@ -63,15 +63,8 @@ public class AppController {
     public Transaction saveTransaction(Transaction transaction) {
         Transaction trans = null;
         try (Connection conn = DriverManager.getConnection(url)) {
-            model.addTrans(transaction);
-            if(transaction.getType() == "purchase") {
-                model.addPoints(transaction.getPoints());
-            } else {
-                model.removePoints(transaction.getPoints());
-            }
             db.insertTrans(conn, transaction, model.getUser().getId());
             trans = transaction;
-
         }
         catch(SQLException err) {
             err.printStackTrace();
