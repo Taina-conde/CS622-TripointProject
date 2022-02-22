@@ -45,47 +45,55 @@ public class UseDataBase {
         }
     }
     public ArrayList<String> searchUserTransactions(Connection conn, int userId) throws SQLException {
-        String sql = "SELECT type, card_used, category, amount, points, timestamp FROM Trans WHERE " +
-                "user_id = ? ORDER BY timestamp DESC";
+        String sql = "SELECT first_name, last_name, type, card_used, category, amount, points, timestamp" +
+                " FROM User INNER JOIN Trans on User.user_id = Trans.user_id " +
+                " WHERE user_id = ?" +
+                " ORDER BY timestamp DESC";
         try ( PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, userId);
-            ArrayList<String> transList = query(pstmt);
+            ResultSet rs = pstmt.executeQuery();
+            ArrayList<String> transList = query(rs);
             return transList;
         }
 
     }
     public ArrayList<String> searchRecordsByType(Connection conn, int userId, String typeSearched) throws SQLException {
-        String sql = "SELECT type, card_used, category, amount, points, timestamp FROM Trans WHERE " +
-                "user_id = ? AND type = ?  ORDER BY timestamp DESC";
-        try ( PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        String sql = "SELECT first_name, last_name, type, card_used, category, amount, points, timestamp"+
+                " FROM User INNER JOIN Trans on User.user_id = Trans.user_id " +
+                " WHERE user_id = ? AND type = ?  ORDER BY timestamp DESC";
+        try ( PreparedStatement pstmt = conn.prepareStatement(sql) ) {
             pstmt.setInt(1, userId);
             pstmt.setString(2, typeSearched);
-            ArrayList<String> transList = query(pstmt);
+            ResultSet rs = pstmt.executeQuery();
+            ArrayList<String> transList = query(rs);
             return transList;
         }
     }
-    private ArrayList<String> query(PreparedStatement pstmt) throws SQLException {
+    private ArrayList<String> query(ResultSet rs) throws SQLException {
         ArrayList<String> transList = new ArrayList<String>();
+        String firstName;
+        String lastName;
         String type;
         String cardUsed;
         String category;
         double amount;
         int points;
         Timestamp timestamp;
-        ResultSet rs = pstmt.executeQuery();
         while(rs.next()) {
             String trans;
-            type = rs.getString(1);
-            cardUsed = rs.getString(2);
-            category = rs.getString(3);
-            amount = rs.getDouble(4);
-            points = rs.getInt(5);
-            timestamp = rs.getTimestamp(6);
+            firstName = rs.getString(1);
+            lastName = rs.getString(2);
+            type = rs.getString(3);
+            cardUsed = rs.getString(4);
+            category = rs.getString(5);
+            amount = rs.getDouble(6);
+            points = rs.getInt(7);
+            timestamp = rs.getTimestamp(8);
 
             if (type.equals("redeem")) {
                 points = -points;
             }
-            trans = type + ", " + cardUsed + ", " + category + ", " + amount + ", " + points + ", " + timestamp;
+            trans = firstName + ", " + lastName + ", " + type + ", " + cardUsed + ", " + category + ", " + amount + ", " + points + ", " + timestamp;
             transList.add(trans);
         }
         return transList;
@@ -108,6 +116,9 @@ public class UseDataBase {
             redeemPoints = rs.getInt(1);
         }
         return purchasePoints - redeemPoints;
+    }
+    public void deleteUser() {
+
     }
 
 

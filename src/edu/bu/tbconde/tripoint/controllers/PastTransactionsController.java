@@ -29,7 +29,8 @@ public class PastTransactionsController {
             System.out.println("You haven't made any transactions yet.");
         }
         else {
-            view.printHeader(pointsBalance);
+            String firstName = transList[0]
+            view.printHeader(pointsBalance, firstName, lastName);
             for(String trans: transList) {
                 view.printRecord(trans);
             }
