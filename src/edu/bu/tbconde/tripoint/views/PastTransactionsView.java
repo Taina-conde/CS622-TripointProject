@@ -13,20 +13,15 @@ public class PastTransactionsView {
         System.out.printf("%-30s %-30s %-30s %-30s %-30s %-30s\n","TYPE", "CARD USED", "CATEGORY", "AMOUNT", "POINTS", "DATE");
 
     }
-    public void printRecord(Transaction trans) {
-        int points;
-        if (trans.getType().equals("redeem")) {
-            points = -trans.getPoints();
-        } else {
-            points = trans.getPoints();
-        }
+    public void printRecord(String trans) {
+        String[] info = trans.split(", ");
         System.out.printf("%-30s %-30s %-30s $%-29.2f %,-30d %-30s\n",
-                trans.getType(),
-                trans.getCardType(),
-                trans.getCategory(),
-                trans.getAmount(),
-                points,
-                trans.getTimestamp()
+                info[0],
+                info[1],
+                info[2],
+                info[3],
+                info[4],
+                info[5]
         );
     }
     public int askMenu(String option1, String option2, String option3) {

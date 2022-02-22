@@ -24,14 +24,17 @@ public class PastTransactionsController {
         return model.getSelectedOption();
     }
 
-    public int displayPastTransactions(ArrayList<Transaction> records, int pointsBalance) {
-        if (records.size() == 0) {
+    public int displayPastTransactions(ArrayList<String> transList, int pointsBalance) {
+        if (transList.size() == 0) {
             System.out.println("You haven't made any transactions yet.");
         }
         else {
             view.printHeader(pointsBalance);
-
+            for(String trans: transList) {
+                view.printRecord(trans);
+            }
         }
         return pointsBalance;
     }
+
 }

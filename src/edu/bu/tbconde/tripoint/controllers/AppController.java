@@ -84,19 +84,23 @@ public class AppController {
         return isInitialized;
     }
 
-    public void handlePastTransactions() {
+    public void handlePastTransactions(int pointsBalance) {
+        ArrayList<String> transList;
         int selected = pastTrans.handleMenu();
         String typeSearched;
         int userId = model.getUser().getId();
         try (Connection conn = DriverManager.getConnection(url)) {
             if (selected == 1) {
                 typeSearched = "purchase";
-                db.searchRecordsByType(conn, userId, typeSearched );
+                transList = db.searchRecordsByType(conn, userId, typeSearched);
+                pastTrans.displayPastTransactions(transList, pointsBalance);
             } else if (selected == 2) {
                 typeSearched = "redeem";
-                db.searchRecordsByType(conn, userId, typeSearched );
+                transList = db.searchRecordsByType(conn, userId, typeSearched );
+                pastTrans.displayPastTransactions(transList, pointsBalance);
             } else {
-                db.searchUserTransactions(conn, userId );
+                transList = db.searchUserTransactions(conn, userId );
+                pastTrans.displayPastTransactions(transList, pointsBalance);
             }
         }
         catch(SQLException err) {
@@ -133,7 +137,7 @@ public class AppController {
                 saveTransaction(trans);
                 break;
             case 2:
-                handlePastTransactions();
+                handlePastTransactions(pointsBalance);
                 break;
             case 3:
                 view.printRedeemMessage(pointsBalance);

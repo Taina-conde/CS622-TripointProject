@@ -44,7 +44,7 @@ public class UseDataBase {
             pstmt.executeUpdate();
         }
     }
-    public void searchUserTransactions(Connection conn, int userId) throws SQLException {
+    public ArrayList<String> searchUserTransactions(Connection conn, int userId) throws SQLException {
         String sql = "SELECT type, card_used, category, amount, points, timestamp FROM Trans WHERE " +
                 "user_id = ? ORDER BY timestamp DESC";
         String type ;
@@ -55,22 +55,24 @@ public class UseDataBase {
         Date timestamp;
         try ( PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, userId);
-            query(pstmt);
+            ArrayList<String> transList = query(pstmt);
+            return transList;
         }
 
     }
-    public void searchRecordsByType(Connection conn, int userId, String typeSearched) throws SQLException {
+    public ArrayList<String> searchRecordsByType(Connection conn, int userId, String typeSearched) throws SQLException {
         String sql = "SELECT type, card_used, category, amount, points, timestamp FROM Trans WHERE " +
                 "user_id = ? AND type = ?  ORDER BY timestamp DESC";
 
         try ( PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, userId);
             pstmt.setString(2, typeSearched);
-            query(pstmt);
+            ArrayList<String> transList = query(pstmt);
+            return transList;
         }
     }
-    private void query(PreparedStatement pstmt) throws SQLException {
-        boolean hasTrans = false;
+    private ArrayList<String> query(PreparedStatement pstmt) throws SQLException {
+        ArrayList<String> transList = new ArrayList<String>();
         String type;
         String cardUsed;
         String category;
@@ -79,7 +81,7 @@ public class UseDataBase {
         Date timestamp;
         ResultSet rs = pstmt.executeQuery();
         while(rs.next()) {
-            hasTrans = true;
+            String trans;
             type = rs.getString(1);
             cardUsed = rs.getString(2);
             category = rs.getString(3);
@@ -89,19 +91,10 @@ public class UseDataBase {
             if (type.equals("redeem")) {
                 points = -points;
             }
-            System.out.printf("%-30s %-30s %-30s $%-29.2f %,-30d %-30s\n",
-                    type,
-                    cardUsed,
-                    category,
-                    amount,
-                    points,
-                    timestamp
-            );
+            trans = type + ", " + cardUsed + ", " + category + ", " + amount + ", " + points + ", " + timestamp;
+            transList.add(trans);
         }
-        if (!hasTrans) {
-            System.out.println("You haven't made any transactions yet.");
-        }
-
+        return transList;
     }
     public int calculatePointsBalance(Connection conn, int userId) throws SQLException {
         int purchasePoints = 0;
@@ -122,6 +115,7 @@ public class UseDataBase {
         }
         return purchasePoints - redeemPoints;
     }
+
 
 
 
