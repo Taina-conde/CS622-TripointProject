@@ -71,14 +71,13 @@ public class AppController {
         return trans;
     }
 
-    public ArrayList<Transaction> readAllRecords() {
-        try {
-            model.setRecords(reader.readRecords());
+    public void readAllRecords() {
+        try (Connection conn = DriverManager.getConnection(url)) {
+            db.searchUserTransactions(conn, model.getUser().getId());
         }
-        catch (IOException | ClassNotFoundException ex) {
+        catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return model.getRecords();
     }
 
     public ArrayList<Transaction> readPurchaseRecords() {
@@ -112,14 +111,14 @@ public class AppController {
         return isInitialized;
     }
 
-    public void handlePastTransactions() {
+    public void handlePastTransactions(int pointsBalance) {
         int selected = pastTrans.handleMenu();
         if (selected == 1) {
-            pastTrans.displayPastTransactions(readPurchaseRecords(), model.getPointsBalance());
+            pastTrans.displayPastTransactions(readPurchaseRecords(), pointsBalance);
         } else if (selected == 2) {
-            pastTrans.displayPastTransactions(readRedeemRecords(), model.getPointsBalance());
+            pastTrans.displayPastTransactions(readRedeemRecords(), pointsBalance);
         } else {
-            pastTrans.displayPastTransactions(readAllRecords(), model.getPointsBalance());
+            pastTrans.displayPastTransactions(readAllRecords(), pointsBalance);
         }
     }
     public void handleCloseAccount() {
@@ -152,7 +151,7 @@ public class AppController {
                 saveTransaction(trans);
                 break;
             case 2:
-                handlePastTransactions();
+                handlePastTransactions(pointsBalance);
                 break;
             case 3:
                 view.printRedeemMessage(pointsBalance);

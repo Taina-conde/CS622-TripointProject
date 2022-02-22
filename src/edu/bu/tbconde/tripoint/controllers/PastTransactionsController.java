@@ -30,14 +30,7 @@ public class PastTransactionsController {
         }
         else {
             view.printHeader(pointsBalance);
-            for (Transaction trans: records) {
-                view.printRecord(trans);
-                if(trans.getType() == "redeem") {
-                    pointsBalance -= trans.getPoints();
-                } else {
-                    pointsBalance += trans.getPoints();
-                }
-            }
+
         }
         return pointsBalance;
     }
