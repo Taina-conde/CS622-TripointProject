@@ -69,7 +69,8 @@ public class UseDataBase {
             query(pstmt);
         }
     }
-    public void query(PreparedStatement pstmt) throws SQLException {
+    private void query(PreparedStatement pstmt) throws SQLException {
+        boolean hasTrans = false;
         String type;
         String cardUsed;
         String category;
@@ -78,6 +79,7 @@ public class UseDataBase {
         Date timestamp;
         ResultSet rs = pstmt.executeQuery();
         while(rs.next()) {
+            hasTrans = true;
             type = rs.getString(1);
             cardUsed = rs.getString(2);
             category = rs.getString(3);
@@ -95,6 +97,9 @@ public class UseDataBase {
                     points,
                     timestamp
             );
+        }
+        if (!hasTrans) {
+            System.out.println("You haven't made any transactions yet.");
         }
 
     }

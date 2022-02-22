@@ -7,6 +7,7 @@ import edu.bu.tbconde.tripoint.models.AppModel;
 import edu.bu.tbconde.tripoint.transactions.Transaction;
 import edu.bu.tbconde.tripoint.util.RecordsReader;
 import edu.bu.tbconde.tripoint.util.RecordsWriter;
+import edu.bu.tbconde.tripoint.util.User;
 import edu.bu.tbconde.tripoint.views.AppView;
 
 import java.io.IOException;
@@ -33,7 +34,7 @@ public class AppController {
     private boolean exit = false;
 
     public AppController() {
-        model.setUser(welcome.greetCustomer());
+        welcomeUser();
         model.addCard(new PreferredCard(model.getUser().getUsername()));
         model.addCard(new BasicCard(model.getUser().getUsername()));
         newTrans = new NewTransactionController(model.getWallet());
@@ -44,11 +45,18 @@ public class AppController {
         closeAccount = new CloseAccountController();
         isInitialized = false;
     }
+    public void welcomeUser(){
+        User user = welcome.greetCustomer();
+        if (user != null) {
+            model.setUser(user);
+        } else {
+            exitApp();
+        }
+    }
     public boolean getExit() {return exit;}
     public boolean exitApp() {
         exit = true;
         if (exit) {System.out.println("Thank you! Hope to see you again soon!");}
-        model.setUser(null);
         return exit;
 
     }
@@ -71,34 +79,6 @@ public class AppController {
         return trans;
     }
 
-    public void readAllRecords() {
-        try (Connection conn = DriverManager.getConnection(url)) {
-            db.searchUserTransactions(conn, model.getUser().getId());
-        }
-        catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    public ArrayList<Transaction> readPurchaseRecords() {
-        try {
-            model.setPurchaseRecords(reader.readPurchaseRecords());
-        }
-        catch (IOException | ClassNotFoundException ex) {
-            ex.printStackTrace();
-        }
-        return model.getPurchaseRecords();
-    }
-
-    public ArrayList<Transaction> readRedeemRecords() {
-        try {
-            model.setRedeemRecords(reader.readRedeemRecords());
-        }
-        catch (IOException | ClassNotFoundException ex) {
-            ex.printStackTrace();
-        }
-        return model.getRedeemRecords();
-    }
     public boolean handleInitializeRecords() {
         try {
             model.initializeRecords();
@@ -111,14 +91,23 @@ public class AppController {
         return isInitialized;
     }
 
-    public void handlePastTransactions(int pointsBalance) {
+    public void handlePastTransactions() {
         int selected = pastTrans.handleMenu();
-        if (selected == 1) {
-            pastTrans.displayPastTransactions(readPurchaseRecords(), pointsBalance);
-        } else if (selected == 2) {
-            pastTrans.displayPastTransactions(readRedeemRecords(), pointsBalance);
-        } else {
-            pastTrans.displayPastTransactions(readAllRecords(), pointsBalance);
+        String typeSearched;
+        int userId = model.getUser().getId();
+        try (Connection conn = DriverManager.getConnection(url)) {
+            if (selected == 1) {
+                typeSearched = "purchase";
+                db.searchRecordsByType(conn, userId, typeSearched );
+            } else if (selected == 2) {
+                typeSearched = "redeem";
+                db.searchRecordsByType(conn, userId, typeSearched );
+            } else {
+                db.searchUserTransactions(conn, userId );
+            }
+        }
+        catch(SQLException err) {
+            err.printStackTrace();
         }
     }
     public void handleCloseAccount() {
@@ -151,7 +140,7 @@ public class AppController {
                 saveTransaction(trans);
                 break;
             case 2:
-                handlePastTransactions(pointsBalance);
+                handlePastTransactions();
                 break;
             case 3:
                 view.printRedeemMessage(pointsBalance);

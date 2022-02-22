@@ -51,6 +51,21 @@ public class WelcomeView {
         answer = sc.nextLine().trim();
         return answer;
     }
+    public boolean notFound(){
+        String answer;
+        System.out.println("You don't have an account with us yet... Would you like to sign up?");
+        System.out.println("Please, enter \"y\" if you want to create an account, or \"n\" to exit.");
+        answer = sc.nextLine().trim().replaceAll("\\p{P}", "").toLowerCase();
+        while(!(answer.equals("y")||answer.equals("n"))) {
+            System.out.println(answer + " is not a valid answer.\n" +
+                    "Please, enter \"y\" if you want to create an account, or \"n\" to exit.");
+            answer = sc.nextLine().trim().replaceAll("\\p{P}", "").toLowerCase();
+        }
+        if (answer.equals("y")) {
+            return true;
+        }
+        return false;
+    }
 
 
 

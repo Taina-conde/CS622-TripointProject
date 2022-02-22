@@ -30,6 +30,16 @@ public class WelcomeController {
         hasAccount = view.initialMessage();
         if (hasAccount) {
             user = login();
+            if (user == null) {
+                boolean signUp = view.notFound();
+                if (signUp) {
+                    try {
+                        user = createAccount();
+                    } catch(SQLException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
         } else {
             try {
                 user = createAccount();
@@ -40,7 +50,7 @@ public class WelcomeController {
         if (user != null) { view.greetUser(user.getFirstName(), user.getLastName());}
         return user;
     }
-    public User createAccount() throws SQLException{
+    private User createAccount() throws SQLException{
         User user = null;
         String url = "jdbc:sqlite:src/edu/bu/tbconde/tripoint/database/Database.db";
         model.setFirstName(view.askFirstName());
@@ -50,7 +60,6 @@ public class WelcomeController {
         try(Connection conn = DriverManager.getConnection(url)) {
             try {
                 db.createNewUser(conn, model.getFirstName(), model.getLastName(), model.getUsername(), model.getPassword());
-                view.greetUser(model.getFirstName(), model.getLastName());
                 user = db.searchUser(conn, model.getUsername(), model.getPassword());
             }
             catch (SQLException ex) {
@@ -59,7 +68,7 @@ public class WelcomeController {
         }
         return user;
     }
-    public User login(){
+    private User login(){
         User user = null;
         String url = "jdbc:sqlite:src/edu/bu/tbconde/tripoint/database/Database.db";
         String username = view.askUsername();
@@ -72,4 +81,6 @@ public class WelcomeController {
         }
         return user;
     }
+
+
 }
