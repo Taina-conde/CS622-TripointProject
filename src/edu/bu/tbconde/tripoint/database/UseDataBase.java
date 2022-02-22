@@ -47,12 +47,6 @@ public class UseDataBase {
     public ArrayList<String> searchUserTransactions(Connection conn, int userId) throws SQLException {
         String sql = "SELECT type, card_used, category, amount, points, timestamp FROM Trans WHERE " +
                 "user_id = ? ORDER BY timestamp DESC";
-        String type ;
-        String cardUsed;
-        String category;
-        double amount;
-        int points;
-        Date timestamp;
         try ( PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, userId);
             ArrayList<String> transList = query(pstmt);
@@ -63,7 +57,6 @@ public class UseDataBase {
     public ArrayList<String> searchRecordsByType(Connection conn, int userId, String typeSearched) throws SQLException {
         String sql = "SELECT type, card_used, category, amount, points, timestamp FROM Trans WHERE " +
                 "user_id = ? AND type = ?  ORDER BY timestamp DESC";
-
         try ( PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, userId);
             pstmt.setString(2, typeSearched);
@@ -78,7 +71,7 @@ public class UseDataBase {
         String category;
         double amount;
         int points;
-        Date timestamp;
+        Timestamp timestamp;
         ResultSet rs = pstmt.executeQuery();
         while(rs.next()) {
             String trans;
@@ -87,7 +80,8 @@ public class UseDataBase {
             category = rs.getString(3);
             amount = rs.getDouble(4);
             points = rs.getInt(5);
-            timestamp = rs.getDate(6);
+            timestamp = rs.getTimestamp(6);
+
             if (type.equals("redeem")) {
                 points = -points;
             }
