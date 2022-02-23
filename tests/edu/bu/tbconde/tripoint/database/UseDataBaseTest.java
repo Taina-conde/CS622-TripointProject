@@ -7,13 +7,15 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class UseDataBaseTest {
-
+    private UseDataBase db = null;
     @BeforeEach
     void setUp() {
+        db = new UseDataBase();
     }
 
     @AfterEach
     void tearDown() {
+        db = null;
     }
 
     @Test

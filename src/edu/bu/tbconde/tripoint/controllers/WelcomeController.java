@@ -59,7 +59,12 @@ public class WelcomeController {
         model.setPassword(view.askPassword());
         try(Connection conn = DriverManager.getConnection(url)) {
             try {
-                db.createNewUser(conn, model.getFirstName(), model.getLastName(), model.getUsername(), model.getPassword());
+                db.createNewUser(
+                        conn,
+                        model.getFirstName(),
+                        model.getLastName(),
+                        model.getUsername(),
+                        model.getPassword());
                 user = db.searchUser(conn, model.getUsername(), model.getPassword());
             }
             catch (SQLException ex) {

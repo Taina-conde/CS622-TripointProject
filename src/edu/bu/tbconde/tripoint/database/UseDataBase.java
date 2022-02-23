@@ -7,7 +7,8 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class UseDataBase {
-    public void createNewUser(Connection conn, String firstName, String lastName, String username, String password) throws SQLException{
+    public void createNewUser(Connection conn, String firstName, String lastName, String username, String password)
+            throws SQLException{
         String sql = "INSERT INTO User(first_name, last_name, username, password) VALUES (?, ?, ?, ?)";
         try(PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, firstName);
@@ -32,8 +33,9 @@ public class UseDataBase {
         }
         return user;
     }
-    public void insertTrans(Connection conn, Transaction trans, int userId) throws SQLException {
-        String sql = "INSERT INTO Trans(type, card_used, category, amount, points, timestamp, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    public void  insertTrans(Connection conn, Transaction trans, int userId) throws SQLException {
+        String sql = "INSERT INTO Trans(type, card_used, category, amount, points, timestamp, user_id)" +
+                " VALUES (?, ?, ?, ?, ?, ?, ?)";
         try(PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, trans.getType());
             pstmt.setString(2, trans.getCardType());
@@ -56,9 +58,9 @@ public class UseDataBase {
             ArrayList<TransInfo> transList = query(rs);
             return transList;
         }
-
     }
-    public ArrayList<TransInfo> searchRecordsByType(Connection conn, int userId, String typeSearched) throws SQLException {
+    public ArrayList<TransInfo> searchRecordsByType(Connection conn, int userId, String typeSearched)
+            throws SQLException {
         String sql = "SELECT first_name, last_name, type, card_used, category, amount, points, timestamp"+
                 " FROM User INNER JOIN Trans on User.user_id = Trans.user_id " +
                 " WHERE Trans.user_id = ? AND type = ?  ORDER BY timestamp DESC";
@@ -107,6 +109,7 @@ public class UseDataBase {
         }
         return transInfoList;
     }
+
     public int calculatePointsBalance(Connection conn, int userId) throws SQLException {
         int purchasePoints = 0;
         int redeemPoints = 0;
