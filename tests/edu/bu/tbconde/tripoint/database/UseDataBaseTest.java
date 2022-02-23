@@ -37,6 +37,8 @@ class UseDataBaseTest {
     void tearDown() {
         db = null;
         user1 = null;
+        card = null;
+        trans1 = null;
     }
 
     @Test
