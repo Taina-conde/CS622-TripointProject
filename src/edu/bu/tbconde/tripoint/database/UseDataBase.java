@@ -42,7 +42,7 @@ public class UseDataBase {
             pstmt.setString(3, trans.getCategory());
             pstmt.setDouble(4, trans.getAmount());
             pstmt.setInt(5, trans.getPoints());
-            pstmt.setDate(6,trans.getTimestamp());
+            pstmt.setTimestamp(6,trans.getTimestamp());
             pstmt.setInt(7, userId);
             pstmt.executeUpdate();
         }
