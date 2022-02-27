@@ -14,7 +14,7 @@ public class PreferencesWriter {
     public PreferencesWriter() {
         this.path = "/preferences.dat";
     }
-    public boolean writePreferences(ArrayList<UserPreferences> prefs) throws IOException {
+    public void writePreferences(ArrayList<UserPreferences> prefs) throws IOException {
         /*The try-with-resources ensures that the resource is closed at the end of the statement. A resource is object
         that must be closed after the program is finished with it. In this case, ObjectOutputStream is a resource that
         implements the AutoCloseable interface, and, therefore, it is automatically closed when exiting a
@@ -27,7 +27,6 @@ public class PreferencesWriter {
                 new FileOutputStream(path)
         )) {
             outfile.writeObject(prefs);
-            return true;
         }
     }
 

@@ -1,7 +1,5 @@
 package edu.bu.tbconde.tripoint.config;
 
-import edu.bu.tbconde.tripoint.transactions.Transaction;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;

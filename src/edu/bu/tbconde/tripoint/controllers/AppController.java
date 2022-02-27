@@ -2,10 +2,11 @@ package edu.bu.tbconde.tripoint.controllers;
 
 import edu.bu.tbconde.tripoint.cards.BasicCard;
 import edu.bu.tbconde.tripoint.cards.PreferredCard;
+import edu.bu.tbconde.tripoint.config.PreferencesReader;
+import edu.bu.tbconde.tripoint.config.PreferencesWriter;
 import edu.bu.tbconde.tripoint.database.UseDataBase;
 import edu.bu.tbconde.tripoint.models.AppModel;
 import edu.bu.tbconde.tripoint.transactions.Transaction;
-import edu.bu.tbconde.tripoint.util.RecordsReader;
 import edu.bu.tbconde.tripoint.util.RecordsWriter;
 import edu.bu.tbconde.tripoint.util.TransInfo;
 import edu.bu.tbconde.tripoint.util.User;
@@ -24,13 +25,15 @@ public class AppController {
     private final int  walletCapacity = 2;
     private AppModel model = new AppModel(walletCapacity);
     private AppView view = new AppView();
-    private RecordsWriter writer;
-    private RecordsReader reader;
+    private PreferencesWriter prefsWriter;
+    private PreferencesReader prefsReader;
+    private RecordsWriter recordsWriter;
    private WelcomeController welcome= new WelcomeController();
    private NewTransactionController newTrans;
    private MainMenuController menu ;
    private PastTransactionsController pastTrans;
    private CloseAccountController closeAccount;
+   private PreferencesController prefs;
    private boolean isInitialized;
     private boolean exit = false;
 
@@ -39,17 +42,20 @@ public class AppController {
         model.addCard(new PreferredCard(model.getUser().getUsername()));
         model.addCard(new BasicCard(model.getUser().getUsername()));
         newTrans = new NewTransactionController(model.getWallet());
-        writer = new RecordsWriter();
-        reader = new RecordsReader();
+        prefsWriter = new PreferencesWriter();
+        prefsReader = new PreferencesReader();
+        recordsWriter = new RecordsWriter();
         menu = new MainMenuController();
         pastTrans = new PastTransactionsController();
         closeAccount = new CloseAccountController();
+        prefs = new PreferencesController();
         isInitialized = false;
     }
     public void welcomeUser(){
         User user = welcome.greetCustomer();
         if (user != null) {
             model.setUser(user);
+            handleInitializePreferences(user.getId());
         } else {
             exitApp();
         }
@@ -73,9 +79,9 @@ public class AppController {
         return trans;
     }
 
-    public boolean handleInitializeRecords() {
+    public boolean handleInitializePreferences(int userId) {
         try {
-            model.initializeRecords();
+            model.initializePreferences(userId);
             isInitialized = true;
         } catch (ExecutionException e) {
             e.printStackTrace();
@@ -110,7 +116,7 @@ public class AppController {
     }
     public void handleCloseAccount() {
         boolean closed;
-        closed = closeAccount.handleCloseAccount(writer);
+        closed = closeAccount.handleCloseAccount(recordsWriter);
         if (closed) {
             model.setPointsBalance(0);
         }
@@ -126,14 +132,12 @@ public class AppController {
         return null;
     }
     private void handleSetPreferences() {
+        prefs.handlePreferences();
         System.out.println("USER SET PREFERENCES");
     }
 
     public void processMenuOption() {
         int pointsBalance = handleCheckBalance();
-        if (!isInitialized) {
-            handleInitializeRecords();
-        }
         Transaction trans;
         switch (menu.selectOption()) {
             case 1:
