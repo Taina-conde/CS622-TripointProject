@@ -2,6 +2,7 @@ package edu.bu.tbconde.tripoint.controllers;
 
 import edu.bu.tbconde.tripoint.cards.BasicCard;
 import edu.bu.tbconde.tripoint.cards.PreferredCard;
+import edu.bu.tbconde.tripoint.config.Preference;
 import edu.bu.tbconde.tripoint.config.PreferencesReader;
 import edu.bu.tbconde.tripoint.config.PreferencesWriter;
 import edu.bu.tbconde.tripoint.config.UserPreferences;
@@ -83,19 +84,20 @@ public class AppController {
     public void handlePastTransactions(int pointsBalance) {
         ArrayList<TransInfo> transList;
         int selected = pastTrans.handleMenu();
+        UserPreferences<Preference> userPrefs = model.getUserPrefs();
         String typeSearched;
         int userId = model.getUser().getId();
         try (Connection conn = DriverManager.getConnection(url)) {
             if (selected == 1) {
                 typeSearched = "purchase";
-                transList = db.searchRecordsByType(conn, userId, typeSearched);
+                transList = db.searchRecordsByType(conn, userId, typeSearched, model.getUserPrefs());
                 pastTrans.displayPastTransactions(transList, pointsBalance, model.getUserPrefs());
             } else if (selected == 2) {
                 typeSearched = "redeem";
-                transList = db.searchRecordsByType(conn, userId, typeSearched );
+                transList = db.searchRecordsByType(conn, userId, typeSearched, model.getUserPrefs() );
                 pastTrans.displayPastTransactions(transList, pointsBalance, model.getUserPrefs());
             } else {
-                transList = db.searchUserTransactions(conn, userId );
+                transList = db.searchUserTransactions(conn, userId, model.getUserPrefs() );
                 pastTrans.displayPastTransactions(transList, pointsBalance, model.getUserPrefs());
             }
         }

@@ -1,6 +1,8 @@
 package edu.bu.tbconde.tripoint.config;
 
-public abstract class Preference {
+import java.io.Serializable;
+
+public abstract class Preference implements Serializable {
     private int userId;
     public Preference(int userId) {
         this.userId = userId;

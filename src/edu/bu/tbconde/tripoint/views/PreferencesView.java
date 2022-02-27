@@ -92,4 +92,19 @@ public class PreferencesView {
         } while (!(selected >=1 && selected <=userPrefs.size()));
         return userPrefs.get(selected-1);
     }
+    public boolean askSetNewPreference() {
+        String answer;
+        System.out.println("You don't have any preferences saved yet... Would you like to set a new preference?");
+        System.out.println("Please, enter \"y\" if you want to set a new preference, or \"n\" to return to the main menu.");
+        answer = sc.nextLine().trim().replaceAll("\\p{P}", "").toLowerCase();
+        while(!(answer.equals("y")||answer.equals("n"))) {
+            System.out.println(answer + " is not a valid answer.\n" +
+                    "Please, enter \"y\" if you want to set a new preference, or \"n\" to return to the main menu.");
+            answer = sc.nextLine().trim().replaceAll("\\p{P}", "").toLowerCase();
+        }
+        if (answer.equals("y")) {
+            return true;
+        }
+        return false;
+    }
 }

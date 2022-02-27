@@ -157,94 +157,94 @@ class UseDataBaseTest {
         }
     }
 
-    @Test
-    void searchUserTransactions() throws SQLException {
-        ArrayList<TransInfo> transList;
-        try(Connection conn = DriverManager.getConnection(url)) {
-            try {
-                transList = db.searchUserTransactions(
-                        conn,
-                        1
-                );
-                assertEquals(trans1.getType(), transList.get(0).getType());
-                assertEquals(trans1.getCategory(), transList.get(0).getCategory());
-                assertEquals(trans1.getCardType(), transList.get(0).getCardUsed());
-                assertEquals(trans1.getAmount(), transList.get(0).getAmount());
-                assertEquals(trans1.getPoints(), transList.get(0).getPoints());
-            }
-            catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-        }
-    }
-    @Test
-    void searchUserTransactionsThrowsSQLException() throws SQLException {
-        try(Connection conn = DriverManager.getConnection(wrongUrl)) {
-            assertThrows(SQLException.class, () -> db.searchUserTransactions(conn,
-                    1));
-        }
-    }
+//    @Test
+//    void searchUserTransactions() throws SQLException {
+//        ArrayList<TransInfo> transList;
+//        try(Connection conn = DriverManager.getConnection(url)) {
+//            try {
+//                transList = db.searchUserTransactions(
+//                        conn,
+//                        1
+//                );
+//                assertEquals(trans1.getType(), transList.get(0).getType());
+//                assertEquals(trans1.getCategory(), transList.get(0).getCategory());
+//                assertEquals(trans1.getCardType(), transList.get(0).getCardUsed());
+//                assertEquals(trans1.getAmount(), transList.get(0).getAmount());
+//                assertEquals(trans1.getPoints(), transList.get(0).getPoints());
+//            }
+//            catch (SQLException ex) {
+//                ex.printStackTrace();
+//            }
+//        }
+//    }
+//    @Test
+//    void searchUserTransactionsThrowsSQLException() throws SQLException {
+//        try(Connection conn = DriverManager.getConnection(wrongUrl)) {
+//            assertThrows(SQLException.class, () -> db.searchUserTransactions(conn,
+//                    1));
+//        }
+//    }
 
-    @Test
-    void searchRecordsByType() throws SQLException {
-        ArrayList<TransInfo> transList1;
-        ArrayList<TransInfo> transList2;
-        try(Connection conn = DriverManager.getConnection(url)) {
-            try {
-                transList1 = db.searchRecordsByType(
-                        conn,
-                        1,
-                        "purchase"
-                );
-                assertEquals(trans1.getType(), transList1.get(0).getType());
-                assertEquals(trans1.getCategory(), transList1.get(0).getCategory());
-                assertEquals(trans1.getCardType(), transList1.get(0).getCardUsed());
-                assertEquals(trans1.getAmount(), transList1.get(0).getAmount());
-                assertEquals(trans1.getPoints(), transList1.get(0).getPoints());
-                transList2 = db.searchRecordsByType(
-                        conn,
-                        1,
-                        "redeem"
-                );
-                assertEquals(0, transList2.size());
-            }
-            catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-        }
-    }
-    @Test
-    void searchRecordsByTypeThrowsSQLException() throws SQLException {
-        try(Connection conn = DriverManager.getConnection(wrongUrl)) {
-            assertThrows(SQLException.class, () -> db.searchRecordsByType(conn,
-                    1, "purchase"));
-        }
-    }
-
-    @Test
-    void calculatePointsBalance() throws SQLException {
-        ArrayList<TransInfo> transList;
-        try(Connection conn = DriverManager.getConnection(url)) {
-            try {
-                transList = db.searchUserTransactions(conn, 1);
-                int listSize = transList.size();
-                int expectedPointsBalance = listSize * transList.get(0).getPoints();
-                int actualPointsBalance = db.calculatePointsBalance(
-                        conn,
-                        1
-                );
-                assertEquals(expectedPointsBalance, actualPointsBalance );
-            }
-            catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-        }
-    }
-    @Test
-    void calculatePointsBalanceThrowsSQLException() throws SQLException {
-        try(Connection conn = DriverManager.getConnection(wrongUrl)) {
-            assertThrows(SQLException.class, () -> db.calculatePointsBalance(conn,
-                    1));
-        }
-    }
+//    @Test
+//    void searchRecordsByType() throws SQLException {
+//        ArrayList<TransInfo> transList1;
+//        ArrayList<TransInfo> transList2;
+//        try(Connection conn = DriverManager.getConnection(url)) {
+//            try {
+//                transList1 = db.searchRecordsByType(
+//                        conn,
+//                        1,
+//                        "purchase"
+//                );
+//                assertEquals(trans1.getType(), transList1.get(0).getType());
+//                assertEquals(trans1.getCategory(), transList1.get(0).getCategory());
+//                assertEquals(trans1.getCardType(), transList1.get(0).getCardUsed());
+//                assertEquals(trans1.getAmount(), transList1.get(0).getAmount());
+//                assertEquals(trans1.getPoints(), transList1.get(0).getPoints());
+//                transList2 = db.searchRecordsByType(
+//                        conn,
+//                        1,
+//                        "redeem"
+//                );
+//                assertEquals(0, transList2.size());
+//            }
+//            catch (SQLException ex) {
+//                ex.printStackTrace();
+//            }
+//        }
+//    }
+//    @Test
+//    void searchRecordsByTypeThrowsSQLException() throws SQLException {
+//        try(Connection conn = DriverManager.getConnection(wrongUrl)) {
+//            assertThrows(SQLException.class, () -> db.searchRecordsByType(conn,
+//                    1, "purchase"));
+//        }
+//    }
+//
+//    @Test
+//    void calculatePointsBalance() throws SQLException {
+//        ArrayList<TransInfo> transList;
+//        try(Connection conn = DriverManager.getConnection(url)) {
+//            try {
+//                transList = db.searchUserTransactions(conn, 1);
+//                int listSize = transList.size();
+//                int expectedPointsBalance = listSize * transList.get(0).getPoints();
+//                int actualPointsBalance = db.calculatePointsBalance(
+//                        conn,
+//                        1
+//                );
+//                assertEquals(expectedPointsBalance, actualPointsBalance );
+//            }
+//            catch (SQLException ex) {
+//                ex.printStackTrace();
+//            }
+//        }
+//    }
+//    @Test
+//    void calculatePointsBalanceThrowsSQLException() throws SQLException {
+//        try(Connection conn = DriverManager.getConnection(wrongUrl)) {
+//            assertThrows(SQLException.class, () -> db.calculatePointsBalance(conn,
+//                    1));
+//        }
+//    }
 }

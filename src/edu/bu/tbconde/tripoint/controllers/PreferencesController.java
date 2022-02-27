@@ -20,9 +20,16 @@ public class PreferencesController {
         writer = new PreferencesWriter();
     }
     public UserPreferences handlePreferences(int userId, ArrayList<UserPreferences> userPrefsList) {
+        UserPreferences selectedPrefs;
         int selected = view.preferencesMenu();
         if (selected == 1) {
-            return loadSavedPreferences(userId);
+            selectedPrefs = loadSavedPreferences(userId);
+            if (selectedPrefs == null) {
+                boolean setNew = view.askSetNewPreference();
+                if (setNew) {
+                    return setNewPreference(userId, userPrefsList);
+                }
+            }
         }
         return setNewPreference(userId, userPrefsList);
     }
@@ -31,6 +38,9 @@ public class PreferencesController {
         UserPreferences selectedPrefs;
         try{
            userPrefsList = reader.readUserPreferences(userId);
+           if (userPrefsList.size() == 0) {
+               return null;
+           }
            selectedPrefs = view.askSavedPreferences(userPrefsList);
            return selectedPrefs;
         } catch (IOException | ClassNotFoundException ex) {

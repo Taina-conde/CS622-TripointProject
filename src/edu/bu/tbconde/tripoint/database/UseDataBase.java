@@ -1,4 +1,6 @@
 package edu.bu.tbconde.tripoint.database;
+import edu.bu.tbconde.tripoint.config.Preference;
+import edu.bu.tbconde.tripoint.config.UserPreferences;
 import edu.bu.tbconde.tripoint.transactions.Transaction;
 import edu.bu.tbconde.tripoint.util.TransInfo;
 import edu.bu.tbconde.tripoint.util.User;
@@ -47,11 +49,12 @@ public class UseDataBase {
             pstmt.executeUpdate();
         }
     }
-    public ArrayList<TransInfo> searchUserTransactions(Connection conn, int userId) throws SQLException {
+    public ArrayList<TransInfo> searchUserTransactions(Connection conn, int userId, UserPreferences<Preference> userPrefs) throws SQLException {
+        String orderBy = userPrefs.get(1).getPref();
         String sql = "SELECT first_name, last_name, type, card_used, category, amount, points, timestamp" +
                 " FROM User INNER JOIN Trans on User.user_id = Trans.user_id " +
-                " WHERE Trans.user_id = ?" +
-                " ORDER BY timestamp DESC";
+                " WHERE Trans.user_id = ? ORDER BY " +
+                orderBy;
         try ( PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, userId);
             ResultSet rs = pstmt.executeQuery();
@@ -59,11 +62,12 @@ public class UseDataBase {
             return transList;
         }
     }
-    public ArrayList<TransInfo> searchRecordsByType(Connection conn, int userId, String typeSearched)
+    public ArrayList<TransInfo> searchRecordsByType(Connection conn, int userId, String typeSearched, UserPreferences<Preference> userPrefs)
             throws SQLException {
+        String orderBy = userPrefs.get(1).getPref();
         String sql = "SELECT first_name, last_name, type, card_used, category, amount, points, timestamp"+
                 " FROM User INNER JOIN Trans on User.user_id = Trans.user_id " +
-                " WHERE Trans.user_id = ? AND type = ?  ORDER BY timestamp DESC";
+                " WHERE Trans.user_id = ? AND type = ? ORDER BY " + orderBy;
         try ( PreparedStatement pstmt = conn.prepareStatement(sql) ) {
             pstmt.setInt(1, userId);
             pstmt.setString(2, typeSearched);
