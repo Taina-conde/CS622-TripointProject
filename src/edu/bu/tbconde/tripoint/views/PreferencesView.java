@@ -5,6 +5,23 @@ import java.util.Scanner;
 public class PreferencesView {
     private Scanner sc = new Scanner(System.in);
 
+    public int preferencesMenu() {
+        int selected;
+        System.out.println("What would you like to do? \n ");
+        System.out.println("1.Load saved preferences  \n ");
+        System.out.println("2.Set new preference \n ");
+        do {
+            System.out.println("Please, enter 1, or 2.");
+            while(!sc.hasNextInt()) {
+                System.out.println("Please, enter only numbers.");
+                sc.nextLine();
+            }
+            selected = sc.nextInt();
+
+        } while (!(selected >=1 && selected <=2));
+        return selected;
+    }
+
     public String askCurrency() {
         int selected;
         System.out.println("Set currency: \n ");

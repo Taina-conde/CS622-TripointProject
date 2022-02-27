@@ -7,7 +7,18 @@ public class PreferencesController {
     public PreferencesController() {
         view = new PreferencesView();
     }
-    public void setPreferences() {
-        
+    public void handlePreferences() {
+        int selected = view.preferencesMenu();
+        if (selected == 1) {
+            loadSavedPreferences();
+        } else {
+            setNewPreference();
+        }
+    }
+    private void loadSavedPreferences() {
+
+    }
+    private void setNewPreference() {
+
     }
 }
