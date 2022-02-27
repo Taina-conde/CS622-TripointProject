@@ -16,27 +16,19 @@ public class AppModel {
     private int pointsBalance;
     private UserPreferences userPrefs;
     private ArrayList<UserPreferences<Preference>> userPrefsList = new ArrayList<UserPreferences<Preference>>();
-    private FutureTask<ArrayList<UserPreferences<Preference>>> future;
-    private Thread initThread;
+
 
     public AppModel(int capacity) {
         wallet = new Wallet<>(capacity);
-        future = new FutureTask<ArrayList<UserPreferences<Preference>>>(new InitializePreferencesThread(user.getId()));
-        //start thread that will read the file to get the arraylist of user preferences
-        initThread = new Thread(future);
-        initThread.start();
+
     }
     public AppModel(int capacity, String path) {
         wallet = new Wallet<>(capacity);
-        future = new FutureTask<ArrayList<UserPreferences<Preference>>>(new InitializePreferencesThread(user.getId(), path));
-        //start thread that will read the file to get the arraylist of user preferences
-        initThread = new Thread(future);
-        initThread.start();
+
     }
     public AppModel(Thread initThread, FutureTask<ArrayList<UserPreferences<Preference>>> future) {
         wallet = new Wallet<>(2);
-        this.initThread = initThread;
-        this.future = future;
+
     }
     //getters
     public User getUser() {return user;}
@@ -54,7 +46,7 @@ public class AppModel {
     public void setUserPrefs(UserPreferences userPrefs) {this.userPrefs = userPrefs;}
     public void setUserPrefsList(ArrayList<UserPreferences<Preference>> userPrefsList) {this.userPrefsList = userPrefsList;}
 
-    public ArrayList<UserPreferences<Preference>> initializePreferences() throws ExecutionException, InterruptedException {
+    public ArrayList<UserPreferences<Preference>> initializePreferences(FutureTask<ArrayList<UserPreferences<Preference>>> future) throws ExecutionException, InterruptedException {
         userPrefsList = future.get();
         if (userPrefsList.size() == 0) {
             userPrefs = new UserPreferences(new CurrencyPreference(user.getId()), new OrderByPreference(user.getId()));

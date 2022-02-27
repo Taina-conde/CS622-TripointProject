@@ -2,10 +2,7 @@ package edu.bu.tbconde.tripoint.controllers;
 
 import edu.bu.tbconde.tripoint.cards.BasicCard;
 import edu.bu.tbconde.tripoint.cards.PreferredCard;
-import edu.bu.tbconde.tripoint.config.Preference;
-import edu.bu.tbconde.tripoint.config.PreferencesReader;
-import edu.bu.tbconde.tripoint.config.PreferencesWriter;
-import edu.bu.tbconde.tripoint.config.UserPreferences;
+import edu.bu.tbconde.tripoint.config.*;
 import edu.bu.tbconde.tripoint.database.UseDataBase;
 import edu.bu.tbconde.tripoint.models.AppModel;
 import edu.bu.tbconde.tripoint.transactions.Transaction;
@@ -19,6 +16,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.FutureTask;
 
 public class AppController {
     private String url = "jdbc:sqlite:src/edu/bu/tbconde/tripoint/database/Database.db";
@@ -35,6 +33,8 @@ public class AppController {
    private PastTransactionsController pastTrans;
    private CloseAccountController closeAccount;
    private PreferencesController prefs;
+    private FutureTask<ArrayList<UserPreferences<Preference>>> future;
+    private Thread initThread;
    private boolean isInitialized;
     private boolean exit = false;
 
@@ -56,7 +56,10 @@ public class AppController {
         User user = welcome.greetCustomer();
         if (user != null) {
             model.setUser(user);
-
+            future = new FutureTask<ArrayList<UserPreferences<Preference>>>(new InitializePreferencesThread(user.getId()));
+            //start thread that will read the file to get the arraylist of user preferences
+            initThread = new Thread(future);
+            initThread.start();
         } else {
             exitApp();
         }
@@ -132,7 +135,7 @@ public class AppController {
     }
     public boolean handleInitializePreferences() {
         try {
-            model.initializePreferences();
+            model.initializePreferences(future);
             isInitialized = true;
         } catch (ExecutionException e) {
             e.printStackTrace();
