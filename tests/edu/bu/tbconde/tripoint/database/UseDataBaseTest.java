@@ -207,7 +207,6 @@ class UseDataBaseTest {
                         "redeem"
                 );
                 assertEquals(0, transList2.size());
-
             }
             catch (SQLException ex) {
                 ex.printStackTrace();
