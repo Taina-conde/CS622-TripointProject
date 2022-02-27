@@ -53,6 +53,7 @@ public class AppModel {
         wallet.add(newCard);
     }
     public void setPointsBalance(int points) {pointsBalance = points;}
+    public void setUserPrefs(UserPreferences userPrefs) {this.userPrefs = userPrefs;}
     public void setUserPrefsList(ArrayList<UserPreferences> userPrefsList) {this.userPrefsList = userPrefsList;}
 
     public ArrayList<UserPreferences> initializePreferences() throws ExecutionException, InterruptedException {
