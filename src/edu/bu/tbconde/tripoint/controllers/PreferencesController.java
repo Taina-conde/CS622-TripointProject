@@ -49,8 +49,17 @@ public class PreferencesController {
         return null;
     }
     private UserPreferences setNewPreference(int userId, ArrayList<UserPreferences> userPrefsList) {
-        CurrencyPreference currPref = new CurrencyPreference(userId, view.askCurrency());
-        OrderByPreference orderPref = new OrderByPreference(userId, view.askOrderBy());
+        CurrencyPreference currPref = new CurrencyPreference(userId, view.askCurrency(
+                model.getCurrencyOption1(),
+                model.getCurrencyOption2()
+        ));
+        OrderByPreference orderPref = new OrderByPreference(userId, view.askOrderBy(
+                model.getOrderOption1(),
+                model.getOrderOption2(),
+                model.getOrderOption3(),
+                model.getOrderOption4(),
+                model.getOrderOption5()
+        ));
         UserPreferences userPrefs = new UserPreferences( currPref, orderPref);
         userPrefsList.add(userPrefs);
         try {

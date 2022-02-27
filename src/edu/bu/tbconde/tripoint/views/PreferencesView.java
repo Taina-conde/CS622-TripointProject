@@ -25,11 +25,9 @@ public class PreferencesView {
         return selected;
     }
 
-    public String askCurrency() {
+    public String askCurrency(String currencyOption1, String currencyOption2) {
         int selected;
-        System.out.println("Set currency: \n ");
-        System.out.println("1.Dollar  \n ");
-        System.out.println("2.Euro \n ");
+        System.out.println("\nSet currency:\n " + currencyOption1 + currencyOption2);
         do {
             System.out.println("Please, enter 1, or 2.");
             while(!sc.hasNextInt()) {
@@ -44,15 +42,9 @@ public class PreferencesView {
         }
         return "euro";
     }
-    public String askOrderBy() {
+    public String askOrderBy(String option1, String option2, String option3, String option4, String option5) {
         int selected;
-        System.out.println("Order past transactions by: \n ");
-        System.out.println("1.Most recent  \n ");
-        System.out.println("2.Oldest \n ");
-        System.out.println("3.Greatest amount \n ");
-        System.out.println("4.Lowest amount \n ");
-        System.out.println("5.Type \n ");
-
+        System.out.println("\nOrder past transactions by: \n " + option1 + option2 + option3 + option4 + option5);
         do {
             System.out.println("Please, enter 1, 2, 3, 4, or 5.");
             while(!sc.hasNextInt()) {
