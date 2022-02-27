@@ -28,9 +28,9 @@ public class PreferencesController {
                 if (setNew) {
                     return setNewPreference(userId, userPrefsList);
                 }
-            } else {
-                return selectedPrefs;
             }
+            return selectedPrefs;
+
         }
         return setNewPreference(userId, userPrefsList);
     }
