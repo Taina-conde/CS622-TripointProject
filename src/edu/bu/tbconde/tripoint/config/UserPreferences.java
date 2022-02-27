@@ -1,19 +1,21 @@
 package edu.bu.tbconde.tripoint.config;
 
-
 public class UserPreferences<T extends Preference> {
+    int userId;
     private int capacity;
     private T[] objList;
-    public UserPreferences( T... objs) {
-        this(objs.length);
+    public UserPreferences(int userId, T... objs ) {
+        this(objs.length, userId );
         for (int i = 0; i < capacity; i++) {
             objList[i] = objs[i];
         }
     }
-    public UserPreferences(int capacity) {
+    public UserPreferences(int capacity, int userId) {
         this.capacity = capacity;
+        this.userId = userId;
         objList = (T[]) new Preference[capacity];
     }
+    public int getUserId() {return userId;}
     public T get(int index) { return objList[index];}
     public T add(T obj) {
         for(int i = 0; i < objList.length; i++) {
@@ -22,7 +24,7 @@ public class UserPreferences<T extends Preference> {
                 return objList[i];
             }
         }
-        System.out.println("UserPreferences is full. Unable to add " + obj);
+        System.out.println("This UserPreferences is full. Unable to add " + obj);
         return null;
     }
     public int size() {
