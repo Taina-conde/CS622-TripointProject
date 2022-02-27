@@ -15,25 +15,25 @@ public class AppModel {
     private Wallet<CreditCard> wallet;
     private int pointsBalance;
     private UserPreferences userPrefs;
-    private ArrayList<UserPreferences> userPrefsList = new ArrayList<UserPreferences>();
-    private FutureTask<ArrayList<UserPreferences>> future;
+    private ArrayList<UserPreferences<Preference>> userPrefsList = new ArrayList<UserPreferences<Preference>>();
+    private FutureTask<ArrayList<UserPreferences<Preference>>> future;
     private Thread initThread;
 
     public AppModel(int capacity) {
         wallet = new Wallet<>(capacity);
-        future = new FutureTask<ArrayList<UserPreferences>>(new InitializePreferencesThread(user.getId()));
+        future = new FutureTask<ArrayList<UserPreferences<Preference>>>(new InitializePreferencesThread(user.getId()));
         //start thread that will read the file to get the arraylist of user preferences
         initThread = new Thread(future);
         initThread.start();
     }
     public AppModel(int capacity, String path) {
         wallet = new Wallet<>(capacity);
-        future = new FutureTask<ArrayList<UserPreferences>>(new InitializePreferencesThread(user.getId(), path));
+        future = new FutureTask<ArrayList<UserPreferences<Preference>>>(new InitializePreferencesThread(user.getId(), path));
         //start thread that will read the file to get the arraylist of user preferences
         initThread = new Thread(future);
         initThread.start();
     }
-    public AppModel(Thread initThread, FutureTask<ArrayList<UserPreferences>> future) {
+    public AppModel(Thread initThread, FutureTask<ArrayList<UserPreferences<Preference>>> future) {
         wallet = new Wallet<>(2);
         this.initThread = initThread;
         this.future = future;
@@ -43,7 +43,7 @@ public class AppModel {
     public Wallet<CreditCard> getWallet() {return wallet;}
     public int getPointsBalance() {return pointsBalance;}
     public UserPreferences getUserPrefs() {return userPrefs;}
-    public ArrayList<UserPreferences> getUserPrefsList() {return userPrefsList;}
+    public ArrayList<UserPreferences<Preference>> getUserPrefsList() {return userPrefsList;}
 
     //setters
     public void setUser(User user) {this.user = user;}
@@ -52,9 +52,9 @@ public class AppModel {
     }
     public void setPointsBalance(int points) {pointsBalance = points;}
     public void setUserPrefs(UserPreferences userPrefs) {this.userPrefs = userPrefs;}
-    public void setUserPrefsList(ArrayList<UserPreferences> userPrefsList) {this.userPrefsList = userPrefsList;}
+    public void setUserPrefsList(ArrayList<UserPreferences<Preference>> userPrefsList) {this.userPrefsList = userPrefsList;}
 
-    public ArrayList<UserPreferences> initializePreferences() throws ExecutionException, InterruptedException {
+    public ArrayList<UserPreferences<Preference>> initializePreferences() throws ExecutionException, InterruptedException {
         userPrefsList = future.get();
         if (userPrefsList.size() == 0) {
             userPrefs = new UserPreferences(new CurrencyPreference(user.getId()), new OrderByPreference(user.getId()));
