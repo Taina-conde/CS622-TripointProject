@@ -6,7 +6,7 @@ public class MainMenuModel {
     private String option3 = "3.Redeem points \n ";
     private String option4 = "4.Check your points balance \n ";
     private String option5 = "5.Close account \n ";
-    private String option6 = "6.Set preferences \n";
+    private String option6 = "6.Set Preferences \n ";
     private String option7 = "7.Logout \n";
     private int selectedOption;
     //getters
