@@ -12,7 +12,7 @@ public class PreferencesWriter {
         this.path = path;
     }
     public PreferencesWriter() {
-        this.path = "/preferences.dat";
+        this.path = "src/edu/bu/tbconde/tripoint/config/preferences.dat";
     }
     public void writePreferences(ArrayList<UserPreferences> prefs) throws IOException {
         /*The try-with-resources ensures that the resource is closed at the end of the statement. A resource is object

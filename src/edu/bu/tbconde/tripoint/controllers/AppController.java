@@ -89,14 +89,14 @@ public class AppController {
             if (selected == 1) {
                 typeSearched = "purchase";
                 transList = db.searchRecordsByType(conn, userId, typeSearched);
-                pastTrans.displayPastTransactions(transList, pointsBalance);
+                pastTrans.displayPastTransactions(transList, pointsBalance, model.getUserPrefs());
             } else if (selected == 2) {
                 typeSearched = "redeem";
                 transList = db.searchRecordsByType(conn, userId, typeSearched );
-                pastTrans.displayPastTransactions(transList, pointsBalance);
+                pastTrans.displayPastTransactions(transList, pointsBalance, model.getUserPrefs());
             } else {
                 transList = db.searchUserTransactions(conn, userId );
-                pastTrans.displayPastTransactions(transList, pointsBalance);
+                pastTrans.displayPastTransactions(transList, pointsBalance, model.getUserPrefs());
             }
         }
         catch(SQLException err) {

@@ -18,7 +18,7 @@ public class PastTransactionsView {
     public void printRecord(TransInfo trans, UserPreferences userPrefs) {
         String currency = userPrefs.get(0).getPref();
         if (currency.equals("dollar")) {
-            System.out.printf("%-25s %-25s %-25s USD%-24.2f %,-25d %-25s\n",
+            System.out.printf("%-25s %-25s %-25s USD %-21.2f %,-25d %-25s\n",
                     trans.getType(),
                     trans.getCardUsed(),
                     trans.getCategory(),
@@ -28,7 +28,7 @@ public class PastTransactionsView {
             );
         } else {
             double euroAmount = trans.getAmount() * 0.89;
-            System.out.printf("%-25s %-25s %-25s EUR%-24.2f %,-25d %-25s\n",
+            System.out.printf("%-25s %-25s %-25s EUR %-21.2f %,-25d %-25s\n",
                     trans.getType(),
                     trans.getCardUsed(),
                     trans.getCategory(),

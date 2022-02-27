@@ -1,10 +1,7 @@
 package edu.bu.tbconde.tripoint.models;
 
 import edu.bu.tbconde.tripoint.cards.CreditCard;
-import edu.bu.tbconde.tripoint.config.CurrencyPreference;
-import edu.bu.tbconde.tripoint.config.InitializePreferencesThread;
-import edu.bu.tbconde.tripoint.config.OrderByPreference;
-import edu.bu.tbconde.tripoint.config.UserPreferences;
+import edu.bu.tbconde.tripoint.config.*;
 
 import edu.bu.tbconde.tripoint.util.User;
 import edu.bu.tbconde.tripoint.util.Wallet;
@@ -45,6 +42,7 @@ public class AppModel {
     public User getUser() {return user;}
     public Wallet<CreditCard> getWallet() {return wallet;}
     public int getPointsBalance() {return pointsBalance;}
+    public UserPreferences getUserPrefs() {return userPrefs;}
     public ArrayList<UserPreferences> getUserPrefsList() {return userPrefsList;}
 
     //setters
