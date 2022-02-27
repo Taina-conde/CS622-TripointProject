@@ -3,9 +3,9 @@ package edu.bu.tbconde.tripoint.models;
 import edu.bu.tbconde.tripoint.cards.CreditCard;
 import edu.bu.tbconde.tripoint.config.CurrencyPreference;
 import edu.bu.tbconde.tripoint.config.InitializePreferencesThread;
+import edu.bu.tbconde.tripoint.config.OrderByPreference;
 import edu.bu.tbconde.tripoint.config.UserPreferences;
-import edu.bu.tbconde.tripoint.transactions.Transaction;
-import edu.bu.tbconde.tripoint.util.InitializeRecordsThread;
+
 import edu.bu.tbconde.tripoint.util.User;
 import edu.bu.tbconde.tripoint.util.Wallet;
 
@@ -23,7 +23,6 @@ public class AppModel {
     private Thread initThread;
 
     public AppModel(int capacity) {
-        //default user preference
         wallet = new Wallet<>(capacity);
         future = new FutureTask<ArrayList<UserPreferences>>(new InitializePreferencesThread(user.getId()));
         //start thread that will read the file to get the arraylist of user preferences
@@ -53,13 +52,14 @@ public class AppModel {
     public void addCard(CreditCard newCard) {
         wallet.add(newCard);
     }
-    public void addPoints(int points) {pointsBalance += points;}
-    public void removePoints(int points) {pointsBalance -= points;}
     public void setPointsBalance(int points) {pointsBalance = points;}
     public void setUserPrefsList(ArrayList<UserPreferences> userPrefsList) {this.userPrefsList = userPrefsList;}
 
     public ArrayList<UserPreferences> initializePreferences() throws ExecutionException, InterruptedException {
         userPrefsList = future.get();
+        if (userPrefsList.size() == 0) {
+            userPrefs = new UserPreferences(new CurrencyPreference(user.getId()), new OrderByPreference(user.getId()));
+        }
         return userPrefsList;
     }
 }

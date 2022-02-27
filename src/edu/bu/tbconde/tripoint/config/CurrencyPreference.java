@@ -2,8 +2,12 @@ package edu.bu.tbconde.tripoint.config;
 
 public class CurrencyPreference extends Preference{
     private String currency;
+    public CurrencyPreference() {
+        this(0, "dollar");
+    }
     public CurrencyPreference(int userId) {
         super(userId);
+        this.currency = "dollar";
     }
     public CurrencyPreference(int userId, String currency) {
         this(userId);
