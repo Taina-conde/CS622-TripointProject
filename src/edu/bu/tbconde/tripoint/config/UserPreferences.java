@@ -4,15 +4,17 @@ public class UserPreferences<T extends Preference> {
     int userId;
     private int capacity;
     private T[] objList;
-    public UserPreferences(int userId, T... objs ) {
-        this(objs.length, userId );
+    public UserPreferences( T... objs ) {
+        this(objs.length );
+        if (objs.length >= 1) {
+            this.userId = objs[0].getUserId();
+        }
         for (int i = 0; i < capacity; i++) {
             objList[i] = objs[i];
         }
     }
-    public UserPreferences(int capacity, int userId) {
+    public UserPreferences(int capacity) {
         this.capacity = capacity;
-        this.userId = userId;
         objList = (T[]) new Preference[capacity];
     }
     public int getUserId() {return userId;}

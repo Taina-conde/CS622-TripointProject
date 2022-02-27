@@ -122,7 +122,7 @@ public class AppController {
         return null;
     }
     private void handleSetPreferences() {
-        UserPreferences userPrefs = prefs.handlePreferences(model.getUser().getId(), model.get);
+        UserPreferences userPrefs = prefs.handlePreferences(model.getUser().getId(), model.getUserPrefsList());
         System.out.println("USER SET PREFERENCES");
     }
     public boolean handleInitializePreferences() {

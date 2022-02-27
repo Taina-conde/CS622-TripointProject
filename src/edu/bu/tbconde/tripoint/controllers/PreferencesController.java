@@ -41,7 +41,7 @@ public class PreferencesController {
     private UserPreferences setNewPreference(int userId, ArrayList<UserPreferences> userPrefsList) {
         CurrencyPreference currPref = new CurrencyPreference(userId, view.askCurrency());
         OrderByPreference orderPref = new OrderByPreference(userId, view.askOrderBy());
-        UserPreferences userPrefs = new UserPreferences(userId, currPref, orderPref);
+        UserPreferences userPrefs = new UserPreferences( currPref, orderPref);
         userPrefsList.add(userPrefs);
         try {
             writer.writePreferences(userPrefsList);

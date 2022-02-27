@@ -5,6 +5,10 @@ public abstract class Preference {
     public Preference(int userId) {
         this.userId = userId;
     }
+
+    public int getUserId() {
+        return userId;
+    }
     public abstract String getPref();
     public abstract void setPref(String pref);
 }

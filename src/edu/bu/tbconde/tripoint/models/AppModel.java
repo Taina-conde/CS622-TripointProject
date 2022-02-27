@@ -1,6 +1,7 @@
 package edu.bu.tbconde.tripoint.models;
 
 import edu.bu.tbconde.tripoint.cards.CreditCard;
+import edu.bu.tbconde.tripoint.config.CurrencyPreference;
 import edu.bu.tbconde.tripoint.config.InitializePreferencesThread;
 import edu.bu.tbconde.tripoint.config.UserPreferences;
 import edu.bu.tbconde.tripoint.transactions.Transaction;
@@ -16,11 +17,13 @@ public class AppModel {
     private User user = new User();
     private Wallet<CreditCard> wallet;
     private int pointsBalance;
+    private UserPreferences userPrefs;
     private ArrayList<UserPreferences> userPrefsList = new ArrayList<UserPreferences>();
     private FutureTask<ArrayList<UserPreferences>> future;
     private Thread initThread;
 
     public AppModel(int capacity) {
+        //default user preference
         wallet = new Wallet<>(capacity);
         future = new FutureTask<ArrayList<UserPreferences>>(new InitializePreferencesThread(user.getId()));
         //start thread that will read the file to get the arraylist of user preferences
