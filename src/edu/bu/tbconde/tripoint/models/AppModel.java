@@ -43,6 +43,7 @@ public class AppModel {
     public User getUser() {return user;}
     public Wallet<CreditCard> getWallet() {return wallet;}
     public int getPointsBalance() {return pointsBalance;}
+    public ArrayList<UserPreferences> getUserPrefsList() {return userPrefsList;}
 
     //setters
     public void setUser(User user) {this.user = user;}
@@ -52,6 +53,7 @@ public class AppModel {
     public void addPoints(int points) {pointsBalance += points;}
     public void removePoints(int points) {pointsBalance -= points;}
     public void setPointsBalance(int points) {pointsBalance = points;}
+    public void setUserPrefsList(ArrayList<UserPreferences> userPrefsList) {this.userPrefsList = userPrefsList;}
 
     public ArrayList<UserPreferences> initializePreferences() throws ExecutionException, InterruptedException {
         userPrefsList = future.get();

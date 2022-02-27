@@ -19,12 +19,12 @@ public class PreferencesController {
         reader = new PreferencesReader();
         writer = new PreferencesWriter();
     }
-    public UserPreferences handlePreferences(int userId) {
+    public UserPreferences handlePreferences(int userId, ArrayList<UserPreferences> userPrefsList) {
         int selected = view.preferencesMenu();
         if (selected == 1) {
             return loadSavedPreferences(userId);
         }
-        return setNewPreference(userId);
+        return setNewPreference(userId, userPrefsList);
     }
     private UserPreferences loadSavedPreferences(int userId) {
         ArrayList<UserPreferences> userPrefsList;
@@ -38,11 +38,17 @@ public class PreferencesController {
         }
         return null;
     }
-    private UserPreferences setNewPreference(int userId) {
+    private UserPreferences setNewPreference(int userId, ArrayList<UserPreferences> userPrefsList) {
         CurrencyPreference currPref = new CurrencyPreference(userId, view.askCurrency());
         OrderByPreference orderPref = new OrderByPreference(userId, view.askOrderBy());
         UserPreferences userPrefs = new UserPreferences(userId, currPref, orderPref);
-        writer.
-        return userPrefs;
+        userPrefsList.add(userPrefs);
+        try {
+            writer.writePreferences(userPrefsList);
+            return userPrefs;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
