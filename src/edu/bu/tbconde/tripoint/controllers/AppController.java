@@ -13,7 +13,6 @@ import edu.bu.tbconde.tripoint.util.TransInfo;
 import edu.bu.tbconde.tripoint.util.User;
 import edu.bu.tbconde.tripoint.views.AppView;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
