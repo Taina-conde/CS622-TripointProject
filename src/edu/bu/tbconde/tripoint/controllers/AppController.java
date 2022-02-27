@@ -125,6 +125,9 @@ public class AppController {
         }
         return null;
     }
+    private void handleSetPreferences() {
+        System.out.println("USER SET PREFERENCES");
+    }
 
     public void processMenuOption() {
         int pointsBalance = handleCheckBalance();
@@ -154,6 +157,9 @@ public class AppController {
                 break;
             case 5:
                 handleCloseAccount();
+                break;
+            case 6:
+                handleSetPreferences();
                 break;
             default:
                 exitApp();
