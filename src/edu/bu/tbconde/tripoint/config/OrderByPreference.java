@@ -15,4 +15,8 @@ public class OrderByPreference extends Preference {
     public void setPref(String orderBy) {
         this.orderBy = orderBy;
     }
+    @Override
+    public String toString() {
+        return orderBy.substring(0,1).toUpperCase() + orderBy.substring(1);
+    }
 }

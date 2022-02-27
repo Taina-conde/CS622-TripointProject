@@ -15,4 +15,8 @@ public class CurrencyPreference extends Preference{
     public void setPref(String currency) {
         this.currency = currency;
     }
+    @Override
+    public String toString() {
+        return currency.substring(0,1).toUpperCase() + currency.substring(1);
+    }
 }
