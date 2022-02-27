@@ -56,11 +56,12 @@ public class AppController {
         User user = welcome.greetCustomer();
         if (user != null) {
             model.setUser(user);
-            handleInitializePreferences(user.getId());
+
         } else {
             exitApp();
         }
     }
+
     public boolean getExit() {return exit;}
     public boolean exitApp() {
         exit = true;
@@ -78,18 +79,6 @@ public class AppController {
             err.printStackTrace();
         }
         return trans;
-    }
-
-    public boolean handleInitializePreferences(int userId) {
-        try {
-            model.initializePreferences(userId);
-            isInitialized = true;
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return isInitialized;
     }
 
     public void handlePastTransactions(int pointsBalance) {
@@ -136,9 +125,23 @@ public class AppController {
         UserPreferences userPrefs = prefs.handlePreferences(model.getUser().getId());
         System.out.println("USER SET PREFERENCES");
     }
+    public boolean handleInitializePreferences() {
+        try {
+            model.initializePreferences();
+            isInitialized = true;
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return isInitialized;
+    }
 
     public void processMenuOption() {
         int pointsBalance = handleCheckBalance();
+        if (!isInitialized) {
+            handleInitializePreferences();
+        }
         Transaction trans;
         switch (menu.selectOption()) {
             case 1:

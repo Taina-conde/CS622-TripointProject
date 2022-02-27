@@ -2,8 +2,9 @@ package edu.bu.tbconde.tripoint.config;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.Callable;
 
-public class InitializePreferencesThread {
+public class InitializePreferencesThread implements Callable<ArrayList<UserPreferences>> {
     private int userId;
     private ArrayList<UserPreferences> userPrefsList;
     private PreferencesReader reader;
