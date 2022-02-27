@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 /**This class reads the preferences file*/
 public class PreferencesReader {
     private ArrayList<UserPreferences> prefs;
-    private String path = "preferences.dat";
+    private String path = "/preferences.dat";
     public PreferencesReader() {
         prefs = new ArrayList<UserPreferences>();
     }
