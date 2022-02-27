@@ -1,5 +1,8 @@
 package edu.bu.tbconde.tripoint.views;
 
+import edu.bu.tbconde.tripoint.config.UserPreferences;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PreferencesView {
@@ -71,5 +74,22 @@ public class PreferencesView {
             default:
                 return "type";
         }
+    }
+    public UserPreferences askSavedPreferences(ArrayList<UserPreferences> userPrefs) {
+        int selected;
+        System.out.println("Choose a previously saved preference: \n ");
+        for (int i = 0; i < userPrefs.size(); i++) {
+            System.out.printf("%d. %-30s", i + 1, userPrefs.get(i));
+        }
+        do {
+            System.out.printf("Please, enter a number between 1 and %d.", userPrefs.size());
+            while(!sc.hasNextInt()) {
+                System.out.println("Please, enter only numbers.");
+                sc.nextLine();
+            }
+            selected = sc.nextInt();
+
+        } while (!(selected >=1 && selected <=userPrefs.size()));
+        return userPrefs.get(selected-1);
     }
 }

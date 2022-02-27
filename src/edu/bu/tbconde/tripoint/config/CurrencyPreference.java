@@ -5,6 +5,10 @@ public class CurrencyPreference extends Preference{
     public CurrencyPreference(int userId) {
         super(userId);
     }
+    public CurrencyPreference(int userId, String currency) {
+        this(userId);
+        this.currency = currency;
+    }
 
     @Override
     public String getPref() {

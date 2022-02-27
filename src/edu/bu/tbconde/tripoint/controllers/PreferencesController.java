@@ -1,13 +1,12 @@
 package edu.bu.tbconde.tripoint.controllers;
 
-import edu.bu.tbconde.tripoint.config.PreferencesReader;
-import edu.bu.tbconde.tripoint.config.PreferencesWriter;
-import edu.bu.tbconde.tripoint.config.UserPreferences;
+import edu.bu.tbconde.tripoint.config.*;
 import edu.bu.tbconde.tripoint.models.PreferencesModel;
 import edu.bu.tbconde.tripoint.views.PreferencesView;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Currency;
 
 public class PreferencesController {
     private PreferencesView view;
@@ -20,25 +19,30 @@ public class PreferencesController {
         reader = new PreferencesReader();
         writer = new PreferencesWriter();
     }
-    public void handlePreferences(int userId) {
+    public UserPreferences handlePreferences(int userId) {
         int selected = view.preferencesMenu();
         if (selected == 1) {
-            loadSavedPreferences(userId);
-        } else {
-            setNewPreference(userId);
+            return loadSavedPreferences(userId);
         }
+        return setNewPreference(userId);
     }
-    private void loadSavedPreferences(int userId) {
-        ArrayList<UserPreferences> userPrefs;
+    private UserPreferences loadSavedPreferences(int userId) {
+        ArrayList<UserPreferences> userPrefsList;
+        UserPreferences selectedPrefs;
         try{
-           userPrefs = reader.readUserPreferences(userId);
+           userPrefsList = reader.readUserPreferences(userId);
+           selectedPrefs = view.askSavedPreferences(userPrefsList);
+           return selectedPrefs;
         } catch (IOException | ClassNotFoundException ex) {
             ex.printStackTrace();
         }
-        
-
+        return null;
     }
-    private void setNewPreference() {
-
+    private UserPreferences setNewPreference(int userId) {
+        CurrencyPreference currPref = new CurrencyPreference(userId, view.askCurrency());
+        OrderByPreference orderPref = new OrderByPreference(userId, view.askOrderBy());
+        UserPreferences userPrefs = new UserPreferences(userId, currPref, orderPref);
+        writer.
+        return userPrefs;
     }
 }

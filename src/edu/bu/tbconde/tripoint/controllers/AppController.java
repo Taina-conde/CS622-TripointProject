@@ -4,6 +4,7 @@ import edu.bu.tbconde.tripoint.cards.BasicCard;
 import edu.bu.tbconde.tripoint.cards.PreferredCard;
 import edu.bu.tbconde.tripoint.config.PreferencesReader;
 import edu.bu.tbconde.tripoint.config.PreferencesWriter;
+import edu.bu.tbconde.tripoint.config.UserPreferences;
 import edu.bu.tbconde.tripoint.database.UseDataBase;
 import edu.bu.tbconde.tripoint.models.AppModel;
 import edu.bu.tbconde.tripoint.transactions.Transaction;
@@ -132,7 +133,7 @@ public class AppController {
         return null;
     }
     private void handleSetPreferences() {
-        prefs.handlePreferences();
+        UserPreferences userPrefs = prefs.handlePreferences(model.getUser().getId());
         System.out.println("USER SET PREFERENCES");
     }
 

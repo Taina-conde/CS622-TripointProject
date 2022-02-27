@@ -5,6 +5,10 @@ public class OrderByPreference extends Preference {
     public OrderByPreference(int userId) {
         super(userId);
     }
+    public OrderByPreference(int userId, String orderBy) {
+        this(userId);
+        this.orderBy = orderBy;
+    }
 
     @Override
     public String getPref() {
