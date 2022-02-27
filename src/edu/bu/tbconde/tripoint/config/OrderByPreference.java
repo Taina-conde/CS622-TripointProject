@@ -2,9 +2,6 @@ package edu.bu.tbconde.tripoint.config;
 
 public class OrderByPreference extends Preference {
     private String orderBy;
-    public OrderByPreference() {
-        this(0, "timestamp DESC");
-    }
     public OrderByPreference(int userId) {
         super(userId);
         this.orderBy = "timestamp DESC";
