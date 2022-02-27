@@ -3,6 +3,8 @@ package edu.bu.tbconde.tripoint.models;
 public class PreferencesModel {
     private String currency;
     private String orderBy;
+    private String menuOption1 = "1.View saved preferences  \n ";
+    private String menuOption2 = "2.Set new preference \n ";
     private String currencyOption1 = "1.Dollar  \n ";
     private String currencyOption2 = "2.Euro \n ";
     private String orderOption1 = "1.Most recent  \n ";
@@ -18,6 +20,15 @@ public class PreferencesModel {
     public String getOrderBy() {
         return orderBy;
     }
+
+    public String getMenuOption1() {
+        return menuOption1;
+    }
+
+    public String getMenuOption2() {
+        return menuOption2;
+    }
+
     public String getCurrencyOption1() {return currencyOption1;}
 
     public String getCurrencyOption2() {

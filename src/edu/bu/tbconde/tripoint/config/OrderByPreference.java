@@ -10,6 +10,20 @@ public class OrderByPreference extends Preference {
         this(userId);
         this.orderBy = orderBy;
     }
+    public String orderText() {
+        switch (orderBy) {
+            case "timestamp DESC":
+                return "most recent";
+            case "timestamp ASC":
+                return "oldest";
+            case "amount DESC":
+                return "greatest amount";
+            case "amount ASC" :
+                return "lowest amount";
+            default:
+                return "type";
+        }
+    }
 
     @Override
     public String getPref() {
@@ -22,6 +36,6 @@ public class OrderByPreference extends Preference {
     }
     @Override
     public String toString() {
-        return orderBy.substring(0,1).toUpperCase() + orderBy.substring(1);
+        return orderText().substring(0,1).toUpperCase() + orderText().substring(1);
     }
 }

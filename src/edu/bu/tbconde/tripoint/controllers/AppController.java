@@ -124,6 +124,9 @@ public class AppController {
     }
     private void handleSetPreferences() {
         UserPreferences userPrefs = prefs.handlePreferences(model.getUser().getId(), model.getUserPrefsList());
+        if (userPrefs != null) {
+            view.printPreferencesMessage(userPrefs);
+        }
         model.setUserPrefs(userPrefs);
     }
     public boolean handleInitializePreferences() {

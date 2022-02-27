@@ -6,7 +6,6 @@ import edu.bu.tbconde.tripoint.views.PreferencesView;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Currency;
 
 public class PreferencesController {
     private PreferencesView view;
@@ -19,36 +18,31 @@ public class PreferencesController {
         reader = new PreferencesReader();
         writer = new PreferencesWriter();
     }
-    public UserPreferences handlePreferences(int userId, ArrayList<UserPreferences> userPrefsList) {
+    public UserPreferences handlePreferences(int userId, ArrayList<UserPreferences<Preference>> userPrefsList) {
         UserPreferences selectedPrefs;
-        int selected = view.preferencesMenu();
+        int selected = view.preferencesMenu(model.getMenuOption1(), model.getMenuOption2());
         if (selected == 1) {
-            selectedPrefs = loadSavedPreferences(userId);
+            selectedPrefs = loadSavedPreferences(userId, userPrefsList);
             if (selectedPrefs == null) {
                 boolean setNew = view.askSetNewPreference();
                 if (setNew) {
                     return setNewPreference(userId, userPrefsList);
                 }
+            } else {
+                return selectedPrefs;
             }
         }
         return setNewPreference(userId, userPrefsList);
     }
-    private UserPreferences loadSavedPreferences(int userId) {
-        ArrayList<UserPreferences> userPrefsList;
+    private UserPreferences loadSavedPreferences(int userId, ArrayList<UserPreferences<Preference>> userPrefsList) {
         UserPreferences selectedPrefs;
-        try{
-           userPrefsList = reader.readUserPreferences(userId);
-           if (userPrefsList.size() == 0) {
-               return null;
-           }
-           selectedPrefs = view.askSavedPreferences(userPrefsList);
-           return selectedPrefs;
-        } catch (IOException | ClassNotFoundException ex) {
-            ex.printStackTrace();
+        if (userPrefsList.size() == 0) {
+            return null;
         }
-        return null;
+        selectedPrefs = view.askSavedPreferences(userPrefsList);
+        return selectedPrefs;
     }
-    private UserPreferences setNewPreference(int userId, ArrayList<UserPreferences> userPrefsList) {
+    private UserPreferences setNewPreference(int userId, ArrayList<UserPreferences<Preference>> userPrefsList) {
         CurrencyPreference currPref = new CurrencyPreference(userId, view.askCurrency(
                 model.getCurrencyOption1(),
                 model.getCurrencyOption2()

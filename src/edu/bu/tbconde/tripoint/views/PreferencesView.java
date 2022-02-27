@@ -1,5 +1,6 @@
 package edu.bu.tbconde.tripoint.views;
 
+import edu.bu.tbconde.tripoint.config.Preference;
 import edu.bu.tbconde.tripoint.config.UserPreferences;
 
 import java.util.ArrayList;
@@ -8,11 +9,9 @@ import java.util.Scanner;
 public class PreferencesView {
     private Scanner sc = new Scanner(System.in);
 
-    public int preferencesMenu() {
+    public int preferencesMenu(String option1, String option2) {
         int selected;
-        System.out.println("What would you like to do? \n ");
-        System.out.println("1.Load saved preferences  \n ");
-        System.out.println("2.Set new preference \n ");
+        System.out.println("What would you like to do?\n " + option1 + option2);
         do {
             System.out.println("Please, enter 1, or 2.");
             while(!sc.hasNextInt()) {
@@ -67,22 +66,27 @@ public class PreferencesView {
                 return "type";
         }
     }
-    public UserPreferences askSavedPreferences(ArrayList<UserPreferences> userPrefs) {
+    public UserPreferences askSavedPreferences(ArrayList<UserPreferences<Preference>> userPrefsList) {
         int selected;
-        System.out.println("Choose a previously saved preference: \n ");
-        for (int i = 0; i < userPrefs.size(); i++) {
-            System.out.printf("%d. %-30s", i + 1, userPrefs.get(i));
+        int numPrefs = userPrefsList.size();
+        System.out.println("Choose a previously saved preference: ");
+        for (int i = 0; i < numPrefs; i++) {
+            System.out.printf(" %d. %-30s \n", i + 1, userPrefsList.get(i));
         }
         do {
-            System.out.printf("Please, enter a number between 1 and %d.", userPrefs.size());
+            if (numPrefs == 1) {
+                System.out.printf("\nPlease, enter 1.\n");
+            } else {
+                System.out.printf("\nPlease, enter a number between 1 and %d.\n", numPrefs);
+            }
             while(!sc.hasNextInt()) {
                 System.out.println("Please, enter only numbers.");
                 sc.nextLine();
             }
             selected = sc.nextInt();
 
-        } while (!(selected >=1 && selected <=userPrefs.size()));
-        return userPrefs.get(selected-1);
+        } while (!(selected >=1 && selected <= numPrefs));
+        return userPrefsList.get(selected-1);
     }
     public boolean askSetNewPreference() {
         String answer;
