@@ -126,7 +126,6 @@ public class AppController {
         return null;
     }
     private void handleSetPreferences() {
-        System.out.println(model.getUserPrefsList());
         UserPreferences userPrefs = prefs.handlePreferences(model.getUser().getId(), model.getUserPrefsList());
         if (userPrefs != null) {
             view.printPreferencesMessage(userPrefs);
