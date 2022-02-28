@@ -50,6 +50,10 @@ public class AppModel {
         userPrefsList = future.get();
         if (userPrefsList.size() == 0) {
             userPrefs = new UserPreferences(new CurrencyPreference(user.getId()), new OrderByPreference(user.getId()));
+        } else {
+            int lastAddedPreferenceIndex = userPrefsList.size() - 1;
+            UserPreferences<Preference> lastPref = userPrefsList.get(lastAddedPreferenceIndex);
+            userPrefs = lastPref;
         }
         return userPrefsList;
     }
