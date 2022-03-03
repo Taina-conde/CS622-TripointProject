@@ -42,7 +42,7 @@ public class PreferencesController {
         selectedPrefs = view.askSavedPreferences(userPrefsList);
         return selectedPrefs;
     }
-    private UserPreferences setNewPreference(int userId, ArrayList<UserPreferences<Preference>> userPrefsList) {
+    private UserPreferences<Preference> setNewPreference(int userId, ArrayList<UserPreferences<Preference>> userPrefsList) {
         CurrencyPreference currPref = new CurrencyPreference(userId, view.askCurrency(
                 model.getCurrencyOption1(),
                 model.getCurrencyOption2()
